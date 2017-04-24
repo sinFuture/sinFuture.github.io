@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>sinFuture</title>
+  <subtitle>Like the front, like tossing.</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2017-04-23T16:14:38.000Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>sinFuture(新的未来)</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>开始新博客</title>
+    <link href="http://yoursite.com/2017/04/24/sinFuture/"/>
+    <id>http://yoursite.com/2017/04/24/sinFuture/</id>
+    <published>2017-04-23T16:07:00.000Z</published>
+    <updated>2017-04-23T16:14:38.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>  第一篇博客<a id="more"></a><br>  毕业工作了一小段时间，曾经写过的博客也已经逐渐的不在维护了，最近有空会陆续把以前博客的内容搬到这个新的博客下。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;  第一篇博客
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
