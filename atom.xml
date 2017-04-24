@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-04-23T16:14:38.000Z</updated>
+  <updated>2017-04-24T14:44:50.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,21 +16,25 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>开始新博客</title>
+    <title>求婚</title>
     <link href="http://yoursite.com/2017/04/24/sinFuture/"/>
     <id>http://yoursite.com/2017/04/24/sinFuture/</id>
     <published>2017-04-23T16:07:00.000Z</published>
-    <updated>2017-04-23T16:14:38.000Z</updated>
+    <updated>2017-04-24T14:44:50.000Z</updated>
     
-    <content type="html"><![CDATA[<p>  第一篇博客<a id="more"></a><br>  毕业工作了一小段时间，曾经写过的博客也已经逐渐的不在维护了，最近有空会陆续把以前博客的内容搬到这个新的博客下。</p>
+    <content type="html"><![CDATA[<p>  我把我新博客第一篇文章给了人生中最重的事！<a id="more"></a><br>  毕业工作了一小段时间，曾经写过的博客也已经逐渐的不在维护了，最近有空会陆续把以前博客的内容搬到这个新的博客下。</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;  第一篇博客
+      &lt;p&gt;  我把我新博客第一篇文章给了人生中最重的事！
     
     </summary>
     
+      <category term="生活" scheme="http://yoursite.com/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+      <category term="生活" scheme="http://yoursite.com/tags/%E7%94%9F%E6%B4%BB/"/>
     
   </entry>
   
