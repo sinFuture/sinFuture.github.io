@@ -1,54 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search> 
+<search>
   
     
     <entry>
       <title><![CDATA[解剖JQuery源码系列之架构篇]]></title>
-      <url>/2017/04/25/jquery20170425/</url>
-      <content type="html"></content>
-      
-        <categories>
-            
-            <category> 前端技术 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> jQuery </tag>
-            
-            <tag> javaScript </tag>
-            
-            <tag> Dom </tag>
-            
-        </tags>
-        
+      <url>%2F2017%2F04%2F25%2Fjquery20170425%2F</url>
+      <content type="text"></content>
     </entry>
+
     
     <entry>
       <title><![CDATA[求婚]]></title>
-      <url>/2017/04/24/sinFuture/</url>
-      <content type="html"><![CDATA[  <blockquote class="blockquote-center"><p>我把我新博客第一篇文章给了人生中最重的事！</p>
-</blockquote>
-  <a id="more"></a>
-<p>  毕业工作了一小段时间，曾经写过的博客也已经逐渐的不在维护了，最近有空会陆续把以前博客的内容搬到这个新的博客下。</p>
-]]></content>
-      
-        <categories>
-            
-            <category> 生活 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> 生活 </tag>
-            
-        </tags>
-        
+      <url>%2F2017%2F04%2F24%2FsinFuture%2F</url>
+      <content type="text"><![CDATA[我把我新博客第一篇文章给了人生中最重的事！ 毕业工作了一小段时间，曾经写过的博客也已经逐渐的不在维护了，最近有空会陆续把以前博客的内容搬到这个新的博客下。]]></content>
     </entry>
+
     
   
   
