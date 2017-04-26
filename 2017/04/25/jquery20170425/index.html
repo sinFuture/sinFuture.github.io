@@ -94,17 +94,17 @@
 
 
 
-<meta name="description" content="自信自认出色">
+<meta name="description" content="最近公司开始逐步放弃掉了支持IE8，转而从IE9支持起，JQuery版本也从1.8.0开始需要升级到2.0+以上，工作中用到JQuery也蛮多的，刚好最近不是很忙打算梳理下JQuery的相关知识。">
 <meta name="keywords" content="jQuery,javaScript,Dom">
 <meta property="og:type" content="article">
 <meta property="og:title" content="解剖JQuery源码系列之架构篇">
 <meta property="og:url" content="http://yoursite.com/2017/04/25/jquery20170425/index.html">
 <meta property="og:site_name" content="sinFuture">
-<meta property="og:description" content="自信自认出色">
-<meta property="og:updated_time" content="2017-04-24T16:52:51.000Z">
+<meta property="og:description" content="最近公司开始逐步放弃掉了支持IE8，转而从IE9支持起，JQuery版本也从1.8.0开始需要升级到2.0+以上，工作中用到JQuery也蛮多的，刚好最近不是很忙打算梳理下JQuery的相关知识。">
+<meta property="og:updated_time" content="2017-04-26T16:36:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="解剖JQuery源码系列之架构篇">
-<meta name="twitter:description" content="自信自认出色">
+<meta name="twitter:description" content="最近公司开始逐步放弃掉了支持IE8，转而从IE9支持起，JQuery版本也从1.8.0开始需要升级到2.0+以上，工作中用到JQuery也蛮多的，刚好最近不是很忙打算梳理下JQuery的相关知识。">
 
 
 
@@ -373,7 +373,19 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-04-27T00:36:06+08:00">
+                2017-04-27
+              </time>
             
           </span>
 
@@ -466,7 +478,37 @@
       
 
       
-        
+        <p>　　最近公司开始逐步放弃掉了支持IE8，转而从IE9支持起，JQuery版本也从1.8.0开始需要升级到2.0+以上，工作中用到JQuery也蛮多的，刚好最近不是很忙打算梳理下JQuery的相关知识。<a id="more"></a><br>　　相比于最近前端界流行的vue、react、angular等等框架，JQuery的热度再也不像之前那么火热，甚至有种被遗弃的感觉，很多人开口闭口都是各种新出的框架。记得老大说过，技术其实要适应生产环境才是最重要的。很多时候在工作中遇到问题更多是基础的问题，远远谈不到这个框架的优劣。ES5仍然博大精深。本系列主要分析JQuery2.0.3版本，也会加上最新版JQuery的相应解剖。</p>
+<blockquote>
+<p>框架总有过时的时候，基础才是真材实料。所以我们来复习下基础吧！</p>
+</blockquote>
+<h3 id="JQuery2-0-3架构"><a href="#JQuery2-0-3架构" class="headerlink" title="JQuery2.0.3架构"></a>JQuery2.0.3架构</h3><p>　　其实，开始看JQuery源码，真的蛮头疼的，细细品味下来，再结合工作遇到的各种坑。体会还是蛮多的，以下是2.0.3版本源码抽出来的，整个源码就是包在一个匿名函数里，让这个匿名函数自执行。说道匿名函数，写法大致有好几种，如下所示：
+　　</p>
+<pre><code class="javascript">
+<span class="comment">//1.JQuery的写法</span>
+(<span class="function"><span class="keyword">function</span>(<span class="params"> window, undefined </span>) </span>{
+
+    <span class="comment">//这边是JQuery的核心代码</span>
+
+})( <span class="built_in">window</span> );
+
+<span class="comment">//2.其他写法，这种写法在IE8下会出现问题，undefined可以定义为变量，修改成其他值。</span>
+(<span class="function"><span class="keyword">function</span>(<span class="params"> window</span>) </span>{
+
+    <span class="comment">//这边是JQuery的核心代码</span>
+
+})( <span class="built_in">window</span>, <span class="literal">undefined</span>);
+
+<span class="comment">//3.这种写法和第一种其实是一样的。</span>
+(<span class="function"><span class="keyword">function</span>(<span class="params"> window, undefined</span>) </span>{
+
+    <span class="comment">//这边是JQuery的核心代码</span>
+
+}( <span class="built_in">window</span>));
+</code></pre>
+<p>&nbsp;<br>　　从以上来看，JQuery写法比较好，匿名函数传了一个实参window，为什么要传window这个全局对象呢？其实这个跟我们js查找变量所走的作用域有关系，分析后主要有2个原因：<br>　　1.匿名函数里用到window这个全局对象，不需要沿着作用域一层层往上去查找，直接在传参中获取，提高了获取window对象的速度。<br>　　2.方便压缩，实参传入形参（普及下实参和形参的概念，实参就是你传入函数实际传入的值，形参就是你定义函数时，函数的参数。），形参就可以直接压缩成一个字母w。<br>　　那为什么JQuery匿名函数还要传入第二个参数呢？我也总结了有两个原因：　　<br>　　1.匿名函数内部需要用到，undefined的值，可以从变量的角度来理解，因为匿名函数自执行时并没有传这个参数，函数中没有传参数，这个值默认为undefined。相比较第2中写法，undefined放在函数的形参里，主要是为了兼容IE下的bug：可以定义undefined并修改它的值。<br>　　2.方便压缩成字母u。</p>
+<h3 id="JQuery3-2-1架构（最新版）"><a href="#JQuery3-2-1架构（最新版）" class="headerlink" title="JQuery3.2.1架构（最新版）"></a>JQuery3.2.1架构（最新版）</h3><p>　　这个版本的整体写法改了风格，但是其实内容和原理变化不大，主要做了兼容Node、sea.js等符合Common.js规范或者类似Common.js规范的js框架。</p>
+
       
     </div>
 
