@@ -5,10 +5,10 @@
     
   <url>
     <loc>http://yoursite.com/2017/04/25/jquery20170425/</loc>
-    <lastmod>2017-04-26T16:36:06.000Z</lastmod>
+    <lastmod>2017-04-27T06:24:56.000Z</lastmod>
     <data>
         <display>
-        <title>解剖JQuery源码系列之架构篇</title>
+        <title>解剖JQuery源码系列之匿名函数自执行</title>
         <pubTime>2017-04-24T16:49:46.000Z</pubTime>
         
         <tag>jQuery</tag>
