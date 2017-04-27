@@ -4,6 +4,30 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/04/27/jquery20170427/</loc>
+    <lastmod>2017-04-27T07:52:23.000Z</lastmod>
+    <data>
+        <display>
+        <title>解剖JQuery源码系列之架构篇</title>
+        <pubTime>2017-04-27T07:51:02.000Z</pubTime>
+        
+        <tag>jQuery</tag>
+         
+        <tag>javaScript</tag>
+         
+        <tag>Dom</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端技术" url="http://yoursite.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/04/25/jquery20170425/</loc>
     <lastmod>2017-04-27T07:47:00.000Z</lastmod>
     <data>
