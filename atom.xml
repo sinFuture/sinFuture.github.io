@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-04-27T07:52:23.000Z</updated>
+  <updated>2017-04-27T14:22:52.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,74 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>浅谈项目中经常需要使用到的less功能</title>
+    <link href="http://yoursite.com/2017/04/27/less/"/>
+    <id>http://yoursite.com/2017/04/27/less/</id>
+    <published>2017-04-27T14:11:48.000Z</published>
+    <updated>2017-04-27T14:22:52.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="前端技术" scheme="http://yoursite.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="less" scheme="http://yoursite.com/tags/less/"/>
+    
+      <category term="css" scheme="http://yoursite.com/tags/css/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>从统计分析自动生成系统看gulp的自动化构建</title>
+    <link href="http://yoursite.com/2017/04/27/gulp/"/>
+    <id>http://yoursite.com/2017/04/27/gulp/</id>
+    <published>2017-04-27T14:11:32.000Z</published>
+    <updated>2017-04-27T14:21:26.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="前端技术" scheme="http://yoursite.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="gulp" scheme="http://yoursite.com/tags/gulp/"/>
+    
+      <category term="npm" scheme="http://yoursite.com/tags/npm/"/>
+    
+      <category term="jade" scheme="http://yoursite.com/tags/jade/"/>
+    
+      <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ES6基础项目构建</title>
+    <link href="http://yoursite.com/2017/04/27/es6/"/>
+    <id>http://yoursite.com/2017/04/27/es6/</id>
+    <published>2017-04-27T14:11:17.000Z</published>
+    <updated>2017-04-27T14:16:51.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="前端技术" scheme="http://yoursite.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="ES6" scheme="http://yoursite.com/tags/ES6/"/>
+    
+      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+    
+      <category term="gulp" scheme="http://yoursite.com/tags/gulp/"/>
+    
+      <category term="npm" scheme="http://yoursite.com/tags/npm/"/>
+    
+  </entry>
   
   <entry>
     <title>解剖JQuery源码系列之架构篇</title>

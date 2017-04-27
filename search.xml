@@ -3,6 +3,27 @@
   
     
     <entry>
+      <title><![CDATA[浅谈项目中经常需要使用到的less功能]]></title>
+      <url>%2F2017%2F04%2F27%2Fless%2F</url>
+      <content type="text"></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[从统计分析自动生成系统看gulp的自动化构建]]></title>
+      <url>%2F2017%2F04%2F27%2Fgulp%2F</url>
+      <content type="text"></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[ES6基础项目构建]]></title>
+      <url>%2F2017%2F04%2F27%2Fes6%2F</url>
+      <content type="text"></content>
+    </entry>
+
+    
+    <entry>
       <title><![CDATA[解剖JQuery源码系列之架构篇]]></title>
       <url>%2F2017%2F04%2F27%2Fjquery20170427%2F</url>
       <content type="text"></content>
