@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-04-27T14:22:52.000Z</updated>
+  <updated>2017-04-28T16:27:41.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>深入理解ES6之let命令</title>
+    <link href="http://yoursite.com/2017/04/29/let/"/>
+    <id>http://yoursite.com/2017/04/29/let/</id>
+    <published>2017-04-28T16:25:37.000Z</published>
+    <updated>2017-04-28T16:27:41.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="前端技术" scheme="http://yoursite.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
+    
+      <category term="es6" scheme="http://yoursite.com/tags/es6/"/>
+    
+      <category term="es5" scheme="http://yoursite.com/tags/es5/"/>
+    
+  </entry>
   
   <entry>
     <title>浅谈项目中经常需要使用到的less功能</title>
@@ -51,9 +73,9 @@
     
       <category term="gulp" scheme="http://yoursite.com/tags/gulp/"/>
     
-      <category term="npm" scheme="http://yoursite.com/tags/npm/"/>
-    
       <category term="jade" scheme="http://yoursite.com/tags/jade/"/>
+    
+      <category term="npm" scheme="http://yoursite.com/tags/npm/"/>
     
       <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
     
@@ -73,13 +95,13 @@
       <category term="前端技术" scheme="http://yoursite.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="ES6" scheme="http://yoursite.com/tags/ES6/"/>
-    
-      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
-    
       <category term="gulp" scheme="http://yoursite.com/tags/gulp/"/>
     
       <category term="npm" scheme="http://yoursite.com/tags/npm/"/>
+    
+      <category term="ES6" scheme="http://yoursite.com/tags/ES6/"/>
+    
+      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
     
   </entry>
   
