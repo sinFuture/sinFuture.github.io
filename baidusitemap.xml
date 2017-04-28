@@ -5,17 +5,17 @@
     
   <url>
     <loc>http://yoursite.com/2017/04/29/let/</loc>
-    <lastmod>2017-04-28T16:32:43.000Z</lastmod>
+    <lastmod>2017-04-28T16:39:03.000Z</lastmod>
     <data>
         <display>
         <title>深入理解ES6之let命令</title>
         <pubTime>2017-04-28T16:25:37.000Z</pubTime>
         
-        <tag>javascript</tag>
-         
         <tag>es6</tag>
          
         <tag>es5</tag>
+         
+        <tag>javascript</tag>
          
          
            
@@ -61,9 +61,9 @@
          
         <tag>npm</tag>
          
-        <tag>jade</tag>
-         
         <tag>javascript</tag>
+         
+        <tag>jade</tag>
          
          
            

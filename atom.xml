@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-04-28T16:32:43.000Z</updated>
+  <updated>2017-04-28T16:39:03.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,26 +20,25 @@
     <link href="http://yoursite.com/2017/04/29/let/"/>
     <id>http://yoursite.com/2017/04/29/let/</id>
     <published>2017-04-28T16:25:37.000Z</published>
-    <updated>2017-04-28T16:32:43.000Z</updated>
+    <updated>2017-04-28T16:39:03.000Z</updated>
     
-    <content type="html"><![CDATA[<p>　　深入理解ES6这系列的文章是前一篇文章ES6基础项目构建的进阶。</p>
+    <content type="html"><![CDATA[<p>　　深入理解ES6这系列的文章是前一篇文章ES6基础项目构建的进阶。<a id="more"></a></p>
 <h3 id="let用途"><a href="#let用途" class="headerlink" title="let用途"></a>let用途</h3><h3 id="let和var命令的区别"><a href="#let和var命令的区别" class="headerlink" title="let和var命令的区别"></a>let和var命令的区别</h3><h3 id="let不存在变量提升"><a href="#let不存在变量提升" class="headerlink" title="let不存在变量提升"></a>let不存在变量提升</h3><h3 id="let暂时性死区"><a href="#let暂时性死区" class="headerlink" title="let暂时性死区"></a>let暂时性死区</h3><h3 id="let定义的变量不受外界影响"><a href="#let定义的变量不受外界影响" class="headerlink" title="let定义的变量不受外界影响"></a>let定义的变量不受外界影响</h3><h3 id="let模块内不允许重复声明变量"><a href="#let模块内不允许重复声明变量" class="headerlink" title="let模块内不允许重复声明变量"></a>let模块内不允许重复声明变量</h3><h3 id="let模块之间声明的变量互不影响"><a href="#let模块之间声明的变量互不影响" class="headerlink" title="let模块之间声明的变量互不影响"></a>let模块之间声明的变量互不影响</h3>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;　　深入理解ES6这系列的文章是前一篇文章ES6基础项目构建的进阶。&lt;/p&gt;
-&lt;h3 id=&quot;let用途&quot;&gt;&lt;a href=&quot;#let用途&quot; class=&quot;headerlink&quot; title=&quot;let用途&quot;&gt;&lt;/a&gt;let用途&lt;/h3&gt;&lt;h3 id=&quot;let和var命令的区
+      &lt;p&gt;　　深入理解ES6这系列的文章是前一篇文章ES6基础项目构建的进阶。
     
     </summary>
     
       <category term="前端技术" scheme="http://yoursite.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
-    
       <category term="es6" scheme="http://yoursite.com/tags/es6/"/>
     
       <category term="es5" scheme="http://yoursite.com/tags/es5/"/>
+    
+      <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
     
   </entry>
   
@@ -81,9 +80,9 @@
     
       <category term="npm" scheme="http://yoursite.com/tags/npm/"/>
     
-      <category term="jade" scheme="http://yoursite.com/tags/jade/"/>
-    
       <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
+    
+      <category term="jade" scheme="http://yoursite.com/tags/jade/"/>
     
   </entry>
   
