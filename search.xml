@@ -3,13 +3,6 @@
   
     
     <entry>
-      <title><![CDATA[深入理解ES6之let命令]]></title>
-      <url>%2F2017%2F04%2F29%2Flet%2F</url>
-      <content type="text"><![CDATA[深入理解ES6这系列的文章是前一篇文章ES6基础项目构建的进阶。 let用途let和var命令的区别let不存在变量提升let暂时性死区let定义的变量不受外界影响let模块内不允许重复声明变量let模块之间声明的变量互不影响]]></content>
-    </entry>
-
-    
-    <entry>
       <title><![CDATA[浅谈项目中经常需要使用到的less功能]]></title>
       <url>%2F2017%2F04%2F27%2Fless%2F</url>
       <content type="text"></content>

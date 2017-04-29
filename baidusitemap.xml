@@ -4,30 +4,6 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/04/29/let/</loc>
-    <lastmod>2017-04-28T16:39:03.000Z</lastmod>
-    <data>
-        <display>
-        <title>深入理解ES6之let命令</title>
-        <pubTime>2017-04-28T16:25:37.000Z</pubTime>
-        
-        <tag>es6</tag>
-         
-        <tag>es5</tag>
-         
-        <tag>javascript</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端技术" url="http://yoursite.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://yoursite.com/2017/04/27/less/</loc>
     <lastmod>2017-04-27T14:22:52.000Z</lastmod>
     <data>
@@ -61,9 +37,9 @@
          
         <tag>npm</tag>
          
-        <tag>javascript</tag>
-         
         <tag>jade</tag>
+         
+        <tag>javascript</tag>
          
          
            
