@@ -51,9 +51,9 @@
     
       <category term="gulp" scheme="http://yoursite.com/tags/gulp/"/>
     
-      <category term="jade" scheme="http://yoursite.com/tags/jade/"/>
-    
       <category term="npm" scheme="http://yoursite.com/tags/npm/"/>
+    
+      <category term="jade" scheme="http://yoursite.com/tags/jade/"/>
     
       <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
     
@@ -73,13 +73,13 @@
       <category term="前端技术" scheme="http://yoursite.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="gulp" scheme="http://yoursite.com/tags/gulp/"/>
-    
-      <category term="npm" scheme="http://yoursite.com/tags/npm/"/>
-    
       <category term="ES6" scheme="http://yoursite.com/tags/ES6/"/>
     
       <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+    
+      <category term="gulp" scheme="http://yoursite.com/tags/gulp/"/>
+    
+      <category term="npm" scheme="http://yoursite.com/tags/npm/"/>
     
   </entry>
   
