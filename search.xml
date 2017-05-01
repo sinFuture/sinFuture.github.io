@@ -1,158 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search> 
+<search>
   
     
     <entry>
       <title><![CDATA[浅谈项目中经常需要使用到的less功能]]></title>
-      <url>/2017/04/27/less/</url>
-      <content type="html"></content>
-      
-        <categories>
-            
-            <category> 前端技术 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> less </tag>
-            
-            <tag> css </tag>
-            
-        </tags>
-        
+      <url>%2F2017%2F04%2F27%2Fless%2F</url>
+      <content type="text"></content>
     </entry>
+
     
     <entry>
       <title><![CDATA[从统计分析自动生成系统看gulp的自动化构建]]></title>
-      <url>/2017/04/27/gulp/</url>
-      <content type="html"></content>
-      
-        <categories>
-            
-            <category> 前端技术 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> gulp </tag>
-            
-            <tag> jade </tag>
-            
-            <tag> npm </tag>
-            
-            <tag> javascript </tag>
-            
-        </tags>
-        
+      <url>%2F2017%2F04%2F27%2Fgulp%2F</url>
+      <content type="text"></content>
     </entry>
+
     
     <entry>
       <title><![CDATA[ES6基础项目构建]]></title>
-      <url>/2017/04/27/es6/</url>
-      <content type="html"></content>
-      
-        <categories>
-            
-            <category> 前端技术 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> gulp </tag>
-            
-            <tag> npm </tag>
-            
-            <tag> ES6 </tag>
-            
-            <tag> JavaScript </tag>
-            
-        </tags>
-        
+      <url>%2F2017%2F04%2F27%2Fes6%2F</url>
+      <content type="text"></content>
     </entry>
+
     
     <entry>
       <title><![CDATA[解剖JQuery源码系列之架构篇]]></title>
-      <url>/2017/04/27/jquery20170427/</url>
-      <content type="html"></content>
-      
-        <categories>
-            
-            <category> 前端技术 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> jQuery </tag>
-            
-            <tag> javaScript </tag>
-            
-            <tag> Dom </tag>
-            
-        </tags>
-        
+      <url>%2F2017%2F04%2F27%2Fjquery20170427%2F</url>
+      <content type="text"></content>
     </entry>
+
     
     <entry>
       <title><![CDATA[解剖JQuery源码系列之匿名函数自执行]]></title>
-      <url>/2017/04/25/jquery20170425/</url>
-      <content type="html"><![CDATA[<p>　　最近公司开始逐步放弃掉了支持IE8，转而从IE9支持起，JQuery版本也从1.8.0开始需要升级到2.0+以上，工作中用到JQuery也蛮多的，刚好最近不是很忙打算梳理下JQuery的相关知识。<a id="more"></a><br>　　相比于最近前端界流行的vue、react、angular等等框架，JQuery的热度再也不像之前那么火热，甚至有种被遗弃的感觉，很多人开口闭口都是各种新出的框架。记得老大说过，技术其实要适应生产环境才是最重要的。很多时候在工作中遇到问题更多是基础的问题，远远谈不到这个框架的优劣。ES5仍然博大精深。本系列主要分析JQuery2.0.3版本，也会加上最新版JQuery的相应解剖。</p>
-<blockquote>
-<p>框架总有过时的时候，基础才是真材实料。所以我们来复习下基础吧！</p>
-</blockquote>
-<h3 id="JQuery2-0-3架构"><a href="#JQuery2-0-3架构" class="headerlink" title="JQuery2.0.3架构"></a>JQuery2.0.3架构</h3><p>　　其实，开始看JQuery源码，真的蛮头疼的，细细品味下来，再结合工作遇到的各种坑。体会还是蛮多的，以下是2.0.3版本源码抽出来的，整个源码就是包在一个匿名函数里，让这个匿名函数自执行。说到匿名函数，我们先来看看函数定义的几种方式：<br>　　第一种，经常使用，比较常规：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params">a</span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(a)</div><div class="line">&#125;</div></pre></td></tr></table></figure><br>　　第二种，利用构造函数Function，需要传入两个参数：1.函数参数列表2.函数体。这种写法在函数体很多的时候特别不方便，不建议这么写。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> func=<span class="keyword">new</span> <span class="built_in">Function</span>(a,<span class="string">'console.log(a);'</span>)</div></pre></td></tr></table></figure>　　<br>　　第三种，匿名函数定义赋给变量<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> func=<span class="function"><span class="keyword">function</span>(<span class="params">a</span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(a);</div><div class="line">&#125;</div></pre></td></tr></table></figure>　<br>　　了解了函数的定义方法，我们再来看下匿名函数的其他定义形式。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//1.JQuery的写法</span></div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"> window, undefined </span>) </span>&#123;</div><div class="line"></div><div class="line">	<span class="comment">//这边是JQuery的核心代码</span></div><div class="line"></div><div class="line">&#125;)( <span class="built_in">window</span> );</div><div class="line"></div><div class="line"><span class="comment">//2.其他写法，这种写法在IE8下会出现问题，undefined可以定义为变量，修改成其他值。</span></div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"> window</span>) </span>&#123;</div><div class="line"></div><div class="line">	<span class="comment">//这边是JQuery的核心代码</span></div><div class="line"></div><div class="line">&#125;)( <span class="built_in">window</span>, <span class="literal">undefined</span>);</div><div class="line"></div><div class="line"><span class="comment">//3.这种写法和第一种其实是一样的。</span></div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"> window, undefined</span>) </span>&#123;</div><div class="line"></div><div class="line">	<span class="comment">//这边是JQuery的核心代码</span></div><div class="line"></div><div class="line">&#125;( <span class="built_in">window</span>));</div></pre></td></tr></table></figure><br>　　从以上来看，JQuery写法比较好，匿名函数传了一个实参window，为什么要传window这个全局对象呢？其实这个跟我们js查找变量所走的作用域有关系，分析后主要有2个原因：<br>　　1.匿名函数里用到window这个全局对象，不需要沿着作用域一层层往上去查找，直接在传参中获取，提高了获取window对象的速度。<br>　　2.方便压缩，实参传入形参（普及下实参和形参的概念，实参就是你传入函数实际传入的值，形参就是你定义函数时，函数的参数。），形参就可以直接压缩成一个字母w。<br>　　那为什么JQuery匿名函数还要传入第二个参数呢？我也总结了有两个原因：　　<br>　　1.匿名函数内部需要用到，undefined的值，可以从变量的角度来理解，因为匿名函数自执行时并没有传这个参数，函数中没有传参数，这个值默认为undefined。相比较第2中写法，undefined放在函数的形参里，主要是为了兼容IE下的bug：可以定义undefined并修改它的值。<br>　　2.方便压缩成字母u。</p>
-<h3 id="JQuery3-2-1架构（最新版）"><a href="#JQuery3-2-1架构（最新版）" class="headerlink" title="JQuery3.2.1架构（最新版）"></a>JQuery3.2.1架构（最新版）</h3><p>　　这个版本的整体写法改了风格，但是其实内容和原理变化不大，主要做了兼容Node、sea.js等符合Common.js规范或者类似Common.js规范的js框架。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"> global, factory </span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> ( <span class="keyword">typeof</span> <span class="built_in">module</span> === <span class="string">"object"</span> &amp;&amp; <span class="keyword">typeof</span> <span class="built_in">module</span>.exports === <span class="string">"object"</span> ) &#123;</div><div class="line">        <span class="comment">// For CommonJS and CommonJS-like environments where a proper window is present,</span></div><div class="line">        <span class="comment">// execute the factory and get jQuery</span></div><div class="line">        <span class="comment">// For environments that do not inherently posses a window with a document</span></div><div class="line">        <span class="comment">// (such as Node.js), expose a jQuery-making factory as module.exports</span></div><div class="line">        <span class="comment">// This accentuates the need for the creation of a real window</span></div><div class="line">        <span class="comment">// e.g. var jQuery = require("jquery")(window);</span></div><div class="line">        <span class="comment">// See ticket #14549 for more info</span></div><div class="line">        <span class="built_in">module</span>.exports = global.document ?</div><div class="line">            factory( global, <span class="literal">true</span> ) :</div><div class="line">            <span class="function"><span class="keyword">function</span>(<span class="params"> w </span>) </span>&#123;</div><div class="line">                <span class="keyword">if</span> ( !w.document ) &#123;</div><div class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>( <span class="string">"jQuery requires a window with a document"</span> );</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">return</span> factory( w );</div><div class="line">            &#125;;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        factory( global );</div><div class="line">    &#125;</div><div class="line"><span class="comment">// Pass this if window is not defined yet</span></div><div class="line">&#125;(<span class="keyword">typeof</span> <span class="built_in">window</span> !== <span class="string">"undefined"</span> ? <span class="built_in">window</span> : <span class="keyword">this</span>, <span class="function"><span class="keyword">function</span>(<span class="params"> window, noGlobal </span>) </span>&#123;  </div><div class="line">　　　　<span class="comment">//说白了这里就是写各种JQ各种功能函数的地方，大概有一万多行</span></div><div class="line">&#125;));</div></pre></td></tr></table></figure><br>　　最新版的JQuery写法稍微修改了下，其实大体是一样的，我们先简化如下所示：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"> global, factory </span>) </span>&#123;</div><div class="line">    <span class="comment">//这里先不看</span></div><div class="line">&#125;(a,b);</div></pre></td></tr></table></figure><br>　　整个函数就是个匿名函数自执行。其中，<br>　　a参数为三目运算（typeof window !== “undefined” ? window : this），这个是判断当前运行环境是否支持window这个全局对象，主要是为了兼容node.js等类似common.js规范环境，例如nodejs中的全局对象是global，当nodejs某一个模块不支持window时，这个参数就是this也就是global。<br>　　b参数为:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>(<span class="params"> window, noGlobal </span>) </span>&#123;  </div><div class="line">　　<span class="comment">//说白了这里就是写各种JQ各种功能函数的地方，大概有一万多行</span></div><div class="line">&#125;</div></pre></td></tr></table></figure><br>　　分析了下这个匿名函数，我们再来看下这个匿名函数的函数体。首行的判断语句：if ( typeof module === “object” &amp;&amp; typeof module.exports === “object” ) 。玩过node.js就知道module和module.exports就是nodejs用来创建模块并输出模块对象的方法。若此条件成立，if里执行的代码就是用来兼容nodejs。我们来看支持的情况下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="built_in">module</span>.exports = global.document ?       <span class="comment">//三目运算符，先判断当前环境是否支持window.document属性</span></div><div class="line">    <span class="comment">//（注意我们上面提到过形参global的实参是window）</span></div><div class="line">    factory( global, <span class="literal">true</span> ) :            <span class="comment">//支持的话就好办啦，常规的浏览器一般都是支持的，那就直接module.exports = factory( global, true )，</span></div><div class="line">    <span class="comment">//把JQ后面那一万多行的功能函数扩展到node.js里面。（注意我们上面提到过形参factory的实参是实现JQ各种功能的一个外部函数）</span></div><div class="line">    <span class="function"><span class="keyword">function</span>(<span class="params"> w </span>) </span>&#123;          <span class="comment">//如果当前环境不支持window.document属性，那就写个函数扔个Error说这环境不适用JQ，但依旧返回JQ的功能函数（但大部分估计是不能用的了）</span></div><div class="line">        <span class="keyword">if</span> ( !w.document ) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>( <span class="string">"jQuery requires a window with a document"</span> );</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> factory( w );</div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure><br>　　如果我们使用的环境不是node.js等类似common.js规范环境，那么if ( typeof module === “object” &amp;&amp; typeof module.exports === “object” ) 这个判断就为false，走else，直接执行factory( global );<br>　　以上就是这两个版本中采用的匿名函数自执行。当然采用匿名函数自执行最大的目的就是匿名函数内部都是局部变量，不会污染全局作用域。当页面引用多个库时也能很好的避免变量重名，函数重名等等一系列问题。<br>　　此篇分享先到此，接下去还会其他系列的分享。</p>
-]]></content>
-      
-        <categories>
-            
-            <category> 前端技术 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> jQuery </tag>
-            
-            <tag> javaScript </tag>
-            
-            <tag> Dom </tag>
-            
-        </tags>
-        
+      <url>%2F2017%2F04%2F25%2Fjquery20170425%2F</url>
+      <content type="text"><![CDATA[最近公司开始逐步放弃掉了支持IE8，转而从IE9支持起，JQuery版本也从1.8.0开始需要升级到2.0+以上，工作中用到JQuery也蛮多的，刚好最近不是很忙打算梳理下JQuery的相关知识。 相比于最近前端界流行的vue、react、angular等等框架，JQuery的热度再也不像之前那么火热，甚至有种被遗弃的感觉，很多人开口闭口都是各种新出的框架。记得老大说过，技术其实要适应生产环境才是最重要的。很多时候在工作中遇到问题更多是基础的问题，远远谈不到这个框架的优劣。ES5仍然博大精深。本系列主要分析JQuery2.0.3版本，也会加上最新版JQuery的相应解剖。 框架总有过时的时候，基础才是真材实料。所以我们来复习下基础吧！ JQuery2.0.3架构 其实，开始看JQuery源码，真的蛮头疼的，细细品味下来，再结合工作遇到的各种坑。体会还是蛮多的，以下是2.0.3版本源码抽出来的，整个源码就是包在一个匿名函数里，让这个匿名函数自执行。说到匿名函数，我们先来看看函数定义的几种方式： 第一种，经常使用，比较常规：123function func(a)&#123; console.log(a)&#125; 第二种，利用构造函数Function，需要传入两个参数：1.函数参数列表2.函数体。这种写法在函数体很多的时候特别不方便，不建议这么写。1var func=new Function(a,'console.log(a);') 第三种，匿名函数定义赋给变量123var func=function(a)&#123; console.log(a);&#125; 了解了函数的定义方法，我们再来看下匿名函数的其他定义形式。1234567891011121314151617181920//1.JQuery的写法(function( window, undefined ) &#123; //这边是JQuery的核心代码&#125;)( window );//2.其他写法，这种写法在IE8下会出现问题，undefined可以定义为变量，修改成其他值。(function( window) &#123; //这边是JQuery的核心代码&#125;)( window, undefined);//3.这种写法和第一种其实是一样的。(function( window, undefined) &#123; //这边是JQuery的核心代码&#125;( window)); 从以上来看，JQuery写法比较好，匿名函数传了一个实参window，为什么要传window这个全局对象呢？其实这个跟我们js查找变量所走的作用域有关系，分析后主要有2个原因： 1.匿名函数里用到window这个全局对象，不需要沿着作用域一层层往上去查找，直接在传参中获取，提高了获取window对象的速度。 2.方便压缩，实参传入形参（普及下实参和形参的概念，实参就是你传入函数实际传入的值，形参就是你定义函数时，函数的参数。），形参就可以直接压缩成一个字母w。 那为什么JQuery匿名函数还要传入第二个参数呢？我也总结了有两个原因： 1.匿名函数内部需要用到，undefined的值，可以从变量的角度来理解，因为匿名函数自执行时并没有传这个参数，函数中没有传参数，这个值默认为undefined。相比较第2中写法，undefined放在函数的形参里，主要是为了兼容IE下的bug：可以定义undefined并修改它的值。 2.方便压缩成字母u。 JQuery3.2.1架构（最新版） 这个版本的整体写法改了风格，但是其实内容和原理变化不大，主要做了兼容Node、sea.js等符合Common.js规范或者类似Common.js规范的js框架。123456789101112131415161718192021222324(function( global, factory ) &#123; if ( typeof module === "object" &amp;&amp; typeof module.exports === "object" ) &#123; // For CommonJS and CommonJS-like environments where a proper window is present, // execute the factory and get jQuery // For environments that do not inherently posses a window with a document // (such as Node.js), expose a jQuery-making factory as module.exports // This accentuates the need for the creation of a real window // e.g. var jQuery = require("jquery")(window); // See ticket #14549 for more info module.exports = global.document ? factory( global, true ) : function( w ) &#123; if ( !w.document ) &#123; throw new Error( "jQuery requires a window with a document" ); &#125; return factory( w ); &#125;; &#125; else &#123; factory( global ); &#125;// Pass this if window is not defined yet&#125;(typeof window !== "undefined" ? window : this, function( window, noGlobal ) &#123; //说白了这里就是写各种JQ各种功能函数的地方，大概有一万多行&#125;)); 最新版的JQuery写法稍微修改了下，其实大体是一样的，我们先简化如下所示：123(function( global, factory ) &#123; //这里先不看&#125;(a,b); 整个函数就是个匿名函数自执行。其中， a参数为三目运算（typeof window !== “undefined” ? window : this），这个是判断当前运行环境是否支持window这个全局对象，主要是为了兼容node.js等类似common.js规范环境，例如nodejs中的全局对象是global，当nodejs某一个模块不支持window时，这个参数就是this也就是global。 b参数为:123function( window, noGlobal ) &#123; //说白了这里就是写各种JQ各种功能函数的地方，大概有一万多行&#125; 分析了下这个匿名函数，我们再来看下这个匿名函数的函数体。首行的判断语句：if ( typeof module === “object” &amp;&amp; typeof module.exports === “object” ) 。玩过node.js就知道module和module.exports就是nodejs用来创建模块并输出模块对象的方法。若此条件成立，if里执行的代码就是用来兼容nodejs。我们来看支持的情况下：123456789101112&#123; module.exports = global.document ? //三目运算符，先判断当前环境是否支持window.document属性 //（注意我们上面提到过形参global的实参是window） factory( global, true ) : //支持的话就好办啦，常规的浏览器一般都是支持的，那就直接module.exports = factory( global, true )， //把JQ后面那一万多行的功能函数扩展到node.js里面。（注意我们上面提到过形参factory的实参是实现JQ各种功能的一个外部函数） function( w ) &#123; //如果当前环境不支持window.document属性，那就写个函数扔个Error说这环境不适用JQ，但依旧返回JQ的功能函数（但大部分估计是不能用的了） if ( !w.document ) &#123; throw new Error( "jQuery requires a window with a document" ); &#125; return factory( w ); &#125;;&#125; 如果我们使用的环境不是node.js等类似common.js规范环境，那么if ( typeof module === “object” &amp;&amp; typeof module.exports === “object” ) 这个判断就为false，走else，直接执行factory( global ); 以上就是这两个版本中采用的匿名函数自执行。当然采用匿名函数自执行最大的目的就是匿名函数内部都是局部变量，不会污染全局作用域。当页面引用多个库时也能很好的避免变量重名，函数重名等等一系列问题。 此篇分享先到此，接下去还会其他系列的分享。]]></content>
     </entry>
+
     
     <entry>
       <title><![CDATA[求婚]]></title>
-      <url>/2017/04/24/sinFuture/</url>
-      <content type="html"><![CDATA[  <blockquote class="blockquote-center"><p>我把我新博客第一篇文章给了人生中最重的事！</p>
-</blockquote>
-  <a id="more"></a>
-  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=190563&auto=1&height=66"></iframe>
-]]></content>
-      
-        <categories>
-            
-            <category> 生活 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> 生活 </tag>
-            
-        </tags>
-        
+      <url>%2F2017%2F04%2F24%2FsinFuture%2F</url>
+      <content type="text"><![CDATA[我把我新博客第一篇文章给了人生中最重的事！]]></content>
     </entry>
+
     
   
   
