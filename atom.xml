@@ -88,9 +88,15 @@
     <link href="http://www.Mmyton.com/2017/04/27/jquery20170427/"/>
     <id>http://www.Mmyton.com/2017/04/27/jquery20170427/</id>
     <published>2017-04-27T07:51:02.000Z</published>
-    <updated>2017-04-27T07:52:23.000Z</updated>
+    <updated>2017-05-02T05:20:21.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>　　JQuery从2006年由John Resig等人创建一直风靡到今天，每个在使用JQuery时，应该都深深的被其便捷性的Dom操作，数据缓存，异步操作等折服，如果你没有感受到，那你应该面壁试过下。<a id="more"></a></p>
+<p>####JQuery整体架构<br>　　说到JQuery的架构，可以从如下这张图来感受下：</p>
+]]></content>
     
     <summary type="html">
+    
+      &lt;p&gt;　　JQuery从2006年由John Resig等人创建一直风靡到今天，每个在使用JQuery时，应该都深深的被其便捷性的Dom操作，数据缓存，异步操作等折服，如果你没有感受到，那你应该面壁试过下。
     
     </summary>
     
