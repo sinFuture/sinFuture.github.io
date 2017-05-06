@@ -5,10 +5,10 @@
     
   <url>
     <loc>http://www.Mmyton.com/2017/04/27/jquery20170427/</loc>
-    <lastmod>2017-05-06T06:38:30.000Z</lastmod>
+    <lastmod>2017-05-06T15:03:23.000Z</lastmod>
     <data>
         <display>
-        <title>解剖JQuery源码系列之架构篇</title>
+        <title>解剖JQuery源码系列之JQuery构造函数</title>
         <pubTime>2017-04-27T07:51:02.000Z</pubTime>
         
         <tag>jQuery</tag>

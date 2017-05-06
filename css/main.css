@@ -812,6 +812,20 @@ pre .javascript .function {
 .info h6 {
   color: #5bc0de;
 }
+.exturl {
+  background-color: transparent;
+  cursor: pointer;
+  border-bottom: 1px solid #999;
+}
+.exturl .fa {
+  font-size: 14px;
+}
+.exturl:active,
+.exturl:hover {
+  outline: 0;
+  color: #222;
+  border-bottom-color: #222;
+}
 .btn {
   display: inline-block;
   padding: 0 20px;
@@ -1817,7 +1831,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #a8ff3d;
+  background: #1f609c;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2907,4 +2921,7 @@ hr {
     width: auto;
     text-align: center;
   }
+}
+.fancybox {
+  display: inline-block;
 }
