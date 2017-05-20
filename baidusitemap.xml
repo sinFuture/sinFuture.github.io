@@ -5,11 +5,35 @@
     
   <url>
     <loc>http://www.Mmyton.com/2017/04/27/jquery20170427/</loc>
-    <lastmod>2017-05-06T15:03:23.000Z</lastmod>
+    <lastmod>2017-05-20T10:56:19.000Z</lastmod>
     <data>
         <display>
-        <title>解剖JQuery源码系列之JQuery构造函数</title>
+        <title>解剖jQuery源码系列之JQuery构造函数</title>
         <pubTime>2017-04-27T07:51:02.000Z</pubTime>
+        
+        <tag>jQuery</tag>
+         
+        <tag>javaScript</tag>
+         
+        <tag>Dom</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端技术" url="http://www.Mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.Mmyton.com/2017/04/25/jquery20170425/</loc>
+    <lastmod>2017-05-07T03:16:57.000Z</lastmod>
+    <data>
+        <display>
+        <title>解剖jQuery源码系列之匿名函数自执行</title>
+        <pubTime>2017-04-24T16:49:46.000Z</pubTime>
         
         <tag>jQuery</tag>
          
@@ -110,30 +134,6 @@
         <tag>gulp</tag>
          
         <tag>npm</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端技术" url="http://www.Mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.Mmyton.com/2017/04/25/jquery20170425/</loc>
-    <lastmod>2017-04-27T07:47:00.000Z</lastmod>
-    <data>
-        <display>
-        <title>解剖JQuery源码系列之匿名函数自执行</title>
-        <pubTime>2017-04-24T16:49:46.000Z</pubTime>
-        
-        <tag>jQuery</tag>
-         
-        <tag>javaScript</tag>
-         
-        <tag>Dom</tag>
          
          
            
