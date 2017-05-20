@@ -3,6 +3,13 @@
   
     
     <entry>
+      <title><![CDATA[解剖jQuery源码系列之jQuery.prototype.init方法]]></title>
+      <url>%2F2017%2F05%2F20%2FjQuery20170520%2F</url>
+      <content type="text"><![CDATA[今天日子是5月20号，比较特殊，原本打算出去浪一下，奈何对象有事。就静下心来把jQuery源码中的init方法总结下。篇幅会略长些。 jQuery.prototype.init 说起jQuery.prototype.init这个方法，不知道大家还有没有印象，这个方法在jQuery源码中出现在两个地方，什么作用呢？我们来看以下的代码：123456789//这里出现了第一次jQuery = function( selector, context ) &#123; return new jQuery.fn.init( selector, context, rootjQuery );//这里是第二次jQuery.fn = jQuery.prototype = &#123; init: function( selector, context, rootjQuery ) &#123; //中间省略无数代码，一会再来看 &#125;&#125; 从上可以看出来，init方法是jQuery原型上的一个方法。我们再来看下我们平时使用jQuery或者$创建jQuery对象有几种使用方式，大致可以分为以下123456789101112//$就是jQuery//第一种分类$(""), $(null), $(undefined), $(false)//第二种分类$('#div1') $('.box') $('div') $('#div1 div.box')$('&lt;li&gt;') $('&lt;li&gt;1&lt;/li&gt;&lt;li&gt;2&lt;/li&gt;') $('&lt;li&gt;hhehe')//第三种分类$(this) $(document)//第四种分类$(function()&#123;&#125;)//第五种分类$([]) $(&#123;&#125;) 看到这里，可能会有点疑惑，这个跟init方法有什么关系，我们来看一个例子：$(‘#div1’)，当执行这段代码时，$也就是jQuery函数就会执行起来，传入参数，其中selector就是#div1，传入到函数体内后，selector参数传给了jQuery.fn.init( selector, context, rootjQuery )这个构造函数，并new一个这个构造函数的实例，new一个时就会执行init的方法，最终$(‘#div1’)返回的是init的一个实例对象。从以上逻辑可以看出init方法主要做的是根据$或者jQuery构造函数执行时传入不同参数做差异化处理后返回init实例。]]></content>
+    </entry>
+
+    
+    <entry>
       <title><![CDATA[浅谈项目中经常需要使用到的less功能]]></title>
       <url>%2F2017%2F04%2F27%2Fless%2F</url>
       <content type="text"></content>

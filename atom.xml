@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.Mmyton.com/"/>
-  <updated>2017-04-27T14:22:52.000Z</updated>
+  <updated>2017-05-20T11:29:46.000Z</updated>
   <id>http://www.Mmyton.com/</id>
   
   <author>
@@ -14,6 +14,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>解剖jQuery源码系列之jQuery.prototype.init方法</title>
+    <link href="http://www.Mmyton.com/2017/05/20/jQuery20170520/"/>
+    <id>http://www.Mmyton.com/2017/05/20/jQuery20170520/</id>
+    <published>2017-05-20T11:00:24.000Z</published>
+    <updated>2017-05-20T11:29:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>　　今天日子是5月20号，比较特殊，原本打算出去浪一下，奈何对象有事。就静下心来把jQuery源码中的init方法总结下。篇幅会略长些。<a id="more"></a></p>
+<h4 id="jQuery-prototype-init"><a href="#jQuery-prototype-init" class="headerlink" title="jQuery.prototype.init"></a>jQuery.prototype.init</h4><p>　　说起jQuery.prototype.init这个方法，不知道大家还有没有印象，这个方法在jQuery源码中出现在两个地方，什么作用呢？我们来看以下的代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//这里出现了第一次</span></div><div class="line">jQuery = <span class="function"><span class="keyword">function</span>(<span class="params"> selector, context </span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> jQuery.fn.init( selector, context,          rootjQuery );</div><div class="line"><span class="comment">//这里是第二次</span></div><div class="line">jQuery.fn = jQuery.prototype = &#123;</div><div class="line">	<span class="attr">init</span>: <span class="function"><span class="keyword">function</span>(<span class="params"> selector, context, rootjQuery </span>) </span>&#123;</div><div class="line">	  <span class="comment">//中间省略无数代码，一会再来看</span></div><div class="line">	&#125;</div><div class="line">&#125;  </div></pre></td></tr></table></figure><br>　　从上可以看出来，init方法是jQuery原型上的一个方法。我们再来看下我们平时使用jQuery或者$创建jQuery对象有几种使用方式，大致可以分为以下<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//$就是jQuery</span></div><div class="line"><span class="comment">//第一种分类</span></div><div class="line">$(<span class="string">""</span>), $(<span class="literal">null</span>), $(<span class="literal">undefined</span>), $(<span class="literal">false</span>)</div><div class="line"><span class="comment">//第二种分类</span></div><div class="line">$(<span class="string">'#div1'</span>) $(<span class="string">'.box'</span>) $(<span class="string">'div'</span>)  $(<span class="string">'#div1 div.box'</span>)</div><div class="line">$(<span class="string">'&lt;li&gt;'</span>)  $(<span class="string">'&lt;li&gt;1&lt;/li&gt;&lt;li&gt;2&lt;/li&gt;'</span>) $(<span class="string">'&lt;li&gt;hhehe'</span>)</div><div class="line"><span class="comment">//第三种分类</span></div><div class="line">$(<span class="keyword">this</span>)  $(<span class="built_in">document</span>)</div><div class="line"><span class="comment">//第四种分类</span></div><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;)</div><div class="line"><span class="comment">//第五种分类</span></div><div class="line">$([])  $(&#123;&#125;)</div></pre></td></tr></table></figure><br>　　看到这里，可能会有点疑惑，这个跟init方法有什么关系，我们来看一个例子：$(‘#div1’)，当执行这段代码时，$也就是jQuery函数就会执行起来，传入参数，其中selector就是#div1，传入到函数体内后，selector参数传给了jQuery.fn.init( selector, context, rootjQuery )这个构造函数，并new一个这个构造函数的实例，new一个时就会执行init的方法，最终$(‘#div1’)返回的是init的一个实例对象。从以上逻辑可以看出init方法主要做的是根据$或者jQuery构造函数执行时传入不同参数做差异化处理后返回init实例。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　今天日子是5月20号，比较特殊，原本打算出去浪一下，奈何对象有事。就静下心来把jQuery源码中的init方法总结下。篇幅会略长些。
+    
+    </summary>
+    
+      <category term="前端技术" scheme="http://www.Mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="jQuery" scheme="http://www.Mmyton.com/tags/jQuery/"/>
+    
+      <category term="JavaScript" scheme="http://www.Mmyton.com/tags/JavaScript/"/>
+    
+      <category term="Dom" scheme="http://www.Mmyton.com/tags/Dom/"/>
+    
+  </entry>
   
   <entry>
     <title>浅谈项目中经常需要使用到的less功能</title>
@@ -51,9 +79,9 @@
     
       <category term="gulp" scheme="http://www.Mmyton.com/tags/gulp/"/>
     
-      <category term="npm" scheme="http://www.Mmyton.com/tags/npm/"/>
-    
       <category term="jade" scheme="http://www.Mmyton.com/tags/jade/"/>
+    
+      <category term="npm" scheme="http://www.Mmyton.com/tags/npm/"/>
     
       <category term="javascript" scheme="http://www.Mmyton.com/tags/javascript/"/>
     
@@ -73,13 +101,13 @@
       <category term="前端技术" scheme="http://www.Mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="ES6" scheme="http://www.Mmyton.com/tags/ES6/"/>
-    
       <category term="JavaScript" scheme="http://www.Mmyton.com/tags/JavaScript/"/>
     
       <category term="gulp" scheme="http://www.Mmyton.com/tags/gulp/"/>
     
       <category term="npm" scheme="http://www.Mmyton.com/tags/npm/"/>
+    
+      <category term="ES6" scheme="http://www.Mmyton.com/tags/ES6/"/>
     
   </entry>
   
@@ -107,9 +135,9 @@
     
       <category term="jQuery" scheme="http://www.Mmyton.com/tags/jQuery/"/>
     
-      <category term="javaScript" scheme="http://www.Mmyton.com/tags/javaScript/"/>
-    
       <category term="Dom" scheme="http://www.Mmyton.com/tags/Dom/"/>
+    
+      <category term="javaScript" scheme="http://www.Mmyton.com/tags/javaScript/"/>
     
   </entry>
   
@@ -139,9 +167,9 @@
     
       <category term="jQuery" scheme="http://www.Mmyton.com/tags/jQuery/"/>
     
-      <category term="javaScript" scheme="http://www.Mmyton.com/tags/javaScript/"/>
-    
       <category term="Dom" scheme="http://www.Mmyton.com/tags/Dom/"/>
+    
+      <category term="javaScript" scheme="http://www.Mmyton.com/tags/javaScript/"/>
     
   </entry>
   
