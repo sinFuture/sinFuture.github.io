@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.Mmyton.com/"/>
-  <updated>2017-05-22T16:28:33.000Z</updated>
+  <updated>2017-05-22T16:32:51.000Z</updated>
   <id>http://www.Mmyton.com/</id>
   
   <author>
@@ -14,6 +14,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>解剖jQuery源码系列之jQuery工具方法</title>
+    <link href="http://www.Mmyton.com/2017/05/23/jQuery20170523/"/>
+    <id>http://www.Mmyton.com/2017/05/23/jQuery20170523/</id>
+    <published>2017-05-22T16:31:21.000Z</published>
+    <updated>2017-05-22T16:32:51.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="前端技术" scheme="http://www.Mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="JavaScript" scheme="http://www.Mmyton.com/tags/JavaScript/"/>
+    
+      <category term="jQuery" scheme="http://www.Mmyton.com/tags/jQuery/"/>
+    
+      <category term="Dom" scheme="http://www.Mmyton.com/tags/Dom/"/>
+    
+  </entry>
   
   <entry>
     <title>解剖jQuery源码系列之jQuery.prototype.init方法</title>
