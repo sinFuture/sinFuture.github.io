@@ -5,15 +5,15 @@
     
   <url>
     <loc>http://www.Mmyton.com/2017/05/20/jQuery20170520/</loc>
-    <lastmod>2017-05-22T16:27:04.000Z</lastmod>
+    <lastmod>2017-05-22T16:28:33.000Z</lastmod>
     <data>
         <display>
         <title>解剖jQuery源码系列之jQuery.prototype.init方法</title>
         <pubTime>2017-05-20T11:00:24.000Z</pubTime>
         
-        <tag>JavaScript</tag>
-         
         <tag>jQuery</tag>
+         
+        <tag>JavaScript</tag>
          
         <tag>Dom</tag>
          
@@ -127,9 +127,9 @@
         
         <tag>gulp</tag>
          
-        <tag>npm</tag>
-         
         <tag>jade</tag>
+         
+        <tag>npm</tag>
          
         <tag>javascript</tag>
          
@@ -151,13 +151,13 @@
         <title>ES6基础项目构建</title>
         <pubTime>2017-04-27T14:11:17.000Z</pubTime>
         
-        <tag>ES6</tag>
-         
-        <tag>JavaScript</tag>
-         
         <tag>gulp</tag>
          
         <tag>npm</tag>
+         
+        <tag>JavaScript</tag>
+         
+        <tag>ES6</tag>
          
          
            
