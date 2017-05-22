@@ -35,9 +35,9 @@
       <category term="前端技术" scheme="http://www.Mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="jQuery" scheme="http://www.Mmyton.com/tags/jQuery/"/>
-    
       <category term="JavaScript" scheme="http://www.Mmyton.com/tags/JavaScript/"/>
+    
+      <category term="jQuery" scheme="http://www.Mmyton.com/tags/jQuery/"/>
     
       <category term="Dom" scheme="http://www.Mmyton.com/tags/Dom/"/>
     
@@ -79,9 +79,9 @@
     
       <category term="gulp" scheme="http://www.Mmyton.com/tags/gulp/"/>
     
-      <category term="jade" scheme="http://www.Mmyton.com/tags/jade/"/>
-    
       <category term="npm" scheme="http://www.Mmyton.com/tags/npm/"/>
+    
+      <category term="jade" scheme="http://www.Mmyton.com/tags/jade/"/>
     
       <category term="javascript" scheme="http://www.Mmyton.com/tags/javascript/"/>
     
@@ -101,13 +101,13 @@
       <category term="前端技术" scheme="http://www.Mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="gulp" scheme="http://www.Mmyton.com/tags/gulp/"/>
-    
-      <category term="npm" scheme="http://www.Mmyton.com/tags/npm/"/>
+      <category term="ES6" scheme="http://www.Mmyton.com/tags/ES6/"/>
     
       <category term="JavaScript" scheme="http://www.Mmyton.com/tags/JavaScript/"/>
     
-      <category term="ES6" scheme="http://www.Mmyton.com/tags/ES6/"/>
+      <category term="gulp" scheme="http://www.Mmyton.com/tags/gulp/"/>
+    
+      <category term="npm" scheme="http://www.Mmyton.com/tags/npm/"/>
     
   </entry>
   
