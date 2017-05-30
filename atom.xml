@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.Mmyton.com/"/>
-  <updated>2017-05-30T14:58:30.000Z</updated>
+  <updated>2017-05-30T23:58:11.000Z</updated>
   <id>http://www.Mmyton.com/</id>
   
   <author>
@@ -14,6 +14,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>解剖jQuery源码系列之$.extend与$().extend方法</title>
+    <link href="http://www.Mmyton.com/2017/05/31/jQuery20170531/"/>
+    <id>http://www.Mmyton.com/2017/05/31/jQuery20170531/</id>
+    <published>2017-05-30T23:54:45.000Z</published>
+    <updated>2017-05-30T23:58:11.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="前端技术" scheme="http://www.Mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="JavaScript" scheme="http://www.Mmyton.com/tags/JavaScript/"/>
+    
+      <category term="jQuery" scheme="http://www.Mmyton.com/tags/jQuery/"/>
+    
+      <category term="Dom" scheme="http://www.Mmyton.com/tags/Dom/"/>
+    
+  </entry>
   
   <entry>
     <title>你应该知道的HTTP首部之通用首部字段</title>

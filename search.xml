@@ -3,6 +3,13 @@
   
     
     <entry>
+      <title><![CDATA[解剖jQuery源码系列之$.extend与$().extend方法]]></title>
+      <url>%2F2017%2F05%2F31%2FjQuery20170531%2F</url>
+      <content type="text"></content>
+    </entry>
+
+    
+    <entry>
       <title><![CDATA[你应该知道的HTTP首部之通用首部字段]]></title>
       <url>%2F2017%2F05%2F30%2Fhttp20170530%2F</url>
       <content type="text"></content>
