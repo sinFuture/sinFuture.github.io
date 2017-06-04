@@ -94,17 +94,20 @@
 
 
 
-<meta name="description" content="自信自认出色">
+<meta name="description" content="HTTP报文首部　　接着上一篇你应该掌握的14种常用的HTTP状态码，我们再来看看HTTP首部。工作中跟HTTP协议打交道还是很多的，尤其是在浏览器端调试的时候，我们经常需要查看发送的请求HTTP首部（查看发送的数据，无论是GET还是POST等请求方式），以及响应HTTP首部，以此来判断请求与响应的正确与否。最经常的应用场景有：1.接口联调。2.抓包调试。3.前端自测等。当然还有很多应用场景，我这">
 <meta name="keywords" content="HTTP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="你应该知道的HTTP首部之通用首部字段">
+<meta property="og:title" content="你应该知道的HTTP报文首部">
 <meta property="og:url" content="http://www.Mmyton.com/2017/05/30/http20170530/index.html">
 <meta property="og:site_name" content="sinFuture">
-<meta property="og:description" content="自信自认出色">
-<meta property="og:updated_time" content="2017-05-30T14:58:30.000Z">
+<meta property="og:description" content="HTTP报文首部　　接着上一篇你应该掌握的14种常用的HTTP状态码，我们再来看看HTTP首部。工作中跟HTTP协议打交道还是很多的，尤其是在浏览器端调试的时候，我们经常需要查看发送的请求HTTP首部（查看发送的数据，无论是GET还是POST等请求方式），以及响应HTTP首部，以此来判断请求与响应的正确与否。最经常的应用场景有：1.接口联调。2.抓包调试。3.前端自测等。当然还有很多应用场景，我这">
+<meta property="og:image" content="http://www.mmyton.com/images/http1.png">
+<meta property="og:image" content="http://www.mmyton.com/images/http2.png">
+<meta property="og:updated_time" content="2017-06-04T15:25:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="你应该知道的HTTP首部之通用首部字段">
-<meta name="twitter:description" content="自信自认出色">
+<meta name="twitter:title" content="你应该知道的HTTP报文首部">
+<meta name="twitter:description" content="HTTP报文首部　　接着上一篇你应该掌握的14种常用的HTTP状态码，我们再来看看HTTP首部。工作中跟HTTP协议打交道还是很多的，尤其是在浏览器端调试的时候，我们经常需要查看发送的请求HTTP首部（查看发送的数据，无论是GET还是POST等请求方式），以及响应HTTP首部，以此来判断请求与响应的正确与否。最经常的应用场景有：1.接口联调。2.抓包调试。3.前端自测等。当然还有很多应用场景，我这">
+<meta name="twitter:image" content="http://www.mmyton.com/images/http1.png">
 
 
 
@@ -138,7 +141,7 @@
 
 
 
-  <title>你应该知道的HTTP首部之通用首部字段 | sinFuture</title>
+  <title>你应该知道的HTTP报文首部 | sinFuture</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -352,7 +355,7 @@
             
             
               
-                你应该知道的HTTP首部之通用首部字段
+                你应该知道的HTTP报文首部
               
             
           </h2>
@@ -383,8 +386,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-05-30T22:58:30+08:00">
-                2017-05-30
+              <time title="更新于" itemprop="dateModified" datetime="2017-06-04T23:25:10+08:00">
+                2017-06-04
               </time>
             
           </span>
@@ -429,7 +432,7 @@
 
           
           
-             <span id="/2017/05/30/http20170530/" class="leancloud_visitors" data-flag-title="你应该知道的HTTP首部之通用首部字段">
+             <span id="/2017/05/30/http20170530/" class="leancloud_visitors" data-flag-title="你应该知道的HTTP报文首部">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -454,7 +457,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  0
+                  1,676
                 </span>
               
 
@@ -476,7 +479,246 @@
       
 
       
-        
+        <h4 id="HTTP报文首部"><a href="#HTTP报文首部" class="headerlink" title="HTTP报文首部"></a>HTTP报文首部</h4><p>　　接着上一篇<a href="http://www.mmyton.com/2017/05/29/httpCode">你应该掌握的14种常用的HTTP状态码</a>，我们再来看看HTTP首部。工作中跟HTTP协议打交道还是很多的，尤其是在浏览器端调试的时候，我们经常需要查看发送的请求HTTP首部（查看发送的数据，无论是GET还是POST等请求方式），以及响应HTTP首部，以此来判断请求与响应的正确与否。最经常的应用场景有：1.接口联调。2.抓包调试。3.前端自测等。当然还有很多应用场景，我这边只是列了我工作中经常使用的场景。<a id="more"></a><br>　　说到HTTP协议，我们平时感知不是很多，因为我们输入一些网站的地址时，例如：www.baidu.com。并没有输入 http:// 开头，但是浏览器在访问时会自动为我们加上这个协议头。说明我们的web应用就是基于这个协议而建立起来的。可以这么说没有HTTP协议，我们现在的web应用不会这么的丰富。<br>　　HTTP报文首部是HTTP协议里很重要的一部分，它就相当于我们平时说话的语言，为客户端和服务器端之间的沟通奠定了基础。HTTP报文首部包含请求报文首部和响应报文首部。通过请求报文首部，服务器可以知道客户端想要做什么，而通过响应报文首部，客户端可以知道服务器响应了什么了。<br>　　HTTP报文结构包括：报文首部、空行、报文主体。<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//在客户端和服务器端相互沟通起着至关重要的信息都在报文首部里</div><div class="line">报文首部</div><div class="line">//空行</div><div class="line">//所需要的用户和资源信息都在这（其实很多时候并不是所有请求都有报文主体的，比如GET请求。</div><div class="line">//如果是POST请求，例如请求数据，此时这里放置就是请求参数了。）</div><div class="line">报文主体</div></pre></td></tr></table></figure></p>
+<h4 id="HTTP请求报文"><a href="#HTTP请求报文" class="headerlink" title="HTTP请求报文"></a>HTTP请求报文</h4><p>　　在请求中，HTTP请求报文一个大致结构可以参考如下图片：<br><img src="/images/http1.png" class="full-image"><br>　　这是一个POST请求，这种请求方法会有报文主体，如果是GET请求的话，参数会挂在URL地址上，也就没有图中的报文主体，其他格式和POST请求一样。这张图显示了一个HTTP请求报文的大致结构，关于HTTP请求报文里的很多首部字段，请往下看。我们大致可以从图片中看到一个HTTP请求报文包括：报文首部和报文主体，报文首部又包括请求行（请求方法、请求URI、HTTP版本）、HTTP首部字段（请求首部字段、通用首部字段、实体首部字段），而报文主体则是这个请求所需要携带的相关参数（格式是：字段名=字段值，分隔符是：&amp;）。</p>
+<h4 id="HTTP响应报文"><a href="#HTTP响应报文" class="headerlink" title="HTTP响应报文"></a>HTTP响应报文</h4><p>　　在响应中，HTTP响应报文一个大致结构可以参考如下图片：　<br><img src="/images/http2.png" class="full-image"><br>　　接上一个请求，服务器返回的响应报文如上图所示，我们可以看到HTTP响应报文和HTTP请求报文很像，都是由报文首部和报文主体，只是上图的响应无返回报文主体。对比以上两张图片可以看出，HTTP请求报文和HTTP响应报文的区别在于，HTTP请求报文是请求行，首部字段中是请求首部字段，而HTTP响应报文是状态行，首部字段中是响应首部字段。不仅如此，请求行和状态行的格式也是不一样的。但是从整体来看，我们可以看出来HTTP报文首部字段的格式如下：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">首部字段名：字段值</div></pre></td></tr></table></figure>　　<br>　　可以分为以下四种类型：</p>
+<ul>
+<li>通用首部字段（General Header Fields）：请求报文和响应报文两方都会使用的首部。</li>
+<li>请求首部字段（Request Header Fields）：从客户端向服务器端发送请求报文时使用的首部。</li>
+<li>响应首部字段（Response Header Fields）：从服务器向客户端返回响应报文时使用的首部。</li>
+<li>实体首部字段（Entity Header Fields）：针对请求报文和响应报文的实体部分使用的首部。</li>
+</ul>
+<p>　　以下字段内容参考至图解HTTP这本书。</p>
+<h4 id="通用首部字段"><a href="#通用首部字段" class="headerlink" title="通用首部字段"></a>通用首部字段</h4><table>
+<thead>
+<tr>
+<th style="text-align:left">首部字段名</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Cache-Control</td>
+<td style="text-align:left">控制缓存的行为</td>
+</tr>
+<tr>
+<td style="text-align:left">Connection</td>
+<td style="text-align:left">逐跳首部、连接的管理</td>
+</tr>
+<tr>
+<td style="text-align:left">Date</td>
+<td style="text-align:left">创建报文的日期时间</td>
+</tr>
+<tr>
+<td style="text-align:left">Pragma</td>
+<td style="text-align:left">报文指令</td>
+</tr>
+<tr>
+<td style="text-align:left">Trailer</td>
+<td style="text-align:left">报文末端的首部一览</td>
+</tr>
+<tr>
+<td style="text-align:left">Transfer-Encoding</td>
+<td style="text-align:left">指定报文主体的传输编码方式</td>
+</tr>
+<tr>
+<td style="text-align:left">Upgrade</td>
+<td style="text-align:left">升级为其他协议</td>
+</tr>
+<tr>
+<td style="text-align:left">Via</td>
+<td style="text-align:left">代理服务器的相关信息</td>
+</tr>
+<tr>
+<td style="text-align:left">Warining</td>
+<td style="text-align:left">错误通知</td>
+</tr>
+</tbody>
+</table>
+<p>　　以上的字段，可能对应的说明说的不是很清楚，后续会有相对应的文章分类的详细说下。　　</p>
+<h4 id="请求首部字段"><a href="#请求首部字段" class="headerlink" title="请求首部字段"></a>请求首部字段</h4><table>
+<thead>
+<tr>
+<th style="text-align:left">首部字段名</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Accept</td>
+<td style="text-align:left">用户代理可处理的媒体类型</td>
+</tr>
+<tr>
+<td style="text-align:left">Accept-Charset</td>
+<td style="text-align:left">优先的字符集</td>
+</tr>
+<tr>
+<td style="text-align:left">Accept-Encoding</td>
+<td style="text-align:left">优先的内容编码</td>
+</tr>
+<tr>
+<td style="text-align:left">Accept-Language</td>
+<td style="text-align:left">优先的语言（自然语言）</td>
+</tr>
+<tr>
+<td style="text-align:left">Authorization</td>
+<td style="text-align:left">Web认证信息</td>
+</tr>
+<tr>
+<td style="text-align:left">Expect</td>
+<td style="text-align:left">期待服务器的特定行为</td>
+</tr>
+<tr>
+<td style="text-align:left">From</td>
+<td style="text-align:left">用户的电子邮箱地址</td>
+</tr>
+<tr>
+<td style="text-align:left">Host</td>
+<td style="text-align:left">请求资源所在的服务器</td>
+</tr>
+<tr>
+<td style="text-align:left">If-Match</td>
+<td style="text-align:left">比较实体标记（Etag）</td>
+</tr>
+<tr>
+<td style="text-align:left">If-Modified-Since</td>
+<td style="text-align:left">比较资源的更新时间</td>
+</tr>
+<tr>
+<td style="text-align:left">If-None-Match</td>
+<td style="text-align:left">比较实体标记（与If-Match相反）</td>
+</tr>
+<tr>
+<td style="text-align:left">If-Range</td>
+<td style="text-align:left">资源未更新时发送实体Byte的范围请求</td>
+</tr>
+<tr>
+<td style="text-align:left">If-Unmodified-Since</td>
+<td style="text-align:left">比较资源的更新时间（与If-Modified-Since相反）</td>
+</tr>
+<tr>
+<td style="text-align:left">Match-Forwards</td>
+<td style="text-align:left">最大传输逐跳数</td>
+</tr>
+<tr>
+<td style="text-align:left">Proxy-Authorization</td>
+<td style="text-align:left">代理服务器要求客户端的认证信息</td>
+</tr>
+<tr>
+<td style="text-align:left">Range</td>
+<td style="text-align:left">实体的字节范围请求</td>
+</tr>
+<tr>
+<td style="text-align:left">Referer</td>
+<td style="text-align:left">对请求中URI的原始获取方</td>
+</tr>
+<tr>
+<td style="text-align:left">TE</td>
+<td style="text-align:left">传输编码的优先级</td>
+</tr>
+<tr>
+<td style="text-align:left">User-Agent</td>
+<td style="text-align:left">HTTP客户端程序的信息</td>
+</tr>
+</tbody>
+</table>
+<h4 id="响应首部字段"><a href="#响应首部字段" class="headerlink" title="响应首部字段"></a>响应首部字段</h4><table>
+<thead>
+<tr>
+<th style="text-align:left">首部字段名</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Accept-Range</td>
+<td style="text-align:left">是否接受字节范围请求</td>
+</tr>
+<tr>
+<td style="text-align:left">Age</td>
+<td style="text-align:left">推算资源创建经过时间</td>
+</tr>
+<tr>
+<td style="text-align:left">ETag</td>
+<td style="text-align:left">资源的匹配信息</td>
+</tr>
+<tr>
+<td style="text-align:left">Location</td>
+<td style="text-align:left">令客户端重定向至指定URI</td>
+</tr>
+<tr>
+<td style="text-align:left">Proxy-Authenticate</td>
+<td style="text-align:left">代理服务器对客户端的认证信息</td>
+</tr>
+<tr>
+<td style="text-align:left">Retry-After</td>
+<td style="text-align:left">对再次发起请求的时机要求</td>
+</tr>
+<tr>
+<td style="text-align:left">Server</td>
+<td style="text-align:left">HTTP服务器的安装信息</td>
+</tr>
+<tr>
+<td style="text-align:left">Vary</td>
+<td style="text-align:left">代理服务器缓存的管理信息</td>
+</tr>
+<tr>
+<td style="text-align:left">WWW-Authenticate</td>
+<td style="text-align:left">服务器对客户端的认证信息 　</td>
+</tr>
+</tbody>
+</table>
+<h4 id="实体首部字段"><a href="#实体首部字段" class="headerlink" title="实体首部字段"></a>实体首部字段</h4><table>
+<thead>
+<tr>
+<th style="text-align:left">首部字段名</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Allow</td>
+<td style="text-align:left">资源可支持的HTTP方法</td>
+</tr>
+<tr>
+<td style="text-align:left">Content-Encoding</td>
+<td style="text-align:left">实体主体适用的编码方式</td>
+</tr>
+<tr>
+<td style="text-align:left">Content-Language</td>
+<td style="text-align:left">实体主体的自然语言</td>
+</tr>
+<tr>
+<td style="text-align:left">Content-Length</td>
+<td style="text-align:left">实体主体的大小（单位：字节）</td>
+</tr>
+<tr>
+<td style="text-align:left">Content-Location</td>
+<td style="text-align:left">替代对应资源的URI</td>
+</tr>
+<tr>
+<td style="text-align:left">Content-MD5</td>
+<td style="text-align:left">实体主体的报文摘要</td>
+</tr>
+<tr>
+<td style="text-align:left">Content-Range</td>
+<td style="text-align:left">实体主体的位置范围</td>
+</tr>
+<tr>
+<td style="text-align:left">Content-Type</td>
+<td style="text-align:left">实体主体的媒体类型</td>
+</tr>
+<tr>
+<td style="text-align:left">Expires</td>
+<td style="text-align:left">实体主体过期的日期时间</td>
+</tr>
+<tr>
+<td style="text-align:left">Last-Modified</td>
+<td style="text-align:left">资源的最后修改日期时间</td>
+</tr>
+</tbody>
+</table>
+
       
     </div>
 
@@ -520,7 +762,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://www.Mmyton.com/2017/05/30/http20170530/" title="你应该知道的HTTP首部之通用首部字段">http://www.Mmyton.com/2017/05/30/http20170530/</a>
+      <a href="http://www.Mmyton.com/2017/05/30/http20170530/" title="你应该知道的HTTP报文首部">http://www.Mmyton.com/2017/05/30/http20170530/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -610,8 +852,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="//sinfuture.oss-cn-shenzhen.aliyuncs.com/avatar.jpeg"
@@ -689,6 +940,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP报文首部"><span class="nav-number">1.</span> <span class="nav-text">HTTP报文首部</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP请求报文"><span class="nav-number">2.</span> <span class="nav-text">HTTP请求报文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP响应报文"><span class="nav-number">3.</span> <span class="nav-text">HTTP响应报文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通用首部字段"><span class="nav-number">4.</span> <span class="nav-text">通用首部字段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#请求首部字段"><span class="nav-number">5.</span> <span class="nav-text">请求首部字段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#响应首部字段"><span class="nav-number">6.</span> <span class="nav-text">响应首部字段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实体首部字段"><span class="nav-number">7.</span> <span class="nav-text">实体首部字段</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
