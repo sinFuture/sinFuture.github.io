@@ -46,7 +46,7 @@
     <link href="http://www.Mmyton.com/2017/06/11/react/"/>
     <id>http://www.Mmyton.com/2017/06/11/react/</id>
     <published>2017-06-11T07:12:59.000Z</published>
-    <updated>2017-06-11T07:13:38.000Z</updated>
+    <updated>2017-06-11T07:18:41.000Z</updated>
     
     <summary type="html">
     
@@ -98,9 +98,22 @@
     <link href="http://www.Mmyton.com/2017/06/11/webpack/"/>
     <id>http://www.Mmyton.com/2017/06/11/webpack/</id>
     <published>2017-06-11T06:38:17.000Z</published>
-    <updated>2017-06-11T07:04:42.000Z</updated>
+    <updated>2017-06-11T10:30:14.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>如果你能耐心的跟着这篇文章敲打一遍代码，那你基本掌握 <code>webpack</code> 大部分知识。也许有部分你没掌握，但是其实都是大同小异的。</p>
+</blockquote>
+<a id="more"></a>
+<p>　　关于 <code>webpack</code> 是什么东西，感兴趣的可以百度下。这边贴一张图，可以感受下 <code>webpack</code> 主要做的是什么？webpack就是把你的工程项目当做一个整体，通过一个给定的主文件（如： <code>index.js</code> ，我们接下去例子的主文件就是这个）， <code>webpack</code> 将从这个文件开始找到你的项目的所有依赖文件，使用对应的loaders来处理它们，最后打包为一个浏览器可识别的 <code>JavaScript</code> 文件。这种情况下 <code>CSS</code> 和 <code>JavaScript</code> 就会混合一起，针对这种情况 <code>webpack</code> 还可以分离文件。具体的可以看后面。<br><img src="/images/what-is-webpack.png" class="full-image"><br>　　其实网上也有类似的教程，写的也蛮详细，但是写法在 <code>webpack2.0</code> 之后还是略有差别的，我在项目实践中也踩了一些坑。有兴趣可以借鉴下。这里贴下 <code>webpack</code> 的<a href="http://www.css88.com/doc/webpack2/guides/development/" target="_blank" rel="external">中文文档地址</a>。</p>
+<h4 id="项目初始化"><a href="#项目初始化" class="headerlink" title="项目初始化"></a>项目初始化</h4><p>　　在进入 <code>webpack</code> 世界之前，先说下，我所采用的系统是 <code>MAC</code> ，这里不涉及 <code>window</code> 下怎么操作，在 <code>window</code> 中可能会和 <code>MAC</code> 下系统的操作有些细小的差别，但是我这边列的所有例子均可以在 <code>window</code> 跑通。<br>　　第一步，在桌面创建一个文件夹 <code>webpack-demos</code> ，打开命令行终端（这个不知道的可以百度），通过命令: <code>cd Desktop/webpack-demos</code> 进入到 <code>webpack-demos</code> 目录下。然后用命令行 <code>npm init</code> 初始化项目，一路按回车键就好。此时我们可以看到在我们的 <code>webpack-demos</code> 目录下生成了一个文件： <code>package.json</code><br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"name"</span>: <span class="string">"webpack-demos"</span>,</div><div class="line">  <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</div><div class="line">  <span class="attr">"main"</span>: <span class="string">"index.js"</span>,</div><div class="line">  <span class="attr">"scripts"</span>: &#123;</div><div class="line">    <span class="attr">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">"author"</span>: <span class="string">""</span>,</div><div class="line">  <span class="attr">"license"</span>: <span class="string">"ISC"</span>,</div><div class="line">  <span class="attr">"description"</span>: <span class="string">""</span></div><div class="line">&#125;</div></pre></td></tr></table></figure><br>　　第二步，安装 <code>webpack</code> ，打开命令行终端进入到 <code>webpack-demos</code> 目录下。输入如下命令安装 <code>webpack</code><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save-dev webpack</div></pre></td></tr></table></figure><br><div class="note info"><p>–save-dev是指将包信息添加到devDependencies，表示你开发时依赖的包裹。<br>–save是指将包信息添加到dependencies，表示你发布时依赖的包裹。</p>
+</div><br>　　安装完之后，<code>package.json</code> 长这样子：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"name"</span>: <span class="string">"webpack-demos"</span>,</div><div class="line">  <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</div><div class="line">  <span class="attr">"main"</span>: <span class="string">"index.js"</span>,</div><div class="line">  <span class="attr">"scripts"</span>: &#123;</div><div class="line">    <span class="attr">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">"author"</span>: <span class="string">""</span>,</div><div class="line">  <span class="attr">"license"</span>: <span class="string">"ISC"</span>,</div><div class="line">  <span class="attr">"description"</span>: <span class="string">""</span>,</div><div class="line">  <span class="attr">"devDependencies"</span>: &#123;</div><div class="line">    <span class="attr">"webpack"</span>: <span class="string">"^2.6.1"</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>　</p>
+<h4 id="Webpack初体验"><a href="#Webpack初体验" class="headerlink" title="Webpack初体验"></a>Webpack初体验</h4><p>　　在根目录下面创建一个名为<code>webpack.config.js</code> 
+　　</p>
+]]></content>
     
     <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;如果你能耐心的跟着这篇文章敲打一遍代码，那你基本掌握 &lt;code&gt;webpack&lt;/code&gt; 大部分知识。也许有部分你没掌握，但是其实都是大同小异的。&lt;/p&gt;
+&lt;/blockquote&gt;
     
     </summary>
     
@@ -562,9 +575,9 @@
       <category term="前端技术" scheme="http://www.Mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="css" scheme="http://www.Mmyton.com/tags/css/"/>
-    
       <category term="less" scheme="http://www.Mmyton.com/tags/less/"/>
+    
+      <category term="css" scheme="http://www.Mmyton.com/tags/css/"/>
     
   </entry>
   

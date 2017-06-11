@@ -26,7 +26,7 @@
     <entry>
       <title><![CDATA[其实webpack入门很简单]]></title>
       <url>%2F2017%2F06%2F11%2Fwebpack%2F</url>
-      <content type="text"></content>
+      <content type="text"><![CDATA[如果你能耐心的跟着这篇文章敲打一遍代码，那你基本掌握 webpack 大部分知识。也许有部分你没掌握，但是其实都是大同小异的。 关于 webpack 是什么东西，感兴趣的可以百度下。这边贴一张图，可以感受下 webpack 主要做的是什么？webpack就是把你的工程项目当做一个整体，通过一个给定的主文件（如： index.js ，我们接下去例子的主文件就是这个）， webpack 将从这个文件开始找到你的项目的所有依赖文件，使用对应的loaders来处理它们，最后打包为一个浏览器可识别的 JavaScript 文件。这种情况下 CSS 和 JavaScript 就会混合一起，针对这种情况 webpack 还可以分离文件。具体的可以看后面。 其实网上也有类似的教程，写的也蛮详细，但是写法在 webpack2.0 之后还是略有差别的，我在项目实践中也踩了一些坑。有兴趣可以借鉴下。这里贴下 webpack 的中文文档地址。 项目初始化 在进入 webpack 世界之前，先说下，我所采用的系统是 MAC ，这里不涉及 window 下怎么操作，在 window 中可能会和 MAC 下系统的操作有些细小的差别，但是我这边列的所有例子均可以在 window 跑通。 第一步，在桌面创建一个文件夹 webpack-demos ，打开命令行终端（这个不知道的可以百度），通过命令: cd Desktop/webpack-demos 进入到 webpack-demos 目录下。然后用命令行 npm init 初始化项目，一路按回车键就好。此时我们可以看到在我们的 webpack-demos 目录下生成了一个文件： package.json1234567891011&#123; "name": "webpack-demos", "version": "1.0.0", "main": "index.js", "scripts": &#123; "test": "echo \"Error: no test specified\" &amp;&amp; exit 1" &#125;, "author": "", "license": "ISC", "description": ""&#125; 第二步，安装 webpack ，打开命令行终端进入到 webpack-demos 目录下。输入如下命令安装 webpack1npm install --save-dev webpack–save-dev是指将包信息添加到devDependencies，表示你开发时依赖的包裹。–save是指将包信息添加到dependencies，表示你发布时依赖的包裹。 安装完之后，package.json 长这样子：1234567891011121314&#123; "name": "webpack-demos", "version": "1.0.0", "main": "index.js", "scripts": &#123; "test": "echo \"Error: no test specified\" &amp;&amp; exit 1" &#125;, "author": "", "license": "ISC", "description": "", "devDependencies": &#123; "webpack": "^2.6.1" &#125;&#125; Webpack初体验 在根目录下面创建一个名为webpack.config.js]]></content>
     </entry>
 
     
