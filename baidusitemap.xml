@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://www.Mmyton.com/2017/06/11/webpack/</loc>
-    <lastmod>2017-06-11T15:58:53.000Z</lastmod>
+    <lastmod>2017-06-11T16:21:55.000Z</lastmod>
     <data>
         <display>
         <title>其实webpack入门很简单</title>
@@ -120,9 +120,9 @@
         <title>解剖jQuery源码系列之$.extend与$().extend方法</title>
         <pubTime>2017-05-30T23:54:45.000Z</pubTime>
         
-        <tag>jQuery</tag>
-         
         <tag>JavaScript</tag>
+         
+        <tag>jQuery</tag>
          
         <tag>Dom</tag>
          
@@ -144,9 +144,9 @@
         <title>解剖jQuery源码系列之jQuery.prototype.init方法</title>
         <pubTime>2017-05-20T11:00:24.000Z</pubTime>
         
-        <tag>jQuery</tag>
-         
         <tag>JavaScript</tag>
+         
+        <tag>jQuery</tag>
          
         <tag>Dom</tag>
          
@@ -188,9 +188,9 @@
         <title>解剖jQuery源码系列之jQuery工具方法</title>
         <pubTime>2017-05-22T16:31:21.000Z</pubTime>
         
-        <tag>jQuery</tag>
-         
         <tag>JavaScript</tag>
+         
+        <tag>jQuery</tag>
          
         <tag>Dom</tag>
          
@@ -304,9 +304,9 @@
         
         <tag>gulp</tag>
          
-        <tag>jade</tag>
-         
         <tag>npm</tag>
+         
+        <tag>jade</tag>
          
         <tag>javascript</tag>
          
@@ -328,13 +328,13 @@
         <title>ES6基础项目构建</title>
         <pubTime>2017-04-27T14:11:17.000Z</pubTime>
         
-        <tag>gulp</tag>
-         
-        <tag>npm</tag>
+        <tag>ES6</tag>
          
         <tag>JavaScript</tag>
          
-        <tag>ES6</tag>
+        <tag>gulp</tag>
+         
+        <tag>npm</tag>
          
          
            
