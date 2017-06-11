@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://www.Mmyton.com/2017/06/11/webpack/</loc>
-    <lastmod>2017-06-11T10:30:14.000Z</lastmod>
+    <lastmod>2017-06-11T15:58:53.000Z</lastmod>
     <data>
         <display>
         <title>其实webpack入门很简单</title>
@@ -36,12 +36,12 @@
 
     
   <url>
-    <loc>http://www.Mmyton.com/2017/06/11/react/</loc>
-    <lastmod>2017-06-11T07:18:41.000Z</lastmod>
+    <loc>http://www.Mmyton.com/2017/06/11/es6-react/</loc>
+    <lastmod>2017-06-11T15:33:05.000Z</lastmod>
     <data>
         <display>
-        <title>React组件的3种写法</title>
-        <pubTime>2017-06-11T07:12:59.000Z</pubTime>
+        <title>用ES6重写React组件</title>
+        <pubTime>2017-06-11T07:07:13.000Z</pubTime>
         
         <tag>webpack</tag>
          
@@ -65,39 +65,11 @@
     
   <url>
     <loc>http://www.Mmyton.com/2017/06/11/react-life/</loc>
-    <lastmod>2017-06-11T07:15:10.000Z</lastmod>
+    <lastmod>2017-06-11T15:32:26.000Z</lastmod>
     <data>
         <display>
-        <title>一张图读懂React生命周期</title>
+        <title>我眼中的React生命周期</title>
         <pubTime>2017-06-11T07:14:11.000Z</pubTime>
-        
-        <tag>webpack</tag>
-         
-        <tag>react</tag>
-         
-        <tag>react-dom</tag>
-         
-        <tag>babel</tag>
-         
-        <tag>jsx</tag>
-         
-         
-           
-             
-              <breadCrumb title="react" url="http://www.Mmyton.com/categories/react/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.Mmyton.com/2017/06/11/es6-react/</loc>
-    <lastmod>2017-06-11T07:12:14.000Z</lastmod>
-    <data>
-        <display>
-        <title>React入门案例（ES6写法）</title>
-        <pubTime>2017-06-11T07:07:13.000Z</pubTime>
         
         <tag>webpack</tag>
          
@@ -148,9 +120,9 @@
         <title>解剖jQuery源码系列之$.extend与$().extend方法</title>
         <pubTime>2017-05-30T23:54:45.000Z</pubTime>
         
-        <tag>JavaScript</tag>
-         
         <tag>jQuery</tag>
+         
+        <tag>JavaScript</tag>
          
         <tag>Dom</tag>
          
@@ -172,9 +144,9 @@
         <title>解剖jQuery源码系列之jQuery.prototype.init方法</title>
         <pubTime>2017-05-20T11:00:24.000Z</pubTime>
         
-        <tag>JavaScript</tag>
-         
         <tag>jQuery</tag>
+         
+        <tag>JavaScript</tag>
          
         <tag>Dom</tag>
          
@@ -216,9 +188,9 @@
         <title>解剖jQuery源码系列之jQuery工具方法</title>
         <pubTime>2017-05-22T16:31:21.000Z</pubTime>
         
-        <tag>JavaScript</tag>
-         
         <tag>jQuery</tag>
+         
+        <tag>JavaScript</tag>
          
         <tag>Dom</tag>
          
@@ -332,9 +304,9 @@
         
         <tag>gulp</tag>
          
-        <tag>npm</tag>
-         
         <tag>jade</tag>
+         
+        <tag>npm</tag>
          
         <tag>javascript</tag>
          
@@ -356,13 +328,13 @@
         <title>ES6基础项目构建</title>
         <pubTime>2017-04-27T14:11:17.000Z</pubTime>
         
-        <tag>ES6</tag>
-         
-        <tag>JavaScript</tag>
-         
         <tag>gulp</tag>
          
         <tag>npm</tag>
+         
+        <tag>JavaScript</tag>
+         
+        <tag>ES6</tag>
          
          
            
