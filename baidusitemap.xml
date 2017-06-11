@@ -4,6 +4,122 @@
 
     
   <url>
+    <loc>http://www.Mmyton.com/2017/06/11/react-life/</loc>
+    <lastmod>2017-06-11T07:15:10.000Z</lastmod>
+    <data>
+        <display>
+        <title>一张图读懂React生命周期</title>
+        <pubTime>2017-06-11T07:14:11.000Z</pubTime>
+        
+        <tag>webpack</tag>
+         
+        <tag>react</tag>
+         
+        <tag>react-dom</tag>
+         
+        <tag>babel</tag>
+         
+        <tag>jsx</tag>
+         
+         
+           
+             
+              <breadCrumb title="react" url="http://www.Mmyton.com/categories/react/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.Mmyton.com/2017/06/11/react/</loc>
+    <lastmod>2017-06-11T07:13:38.000Z</lastmod>
+    <data>
+        <display>
+        <title>React组件的3种写法</title>
+        <pubTime>2017-06-11T07:12:59.000Z</pubTime>
+        
+        <tag>webpack</tag>
+         
+        <tag>react</tag>
+         
+        <tag>react-dom</tag>
+         
+        <tag>babel</tag>
+         
+        <tag>jsx</tag>
+         
+         
+           
+             
+              <breadCrumb title="react" url="http://www.Mmyton.com/categories/react/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.Mmyton.com/2017/06/11/es6-react/</loc>
+    <lastmod>2017-06-11T07:12:14.000Z</lastmod>
+    <data>
+        <display>
+        <title>React入门案例（ES6写法）</title>
+        <pubTime>2017-06-11T07:07:13.000Z</pubTime>
+        
+        <tag>webpack</tag>
+         
+        <tag>react</tag>
+         
+        <tag>react-dom</tag>
+         
+        <tag>babel</tag>
+         
+        <tag>jsx</tag>
+         
+         
+           
+             
+              <breadCrumb title="react" url="http://www.Mmyton.com/categories/react/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.Mmyton.com/2017/06/11/webpack/</loc>
+    <lastmod>2017-06-11T07:04:42.000Z</lastmod>
+    <data>
+        <display>
+        <title>其实webpack入门很简单</title>
+        <pubTime>2017-06-11T06:38:17.000Z</pubTime>
+        
+        <tag>webpack</tag>
+         
+        <tag>react</tag>
+         
+        <tag>babel</tag>
+         
+        <tag>javaScript</tag>
+         
+        <tag>css</tag>
+         
+        <tag>html</tag>
+         
+        <tag>image</tag>
+         
+         
+           
+             
+              <breadCrumb title="前段工程化" url="http://www.Mmyton.com/categories/%E5%89%8D%E6%AE%B5%E5%B7%A5%E7%A8%8B%E5%8C%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.Mmyton.com/2017/05/30/http20170530/</loc>
     <lastmod>2017-06-04T15:25:10.000Z</lastmod>
     <data>
@@ -192,9 +308,9 @@
         <title>浅谈项目中经常需要使用到的less功能</title>
         <pubTime>2017-04-27T14:11:48.000Z</pubTime>
         
-        <tag>less</tag>
-         
         <tag>css</tag>
+         
+        <tag>less</tag>
          
          
            

@@ -3,6 +3,34 @@
   
     
     <entry>
+      <title><![CDATA[一张图读懂React生命周期]]></title>
+      <url>%2F2017%2F06%2F11%2Freact-life%2F</url>
+      <content type="text"></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[React组件的3种写法]]></title>
+      <url>%2F2017%2F06%2F11%2Freact%2F</url>
+      <content type="text"></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[React入门案例（ES6写法）]]></title>
+      <url>%2F2017%2F06%2F11%2Fes6-react%2F</url>
+      <content type="text"></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[其实webpack入门很简单]]></title>
+      <url>%2F2017%2F06%2F11%2Fwebpack%2F</url>
+      <content type="text"></content>
+    </entry>
+
+    
+    <entry>
       <title><![CDATA[解剖jQuery源码系列之$.extend与$().extend方法]]></title>
       <url>%2F2017%2F05%2F31%2FjQuery20170531%2F</url>
       <content type="text"><![CDATA[我们经常看到各种各样的jQuery插件，有时候我们也需要针对我们的具体业务写一些定制化比较强的插件，而我们项目中又用到了jQuery，那么就可以在jQuery里通过$.extend或者$().extend来实现这个需求。 $.extend与$().extend的使用方法第一种用法：只写一个对象字面量，jQuery中扩展插件的方法123456789101112131415161718192021222324//$.extend,扩展工具也就是底层方法$.extend(&#123; a:function()&#123; console.log("a"); &#125;, b:function()&#123; console.log("b"); &#125;&#125;)//调用$.a(); //"a"$.b(); //"b"//$().extend,扩展jQuery对象的原型方法，也就是扩展jQuery对象实例的方法。$.fn.extend(&#123; a:function()&#123; console.log("a"); &#125;, b:function()&#123; console.log("b"); &#125;&#125;)//调用$().a(); //"a"$().b(); //"b" 以下两种用法，$().extend()同样可以也可以实现，所以只写了$.extend 第二种用法：当写多个对象字面量，后面的对象扩展到第一个对象上1234var a = &#123;&#125;;var b = &#123;'name':'suhq'&#125;;$.extend(a,b);console.log(a); //&#123;'name':'suhq'&#125; 第三种用法：浅拷贝与深拷贝1234567891011121314151617//浅拷贝var a = &#123;&#125;;var b = &#123;'name':'suhq'&#125;;$.extend(a,b);a.name='huo'console.log(b.name); //suhqvar c = &#123;'obj':&#123;'name':suhq&#125;&#125;;//这种和第二种用法一样，也是浅拷贝，为了好理解所以区分开来，这种情况可参考第二种用途$.extend(a,c);//这里主要说的是如下形式$.extend(false,a,c); a.obj.name='huo';console.log(c.obj.name);//'huo'//深拷贝$.extend(true,a,c);a.obj.name='huo';console.log(c.obj.name);//'suhq' 在了解完了$.extend与$().extend的使用方法后，我们来看下jQuery中是如何实现？ jQuery中extend方法的源码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374jQuery.extend = jQuery.fn.extend = function() &#123; //定义了一些局部变量，方便后续使用 var options, name, src, copy, copyIsArray, clone, target = arguments[0] || &#123;&#125;, i = 1, length = arguments.length, deep = false; //处理第三种用法中的深拷贝：$.extend(true,a,c); //此时target=arguments[0]也就是true，是一个boolean类型值，可以进入if语句里 if ( typeof target === "boolean" ) &#123; //经过以下代码处理：deep等于true，target等于a deep = target; target = arguments[1] || &#123;&#125;; //i等于2主要是为了后续直接定位到b，直接跳过前两个参数 i = 2; &#125; //针对异常情况，比如target是一个字符串或者其他不是对象的数据时 //如果target不是一个对象或者函数（函数也是对象），那么就将target赋值为空对象 if ( typeof target !== "object" &amp;&amp; !jQuery.isFunction(target) ) &#123; target = &#123;&#125;; &#125; //这个处理的第一种用法的，判断当前传参的个数与是否一样，也就是说，按照上面代码的逻辑，如果不是深拷贝，那么i值就不会变化，而且又恰巧只传一个参数，那么就是在$或者$.fn上扩展方法。 //所以目标对象变成了this，也就是$或者是$实例对象上 //此时i等于0 if ( length === i ) &#123; target = this; --i; &#125; //1.第一种用途：此时i等于0，length等于1 $.extend(&#123;a:function()&#123;console.log("a");&#125;,b:function()&#123;console.log("b");&#125;&#125;) //2.第二种用途：此时i等于1，length等于2 $.extend(a,b) //3.第三种用途：此时i等于2，length等于3 $.extend(true,a,b)或者$.extend(false,a,b) for ( ; i &lt; length; i++ ) &#123; //1.第一种用途，此时options等于&#123;a:function()&#123;console.log("a");&#125;,b:function()&#123;console.log("b");&#125;&#125; //2.第二种用途，此时options等于b //3.第三种用途，此时options等于b //if判断主要是为了除去arguments[ i ]等于undefined或者null if ( (options = arguments[ i ]) != null ) &#123; // Extend the base object for ( name in options ) &#123; src = target[ name ]; copy = options[ name ]; // Prevent never-ending loop if ( target === copy ) &#123; continue; &#125; // Recurse if we're merging plain objects or arrays if ( deep &amp;&amp; copy &amp;&amp; ( jQuery.isPlainObject(copy) || (copyIsArray = jQuery.isArray(copy)) ) ) &#123; if ( copyIsArray ) &#123; copyIsArray = false; clone = src &amp;&amp; jQuery.isArray(src) ? src : []; &#125; else &#123; clone = src &amp;&amp; jQuery.isPlainObject(src) ? src : &#123;&#125;; &#125; // Never move original objects, clone them target[ name ] = jQuery.extend( deep, clone, copy ); // Don't bring in undefined values &#125; else if ( copy !== undefined ) &#123; target[ name ] = copy; &#125; &#125; &#125; &#125; // Return the modified object return target;&#125;;]]></content>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.Mmyton.com/"/>
-  <updated>2017-06-01T16:34:25.000Z</updated>
+  <updated>2017-06-11T07:15:10.000Z</updated>
   <id>http://www.Mmyton.com/</id>
   
   <author>
@@ -14,6 +14,114 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>一张图读懂React生命周期</title>
+    <link href="http://www.Mmyton.com/2017/06/11/react-life/"/>
+    <id>http://www.Mmyton.com/2017/06/11/react-life/</id>
+    <published>2017-06-11T07:14:11.000Z</published>
+    <updated>2017-06-11T07:15:10.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="react" scheme="http://www.Mmyton.com/categories/react/"/>
+    
+    
+      <category term="webpack" scheme="http://www.Mmyton.com/tags/webpack/"/>
+    
+      <category term="react" scheme="http://www.Mmyton.com/tags/react/"/>
+    
+      <category term="react-dom" scheme="http://www.Mmyton.com/tags/react-dom/"/>
+    
+      <category term="babel" scheme="http://www.Mmyton.com/tags/babel/"/>
+    
+      <category term="jsx" scheme="http://www.Mmyton.com/tags/jsx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>React组件的3种写法</title>
+    <link href="http://www.Mmyton.com/2017/06/11/react/"/>
+    <id>http://www.Mmyton.com/2017/06/11/react/</id>
+    <published>2017-06-11T07:12:59.000Z</published>
+    <updated>2017-06-11T07:13:38.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="react" scheme="http://www.Mmyton.com/categories/react/"/>
+    
+    
+      <category term="webpack" scheme="http://www.Mmyton.com/tags/webpack/"/>
+    
+      <category term="react" scheme="http://www.Mmyton.com/tags/react/"/>
+    
+      <category term="react-dom" scheme="http://www.Mmyton.com/tags/react-dom/"/>
+    
+      <category term="babel" scheme="http://www.Mmyton.com/tags/babel/"/>
+    
+      <category term="jsx" scheme="http://www.Mmyton.com/tags/jsx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>React入门案例（ES6写法）</title>
+    <link href="http://www.Mmyton.com/2017/06/11/es6-react/"/>
+    <id>http://www.Mmyton.com/2017/06/11/es6-react/</id>
+    <published>2017-06-11T07:07:13.000Z</published>
+    <updated>2017-06-11T07:12:14.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="react" scheme="http://www.Mmyton.com/categories/react/"/>
+    
+    
+      <category term="webpack" scheme="http://www.Mmyton.com/tags/webpack/"/>
+    
+      <category term="react" scheme="http://www.Mmyton.com/tags/react/"/>
+    
+      <category term="react-dom" scheme="http://www.Mmyton.com/tags/react-dom/"/>
+    
+      <category term="babel" scheme="http://www.Mmyton.com/tags/babel/"/>
+    
+      <category term="jsx" scheme="http://www.Mmyton.com/tags/jsx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>其实webpack入门很简单</title>
+    <link href="http://www.Mmyton.com/2017/06/11/webpack/"/>
+    <id>http://www.Mmyton.com/2017/06/11/webpack/</id>
+    <published>2017-06-11T06:38:17.000Z</published>
+    <updated>2017-06-11T07:04:42.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="前段工程化" scheme="http://www.Mmyton.com/categories/%E5%89%8D%E6%AE%B5%E5%B7%A5%E7%A8%8B%E5%8C%96/"/>
+    
+    
+      <category term="webpack" scheme="http://www.Mmyton.com/tags/webpack/"/>
+    
+      <category term="react" scheme="http://www.Mmyton.com/tags/react/"/>
+    
+      <category term="babel" scheme="http://www.Mmyton.com/tags/babel/"/>
+    
+      <category term="javaScript" scheme="http://www.Mmyton.com/tags/javaScript/"/>
+    
+      <category term="css" scheme="http://www.Mmyton.com/tags/css/"/>
+    
+      <category term="html" scheme="http://www.Mmyton.com/tags/html/"/>
+    
+      <category term="image" scheme="http://www.Mmyton.com/tags/image/"/>
+    
+  </entry>
   
   <entry>
     <title>解剖jQuery源码系列之$.extend与$().extend方法</title>
@@ -454,9 +562,9 @@
       <category term="前端技术" scheme="http://www.Mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="less" scheme="http://www.Mmyton.com/tags/less/"/>
-    
       <category term="css" scheme="http://www.Mmyton.com/tags/css/"/>
+    
+      <category term="less" scheme="http://www.Mmyton.com/tags/less/"/>
     
   </entry>
   
