@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[kindeditor不支持上传图片格式校验]]></title>
+    <url>%2F2017%2F06%2F16%2Fkingeditor%2F</url>
+    <content type="text"><![CDATA[kingeditor 最近在做公司的一个问题反馈模块，因为接入第三方组件的原因，它们使用的是KindEditor，为了匹配，前端也用了下这个富文本编辑器，不过这个富文本编辑器在2011年已经停止维护了。对于第三方组件选择这个富文本也是无语了。具体看官网。 官网下载下来的大概的一个文件组织如下所示(这边省略了一些不需要用到的目录)： 这里分享下怎么使用，源码上增加下对上传图片格式的校验（原有的不支持），以及页面样式影响富文本框内容的展示怎么解决。不涉及到后端。我们先看下整个Demo的代码：12345678910111213141516171819202122232425262728293031323334&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt; &lt;meta charset="utf-8"&gt; &lt;title&gt;kingEditor Demo&lt;/title&gt; &lt;link rel="stylesheet" type="text/css" href="./themes/default/default.css"&gt;&lt;/head&gt;&lt;body&gt; &lt;div&gt; &lt;textarea id="text"&gt;&lt;/textarea&gt; &lt;/div&gt; &lt;script type="text/javascript" src="./kindeditor-min.js"&gt;&lt;/script&gt; &lt;script type="text/javascript"&gt; function createKindEditor(id)&#123; return KindEditor.create('#'+id,&#123; width:'700px', height:'200px', langType:'zh_CN', uploadJson : '/api/si/feedbackKindEditorUpload', resizeType : 1, allowPreviewEmoticons : false, allowImageUpload : true, allowImageRemote : false, imageType : [".jpeg",".jpg",".gif",".bmp",".png"], items : ['formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic','underline', '|','justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist', 'insertunorderedlist', '|','emoticons', 'image', 'link', '|', 'removeformat','undo', 'redo', 'fullscreen', 'source', 'about'], afterBlur : function()&#123; this.sync(); &#125; &#125;); &#125; createKindEditor("text"); &lt;/script&gt;&lt;/body&gt;&lt;/html&gt; 展示的效果如下： KindEditor使用参数介绍 KindEditor的调用需要引入两个文件：default.css和kindeditor-min.js，这边注意下，需要先引入kindeditor-min.js方可调用KindEditor.create创建富文本编辑器。这边为了复用，所以写了一个函数createKindEditor，当然具体的写法一般会写在公共方法中，作为对象的属性进行引用。 KindEditor.create传入两个参数，一个textarea标签的id，另一个参数就是配置富文本初始化参数。 width：设置富文本编辑器的宽度 height：设置富文本编辑器的高度 langType：设置富文本编辑器的语言，语言文件在lang目录下，对应的属性值为文件名 uploadJson：图片上传的url地址 resizeType：编辑器可以拖动改变宽度和高度，0不可以拖动，1可以拖动高度，2可以拖动高度和宽度 allowPreviewEmoticons：true时鼠标放在表情上可以预览表情 allowImageUpload：true时显示图片上传按钮 allowImageRemote：true时显示网络图片标签，false时不显示 items：配置编辑器的工具栏，其中”/”表示换行，”|”表示分隔符。具体值参考官网 afterBlur：编辑器失去焦点(blur)时执行的回调函数。 imageType：扩展编辑器支持图片格式的校验 让KindEditor支持上传图片格式校验 通过查看源码，我们需要修改plugins/image/image.js的源码。 解决页面展示富文本内容样式冲突问题]]></content>
+      <categories>
+        <category>前段技术</category>
+      </categories>
+      <tags>
+        <tag>javaScript</tag>
+        <tag>kingeditor</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[我眼中的React生命周期]]></title>
     <url>%2F2017%2F06%2F11%2Freact-life%2F</url>
     <content type="text"></content>
