@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://www.Mmyton.com/2017/06/16/kingeditor/</loc>
-    <lastmod>2017-06-16T15:14:53.000Z</lastmod>
+    <lastmod>2017-06-16T15:34:50.000Z</lastmod>
     <data>
         <display>
         <title>kindeditor不支持上传图片格式校验</title>
@@ -18,7 +18,7 @@
          
            
              
-              <breadCrumb title="前段技术" url="http://www.Mmyton.com/categories/%E5%89%8D%E6%AE%B5%E6%8A%80%E6%9C%AF/"/>
+              <breadCrumb title="前端技术" url="http://www.Mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
           
         </display>
     </data>
@@ -326,9 +326,9 @@
         
         <tag>gulp</tag>
          
-        <tag>npm</tag>
-         
         <tag>jade</tag>
+         
+        <tag>npm</tag>
          
         <tag>javascript</tag>
          
@@ -350,13 +350,13 @@
         <title>ES6基础项目构建</title>
         <pubTime>2017-04-27T14:11:17.000Z</pubTime>
         
-        <tag>ES6</tag>
-         
-        <tag>JavaScript</tag>
-         
         <tag>gulp</tag>
          
         <tag>npm</tag>
+         
+        <tag>ES6</tag>
+         
+        <tag>JavaScript</tag>
          
          
            
