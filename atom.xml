@@ -47,9 +47,27 @@
     <link href="http://www.Mmyton.com/2017/06/11/react-life/"/>
     <id>http://www.Mmyton.com/2017/06/11/react-life/</id>
     <published>2017-06-11T07:14:11.000Z</published>
-    <updated>2017-06-17T12:02:18.000Z</updated>
+    <updated>2017-06-17T13:41:32.000Z</updated>
     
     <content type="html"><![CDATA[<p>　　相信很多人在初次看到生命周期这个词，总有那么一点困惑。生命周期从人的一生来看就是出生、成长、成熟、衰退直到死亡。而<code>React</code>的生命周期也是如此，但又有所不同。我们人一生的生命周期是单向不可逆的，而软件领域的生命周期并不一定是单向，可能还会在还没完成前重新开始。要是我们人也可以如此那就好了。<a id="more"></a></p>
+<h4 id="React生命周期"><a href="#React生命周期" class="headerlink" title="React生命周期"></a>React生命周期</h4><p>　　<code>React</code>生命周期在<code>React</code>的世界里就是组件的生命周期，因为<code>React</code>就是主张组件化构建页面。组建的生命周期直接影响着页面的渲染。<code>React</code>组件生命周期可以分为两个过程：</p>
+<ul>
+<li>组件挂载或者卸载时</li>
+<li>组件接收到新的数据时更新组件的渲染</li>
+</ul>
+<p>　　这里贴一张<code>React</code>生命周期整体流程图，具体可以看下面：<br><img src="/images/react_life.png" class="full-image"><br>　　懂的人自然一眼就能看明白，不懂的可以先不看这张图或者大致浏览下。</p>
+<h4 id="组件挂载或者卸载过程"><a href="#组件挂载或者卸载过程" class="headerlink" title="组件挂载或者卸载过程"></a>组件挂载或者卸载过程</h4><h5 id="组件挂载的过程"><a href="#组件挂载的过程" class="headerlink" title="组件挂载的过程"></a>组件挂载的过程</h5><p>　　为了比较形象的展示下组件挂载过程的生命周期，我大致画了一张图，具体如下：<br><img src="/images/react_life1.png" class="full-image"><br>　　因为<code>React</code>构建组件的方式有3种，其中两种就是图中<code>ES6 classes</code>和<code>createClass</code>。这张图展示就是<code>React</code>初始化并挂载页面的过程，这个过程会调用图中所展示的生命周期方法。图中展示的除了初始化过程所调用的方法不太一样（功能一样，只是写法不一样），组件调用的生命周期方法基本一样。</p>
+<ul>
+<li><code style="background:pink;">static propTypes</code>和<code style="background:pink;">propTypes</code>：代表<code>props</code>类型检查。</li>
+<li><code style="background:pink;">Static defaultProps</code>和<code style="background:pink;">getDefaultProps</code>：设置<code>props</code>的默认值。</li>
+<li><code style="background:pink;">Constructor(this.state)</code>和<code style="background:pink;">getInitialState</code>：这里在生命周期范围内涉及的是设置<code>static</code>组件内部状态。</li>
+<li><code style="background:pink;">componentWillMount</code>：组件在渲染之前，也就是<code>render</code>方法之前执行。如果在这里执行<code>setState</code>方法，组件虽然会更新内部状态<code>state</code>，但只会渲染组件一次。因此如果在这里执行更改内部状态其实在整个组件生命周期来看是毫无意义的。只会徒增组件渲染的性能消耗。</li>
+<li><code style="background:pink;">render</code>：渲染组件。</li>
+<li><code style="background:pink;">componentDidMount</code>：组件在渲染完成之后，也就是<code>render</code>方法之后执行。如果在这里执行<code>setState</code>方法，组件不仅会更新内部状态<code>state</code>，还会重新渲染一次组件。需不需要在这里执行更新内部状态要依据业务场景而定。<br>　　具体代码可以参看如下：后续补上。　<h5 id="组件卸载的过程"><a href="#组件卸载的过程" class="headerlink" title="组件卸载的过程"></a>组件卸载的过程</h5>　　组件的卸载就比较简单了，只会涉及到如下两个方法：
+　　</li>
+<li><code style="background:pink;">unmountComponentAtNode()</code>：使用这个方法来卸载组件。比较少用到，其实当页面切换或者关闭时，组件会自动的卸载。</li>
+<li><code style="background:pink;">componentWillUnmount</code>：组件在卸载前会执行这个方法，一个我们比较熟悉的应用场景就是移除时间监听器和停止计数器。<h4 id="组件更新数据时"><a href="#组件更新数据时" class="headerlink" title="组件更新数据时"></a>组件更新数据时</h4><h5 id="组件state改变时"><a href="#组件state改变时" class="headerlink" title="组件state改变时"></a>组件state改变时</h5>　　为了更好理解我同样画了一张图：<br><img src="/images/react_life2.png" class="full-image">　　<h5 id="组件prop改变时"><a href="#组件prop改变时" class="headerlink" title="组件prop改变时"></a>组件prop改变时</h5></li>
+</ul>
 ]]></content>
     
     <summary type="html">
