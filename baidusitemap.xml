@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://www.Mmyton.com/2017/06/11/react-life/</loc>
-    <lastmod>2017-06-17T13:41:32.000Z</lastmod>
+    <lastmod>2017-06-17T14:17:41.000Z</lastmod>
     <data>
         <display>
         <title>我眼中的React生命周期</title>
@@ -326,9 +326,9 @@
         
         <tag>gulp</tag>
          
-        <tag>npm</tag>
-         
         <tag>jade</tag>
+         
+        <tag>npm</tag>
          
         <tag>javascript</tag>
          
@@ -350,13 +350,13 @@
         <title>ES6基础项目构建</title>
         <pubTime>2017-04-27T14:11:17.000Z</pubTime>
         
-        <tag>ES6</tag>
-         
-        <tag>JavaScript</tag>
-         
         <tag>gulp</tag>
          
         <tag>npm</tag>
+         
+        <tag>ES6</tag>
+         
+        <tag>JavaScript</tag>
          
          
            

@@ -104,7 +104,8 @@
 <meta property="og:image" content="http://www.mmyton.com/images/react_life.png">
 <meta property="og:image" content="http://www.mmyton.com/images/react_life1.png">
 <meta property="og:image" content="http://www.mmyton.com/images/react_life2.png">
-<meta property="og:updated_time" content="2017-06-17T13:41:32.000Z">
+<meta property="og:image" content="http://www.mmyton.com/images/react_life3.png">
+<meta property="og:updated_time" content="2017-06-17T14:17:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="我眼中的React生命周期">
 <meta name="twitter:description" content="相信很多人在初次看到生命周期这个词，总有那么一点困惑。生命周期从人的一生来看就是出生、成长、成熟、衰退直到死亡。而React的生命周期也是如此，但又有所不同。我们人一生的生命周期是单向不可逆的，而软件领域的生命周期并不一定是单向，可能还会在还没完成前重新开始。要是我们人也可以如此那就好了。">
@@ -387,7 +388,7 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-06-17T21:41:32+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2017-06-17T22:17:41+08:00">
                 2017-06-17
               </time>
             
@@ -458,7 +459,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  816
+                  1,197
                 </span>
               
 
@@ -497,7 +498,15 @@
 <li><code style="background:pink;">componentDidMount</code>：组件在渲染完成之后，也就是<code>render</code>方法之后执行。如果在这里执行<code>setState</code>方法，组件不仅会更新内部状态<code>state</code>，还会重新渲染一次组件。需不需要在这里执行更新内部状态要依据业务场景而定。<br>　　具体代码可以参看如下：后续补上。　<h5 id="组件卸载的过程"><a href="#组件卸载的过程" class="headerlink" title="组件卸载的过程"></a>组件卸载的过程</h5>　　组件的卸载就比较简单了，只会涉及到如下两个方法：
 　　</li>
 <li><code style="background:pink;">unmountComponentAtNode()</code>：使用这个方法来卸载组件。比较少用到，其实当页面切换或者关闭时，组件会自动的卸载。</li>
-<li><code style="background:pink;">componentWillUnmount</code>：组件在卸载前会执行这个方法，一个我们比较熟悉的应用场景就是移除时间监听器和停止计数器。<h4 id="组件更新数据时"><a href="#组件更新数据时" class="headerlink" title="组件更新数据时"></a>组件更新数据时</h4><h5 id="组件state改变时"><a href="#组件state改变时" class="headerlink" title="组件state改变时"></a>组件state改变时</h5>　　为了更好理解我同样画了一张图：<br><img src="/images/react_life2.png" class="full-image">　　<h5 id="组件prop改变时"><a href="#组件prop改变时" class="headerlink" title="组件prop改变时"></a>组件prop改变时</h5></li>
+<li><p><code style="background:pink;">componentWillUnmount</code>：组件在卸载前会执行这个方法，一个我们比较熟悉的应用场景就是移除时间监听器和停止计数器。</p>
+<h4 id="组件更新数据时"><a href="#组件更新数据时" class="headerlink" title="组件更新数据时"></a>组件更新数据时</h4><h5 id="组件state改变时"><a href="#组件state改变时" class="headerlink" title="组件state改变时"></a>组件state改变时</h5><p>　　为了更好理解我同样画了一张图：<br><img src="/images/react_life2.png" class="full-image"></p>
+</li>
+<li><p><code style="background:pink;">shouldComponentUpdate</code>：这个方法有两个参数：<code>newProps</code>和<code>newState</code>，所以当组件接收到新的<code>state</code>状态值或者新的<code>props</code>值，这里有一个应用场景：当父组件的<code>props</code>改变时，<code>React</code>会渲染所有的节点，而我们只是希望部分甚至单个组件更新时，可以在这方法做些处理过滤掉不需要处理的组件。其实这也是组件优化的一方面，减少不必要的更新。这个方法如果返回值是<code>true</code>，则执行更新组件，反之，忽略更新，重新渲染原有的组件，也就是不更新了，为了页面正确展示组件，<code>render</code>会重新执行。</p>
+</li>
+<li><code style="background:pink;">componentWillUpdate</code>：组件更新之前运行。在这个方法中不能通过<code>this.setState</code>来更新内部状态，后续会有文章加以说明。</li>
+<li><code style="background:pink;">render</code>：渲染更新<code>state</code>后的组件。</li>
+<li><code style="background:pink;">componentDidUpdate</code>：此方法在组件更新以及<code>render</code>方法被调用过后被调用。<h5 id="组件prop改变时"><a href="#组件prop改变时" class="headerlink" title="组件prop改变时"></a>组件prop改变时</h5>　　不说了直接上图：<br><img src="/images/react_life3.png" class="full-image"><br>　　这里涉及到的方法和组件<code>state</code>改变时差不多，除了一个新方法：</li>
+<li><code style="background:pink;">componentWillReceiveProps</code>：如果是父组件更新<code>props</code>，<code>componentWillReceiveProps</code>会先于<code>shouldComponentUpdate</code>执行，这个方法有一个参数，就是更新的<code>props</code>，在这个时候调用<code>this.setState</code>，组件不会进行第二次渲染。<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4>　　通过以上过程的梳理，我们在回过头来看本文第一张图是不是清晰很多了。关于<code>React</code>的使用可以参考我另一篇文章<a href="http://www.mmyton.com/2017/06/11/es6-react/">用ES6重写React组件</a>。</li>
 </ul>
 
       
@@ -739,7 +748,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#React生命周期"><span class="nav-number">1.</span> <span class="nav-text">React生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组件挂载或者卸载过程"><span class="nav-number">2.</span> <span class="nav-text">组件挂载或者卸载过程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#组件挂载的过程"><span class="nav-number">2.1.</span> <span class="nav-text">组件挂载的过程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#组件卸载的过程"><span class="nav-number">2.2.</span> <span class="nav-text">组件卸载的过程</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组件更新数据时"><span class="nav-number">3.</span> <span class="nav-text">组件更新数据时</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#组件state改变时"><span class="nav-number">3.1.</span> <span class="nav-text">组件state改变时</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#组件prop改变时"><span class="nav-number">3.2.</span> <span class="nav-text">组件prop改变时</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#React生命周期"><span class="nav-number">1.</span> <span class="nav-text">React生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组件挂载或者卸载过程"><span class="nav-number">2.</span> <span class="nav-text">组件挂载或者卸载过程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#组件挂载的过程"><span class="nav-number">2.1.</span> <span class="nav-text">组件挂载的过程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#组件卸载的过程"><span class="nav-number">2.2.</span> <span class="nav-text">组件卸载的过程</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组件更新数据时"><span class="nav-number">3.</span> <span class="nav-text">组件更新数据时</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#组件state改变时"><span class="nav-number">3.1.</span> <span class="nav-text">组件state改变时</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#组件prop改变时"><span class="nav-number">3.2.</span> <span class="nav-text">组件prop改变时</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
