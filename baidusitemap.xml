@@ -4,6 +4,34 @@
 
     
   <url>
+    <loc>http://www.Mmyton.com/2017/06/11/react-life/</loc>
+    <lastmod>2017-06-17T12:02:18.000Z</lastmod>
+    <data>
+        <display>
+        <title>我眼中的React生命周期</title>
+        <pubTime>2017-06-11T07:14:11.000Z</pubTime>
+        
+        <tag>webpack</tag>
+         
+        <tag>react</tag>
+         
+        <tag>react-dom</tag>
+         
+        <tag>babel</tag>
+         
+        <tag>jsx</tag>
+         
+         
+           
+             
+              <breadCrumb title="react" url="http://www.Mmyton.com/categories/react/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.Mmyton.com/2017/06/16/kingeditor/</loc>
     <lastmod>2017-06-16T15:34:50.000Z</lastmod>
     <data>
@@ -64,34 +92,6 @@
         <display>
         <title>用ES6重写React组件</title>
         <pubTime>2017-06-11T07:07:13.000Z</pubTime>
-        
-        <tag>webpack</tag>
-         
-        <tag>react</tag>
-         
-        <tag>react-dom</tag>
-         
-        <tag>babel</tag>
-         
-        <tag>jsx</tag>
-         
-         
-           
-             
-              <breadCrumb title="react" url="http://www.Mmyton.com/categories/react/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.Mmyton.com/2017/06/11/react-life/</loc>
-    <lastmod>2017-06-11T15:32:26.000Z</lastmod>
-    <data>
-        <display>
-        <title>我眼中的React生命周期</title>
-        <pubTime>2017-06-11T07:14:11.000Z</pubTime>
         
         <tag>webpack</tag>
          
@@ -326,9 +326,9 @@
         
         <tag>gulp</tag>
          
-        <tag>jade</tag>
-         
         <tag>npm</tag>
+         
+        <tag>jade</tag>
          
         <tag>javascript</tag>
          
@@ -350,13 +350,13 @@
         <title>ES6基础项目构建</title>
         <pubTime>2017-04-27T14:11:17.000Z</pubTime>
         
-        <tag>gulp</tag>
-         
-        <tag>npm</tag>
-         
         <tag>ES6</tag>
          
         <tag>JavaScript</tag>
+         
+        <tag>gulp</tag>
+         
+        <tag>npm</tag>
          
          
            
