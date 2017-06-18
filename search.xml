@@ -1,200 +1,745 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search>
-  <entry>
-    <title><![CDATA[kindeditor不支持上传图片格式校验]]></title>
-    <url>%2F2017%2F06%2F16%2Fkingeditor%2F</url>
-    <content type="text"><![CDATA[kingeditor 最近在做公司的一个问题反馈模块，因为接入第三方组件的原因，它们使用的是KindEditor，为了匹配，前端也用了下这个富文本编辑器，不过这个富文本编辑器在2011年已经停止维护了。对于第三方组件选择这个富文本也是无语了。具体看官网。 官网下载下来的大概的一个文件组织如下所示(这边省略了一些不需要用到的目录)： 这里分享下怎么使用，源码上增加下对上传图片格式的校验（原有的不支持），以及页面样式影响富文本框内容的展示怎么解决。不涉及到后端。我们先看下整个Demo的代码：12345678910111213141516171819202122232425262728293031323334&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt; &lt;meta charset="utf-8"&gt; &lt;title&gt;kingEditor Demo&lt;/title&gt; &lt;link rel="stylesheet" type="text/css" href="./themes/default/default.css"&gt;&lt;/head&gt;&lt;body&gt; &lt;div&gt; &lt;textarea id="text"&gt;&lt;/textarea&gt; &lt;/div&gt; &lt;script type="text/javascript" src="./kindeditor-min.js"&gt;&lt;/script&gt; &lt;script type="text/javascript"&gt; function createKindEditor(id)&#123; return KindEditor.create('#'+id,&#123; width:'700px', height:'200px', langType:'zh_CN', uploadJson : '/api/si/feedbackKindEditorUpload', resizeType : 1, allowPreviewEmoticons : false, allowImageUpload : true, allowImageRemote : false, imageType : [".jpeg",".jpg",".gif",".bmp",".png"], items : ['formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic','underline', '|','justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist', 'insertunorderedlist', '|','emoticons', 'image', 'link', '|', 'removeformat','undo', 'redo', 'fullscreen', 'source', 'about'], afterBlur : function()&#123; this.sync(); &#125; &#125;); &#125; createKindEditor("text"); &lt;/script&gt;&lt;/body&gt;&lt;/html&gt; 展示的效果如下： KindEditor使用参数介绍 KindEditor的调用需要引入两个文件：default.css和kindeditor-min.js，这边注意下，需要先引入kindeditor-min.js方可调用KindEditor.create创建富文本编辑器。这边为了复用，所以写了一个函数createKindEditor，当然具体的写法一般会写在公共方法中，作为对象的属性进行引用。 KindEditor.create传入两个参数，一个textarea标签的id，另一个参数就是配置富文本初始化参数。 width：设置富文本编辑器的宽度 height：设置富文本编辑器的高度 langType：设置富文本编辑器的语言，语言文件在lang目录下，对应的属性值为文件名 uploadJson：图片上传的url地址 resizeType：编辑器可以拖动改变宽度和高度，0不可以拖动，1可以拖动高度，2可以拖动高度和宽度 allowPreviewEmoticons：true时鼠标放在表情上可以预览表情 allowImageUpload：true时显示图片上传按钮 allowImageRemote：true时显示网络图片标签，false时不显示 items：配置编辑器的工具栏，其中”/”表示换行，”|”表示分隔符。具体值参考官网 afterBlur：编辑器失去焦点(blur)时执行的回调函数。 imageType：扩展编辑器支持图片格式的校验 让KindEditor支持上传图片格式校验 通过查看源码，我们需要修改plugins/image/image.js的源码。 解决页面展示富文本内容样式冲突问题]]></content>
-      <categories>
-        <category>前端技术</category>
-      </categories>
-      <tags>
-        <tag>javaScript</tag>
-        <tag>kingeditor</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[我眼中的React生命周期]]></title>
-    <url>%2F2017%2F06%2F11%2Freact-life%2F</url>
-    <content type="text"><![CDATA[相信很多人在初次看到生命周期这个词，总有那么一点困惑。生命周期从人的一生来看就是出生、成长、成熟、衰退直到死亡。而React的生命周期也是如此，但又有所不同。我们人一生的生命周期是单向不可逆的，而软件领域的生命周期并不一定是单向，可能还会在还没完成前重新开始。要是我们人也可以如此那就好了。 React生命周期 React生命周期在React的世界里就是组件的生命周期，因为React就是主张组件化构建页面。组建的生命周期直接影响着页面的渲染。React组件生命周期可以分为两个过程： 组件挂载或者卸载时 组件接收到新的数据时更新组件的渲染 这里贴一张React生命周期整体流程图，具体可以看下面： 懂的人自然一眼就能看明白，不懂的可以先不看这张图或者大致浏览下。 组件挂载或者卸载过程组件挂载的过程 为了比较形象的展示下组件挂载过程的生命周期，我大致画了一张图，具体如下： 因为React构建组件的方式有3种，其中两种就是图中ES6 classes和createClass。这张图展示就是React初始化并挂载页面的过程，这个过程会调用图中所展示的生命周期方法。图中展示的除了初始化过程所调用的方法不太一样（功能一样，只是写法不一样），组件调用的生命周期方法基本一样。 static propTypes和propTypes：代表props类型检查。 Static defaultProps和getDefaultProps：设置props的默认值。 Constructor(this.state)和getInitialState：这里在生命周期范围内涉及的是设置static组件内部状态。 componentWillMount：组件在渲染之前，也就是render方法之前执行。如果在这里执行setState方法，组件虽然会更新内部状态state，但只会渲染组件一次。因此如果在这里执行更改内部状态其实在整个组件生命周期来看是毫无意义的。只会徒增组件渲染的性能消耗。 render：渲染组件。 componentDidMount：组件在渲染完成之后，也就是render方法之后执行。如果在这里执行setState方法，组件不仅会更新内部状态state，还会重新渲染一次组件。需不需要在这里执行更新内部状态要依据业务场景而定。 具体代码可以参看如下：后续补上。 组件卸载的过程 组件的卸载就比较简单了，只会涉及到如下两个方法： unmountComponentAtNode()：使用这个方法来卸载组件。比较少用到，其实当页面切换或者关闭时，组件会自动的卸载。 componentWillUnmount：组件在卸载前会执行这个方法，一个我们比较熟悉的应用场景就是移除时间监听器和停止计数器。 组件更新数据时组件state改变时 为了更好理解我同样画了一张图： shouldComponentUpdate：这个方法有两个参数：newProps和newState，所以当组件接收到新的state状态值或者新的props值，这里有一个应用场景：当父组件的props改变时，React会渲染所有的节点，而我们只是希望部分甚至单个组件更新时，可以在这方法做些处理过滤掉不需要处理的组件。其实这也是组件优化的一方面，减少不必要的更新。这个方法如果返回值是true，则执行更新组件，反之，忽略更新，重新渲染原有的组件，也就是不更新了，为了页面正确展示组件，render会重新执行。 componentWillUpdate：组件更新之前运行。在这个方法中不能通过this.setState来更新内部状态，后续会有文章加以说明。 render：渲染更新state后的组件。 componentDidUpdate：此方法在组件更新以及render方法被调用过后被调用。组件prop改变时 不说了直接上图： 这里涉及到的方法和组件state改变时差不多，除了一个新方法： componentWillReceiveProps：如果是父组件更新props，componentWillReceiveProps会先于shouldComponentUpdate执行，这个方法有一个参数，就是更新的props，在这个时候调用this.setState，组件不会进行第二次渲染。总结 通过以上过程的梳理，我们在回过头来看本文第一张图是不是清晰很多了。关于React的使用可以参考我另一篇文章用ES6重写React组件。]]></content>
-      <categories>
-        <category>react</category>
-      </categories>
-      <tags>
-        <tag>webpack</tag>
-        <tag>react</tag>
-        <tag>react-dom</tag>
-        <tag>babel</tag>
-        <tag>jsx</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[用ES6重写React组件]]></title>
-    <url>%2F2017%2F06%2F11%2Fes6-react%2F</url>
-    <content type="text"></content>
-      <categories>
-        <category>react</category>
-      </categories>
-      <tags>
-        <tag>webpack</tag>
-        <tag>react</tag>
-        <tag>react-dom</tag>
-        <tag>babel</tag>
-        <tag>jsx</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[其实webpack入门很简单]]></title>
-    <url>%2F2017%2F06%2F11%2Fwebpack%2F</url>
-    <content type="text"><![CDATA[如果你能耐心的跟着这篇文章敲打一遍代码，那你基本掌握 webpack 大部分知识。也许有部分你没掌握，但是其实都是大同小异的。 关于 webpack 是什么东西，感兴趣的可以百度下。这边贴一张图，可以感受下 webpack 主要做的是什么？webpack就是把你的工程项目当做一个整体，通过一个给定的主文件（如： index.js ，我们接下去例子的主文件就是这个）， webpack 将从这个文件开始找到你的项目的所有依赖文件，使用对应的loaders来处理它们，最后打包为一个浏览器可识别的 JavaScript 文件。这种情况下 CSS 和 JavaScript 就会混合一起，针对这种情况 webpack 还可以分离文件。具体的可以看后面。 其实网上也有类似的教程，写的也蛮详细，但是写法在 webpack2.0 之后还是略有差别的，我在项目实践中也踩了一些坑。有兴趣可以借鉴下。这里贴下 webpack 的中文文档地址。 项目初始化 在进入 webpack 世界之前，先说下，我所采用的系统是 MAC ，这里不涉及 window 下怎么操作，在 window 中可能会和 MAC 下系统的操作有些细小的差别，但是我这边列的所有例子均可以在 window 跑通。 第一步，在桌面创建一个文件夹 webpack-demos ，打开命令行终端（这个不知道的可以百度），通过命令: cd Desktop/webpack-demos 进入到 webpack-demos 目录下。然后用命令行 npm init 初始化项目，一路按回车键就好。此时我们可以看到在我们的 webpack-demos 目录下生成了一个文件： package.json1234567891011&#123; "name": "webpack-demos", "version": "1.0.0", "main": "index.js", "scripts": &#123; "test": "echo \"Error: no test specified\" &amp;&amp; exit 1" &#125;, "author": "", "license": "ISC", "description": ""&#125; 第二步，安装 webpack ，打开命令行终端进入到 webpack-demos 目录下。输入如下命令安装 webpack ，关于 cnpm看淘宝NPM镜像1cnpm install --save-dev webpack–save-dev是指将包信息添加到devDependencies，表示你开发时依赖的包裹。–save是指将包信息添加到dependencies，表示你发布时依赖的包裹。 安装完之后，package.json 长这样子：1234567891011121314&#123; "name": "webpack-demos", "version": "1.0.0", "main": "index.js", "scripts": &#123; "test": "echo \"Error: no test specified\" &amp;&amp; exit 1" &#125;, "author": "", "license": "ISC", "description": "", "devDependencies": &#123; "webpack": "^2.6.1" &#125;&#125; 项目根目录会多一个 node_modules 目录，里面存放的是webpack 源文件以及依赖的 npm 包。 Webpack初体验 在根目录下面创建 src 和 dist 文件夹， src 存放的项目源文件， dist 存放的是 webpack打包后的 JavaScript 文件。在 src 目录中创建文件 index.js ，代码如下所示：1document.write("Webpack初体验"); 在 dist 目录中创建 index.html ，代码如下所示：1234567891011&lt;!--苏火强--&gt;&lt;!DOCTYPE html&gt;&lt;html lang="en"&gt; &lt;head&gt; &lt;meta charset="utf-8"&gt; &lt;title&gt;Webpack初体验&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;script src="bundle.js"&gt;&lt;/script&gt; &lt;/body&gt;&lt;/html&gt; 在终端进入 webpack-demos 目录下，运行如下命令：1node_modules/.bin/webpack src/index.js dist/bundle.js 执行之后，可以在 dist 目录下找到一个文件 bundle.js ，里面的内容可以不用去看懂，这时候在浏览器打开 index.html ，可以看到如下画面： 恭喜你正式完成了一个 webpack 打包程序，但是每次都写这么一大段的命令，而且是在命令终端写，不仅麻烦还容易出错，这时就要提到 npm scripts ，如果不太清楚这个的，可以参考阮一峰写的npm scripts使用指南，这篇文章写的蛮通俗易懂的。当然我们这篇文章里的蛮多例子也是参考阮一峰写的webpack入门案例 为了减少在命令行输入这么一大长串命令，我们需要在我们的 package.json 文件中的 scripts 加入如下代码：123"scripts": &#123; "start": "webpack src/index.js dist/bundle.js"&#125; 这时候，我们只需要在命令终端输入 npm start即可完成我们上面的功能，是不是少了蛮多的命令的，这时候你也许发现了一个很奇怪的地方，为什么 start 对应只是 webpack src/index.js dist/bundle.js ，而不是 node_modules/.bin/webpack src/index.js dist/bundle.js ，那是因为npm scripts 在执行时，自动会加载node_modules/.bin/webpack 。这时候，你可能又奇怪， webpack 就这么点功能么？答案当然不是。 通过配置使用webpack webpack 很多功能都需要在一个叫 webpack.config.js 文件中配置。在根目录下再创建 webpack.config.js ，其中配置如下： 12345678910//按照common.js的规范输出一个对象，//这个对象有两个属性：entry和output，分别对应着源文件和输出文件//__dirname这个是nodejs中的全局变量，表示的是当前执行脚本所在的绝对路劲module.exports=&#123; entry:__dirname+"/src/index.js", output:&#123; path:__dirname+"/dist", //这是输出路劲 filename:"bundle.js" //这是输出的文件名，这里可以随意写，页面引入文件需要和这里的名字保持一致。 &#125;&#125; 配置完之后我们又可以将之前 package.json 中写的 scripts 改为如下：123"scripts": &#123; "start": "webpack"&#125; 也就是说 webpack.config.js 的配置等价于告知 webpack 打包的源文件和输出文件分别是什么。可是使用到这里，我们仍然没有感觉到 webpack的特别之处吧？别急，我们再往下看，现在我们在 src 的目录下，建一个 moduleA.js ，写下如下代码： 123module.exports=function()&#123; return "webpack加载moduleA模块";&#125; 同时修改下 index.js 的代码如下：12var moduleA=require("./moduleA.js");document.write("Webpack初体验 "+moduleA()); 终端敲下npm start ，在浏览器打开 index.html ，效果如下所示： 是不是感觉很赞，这还仅是 webpack 的冰山一角，往下更精彩。 开启webpack精彩世界打包两个文件输出两个文件 在 src 下建一个 module1.js 和 module2.js ，在里面分别敲上如下代码：1234//module1.jsdocument.write('&lt;h1&gt;Hello module1&lt;/h1&gt;');//module2.jsdocument.write('&lt;h1&gt;Hello module2&lt;/h1&gt;'); 修改 webpack.config.js 和 index.html 如下：1234567891011121314151617181920212223//webpack.config.jsmodule.exports=&#123; entry:&#123; bundle1:__dirname+"/src/module1.js", bundle2:__dirname+"/src/module2.js" &#125;, output:&#123; path:__dirname+"/dist", filename:"[name].js" &#125;&#125;//index.html&lt;!DOCTYPE html&gt;&lt;html lang="en"&gt; &lt;head&gt; &lt;meta charset="utf-8"&gt; &lt;title&gt;Webpack初体验&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;script src="bundle1.js"&gt;&lt;/script&gt; &lt;script src="bundle2.js"&gt;&lt;/script&gt; &lt;/body&gt;&lt;/html&gt; 终端敲下npm start ，在浏览器打开 index.html ，效果如下所示： webpack静态服务器 经过上面3个小 demo 的演示，是不是对webpack 略有感觉呢？但是有没有发现每次修改 webpack.config.js 配置，还有其他文件，都需要经历 打包 浏览器查看 ，写多了需要经常这么干也是很烦的，如果可以自动打包，实时刷新，自动打开浏览器那就好了，好吧，我承认我比较懒。这时候我们就需要使用到 webpack 静态服务器（也叫本地服务器）啦。 webpack提供有一个叫 webpack-dev-server 的静态服务器，这个服务是基于node.js 和 express.js 写的，感兴趣的可以翻下 webpack 的源码，这里还必须提及下，JQuery 源码的学习让我再也不惧怕阅读任何框架的源代码。 安装 webpack-dev-server ，终端进入 webpack-demos 文件下，输入如下命令：1cnpm install --save-dev webpack-dev-server 安装完之后我们需要配置下，具体配置项参考：webpack-dev-server配置参数，我们先来看如果不配置会出现什么情况，我们直接在根目录下敲入webpack-dev-server，然后回车即可，这时终端控制台是这样子的： 我们在浏览器的URL输入：http://localhost:8080 ，将会出现如下画面： 这个跟我们平时使用的ft启动服务后一样。为了启动服务器之后不用再选择文件查看，我们需要配置一些参数，如下所示：123456789101112131415module.exports=&#123; entry:&#123; bundle1:__dirname+"/src/module1.js", bundle2:__dirname+"/src/module2.js" &#125;, output:&#123; path:__dirname+"/dist", filename:"[name].js" &#125;, devServer:&#123; contentBase:"./dist", //这个就是设置打包后的文件所在，启动服务就会加载index.html inline:true, //实时刷新 port:"9090" //不填写默认8080 &#125;&#125; 配置完之后，按照之前的步骤启动服务，在浏览器的URL输入：http://localhost:9090，这时候浏览器打开就是index.html，修改src文件中的module1.js输出的字符串，看看浏览器是否自动刷新。答案肯定是自动刷新，这里就不演示了。 完成了第一步，自动打包和实时刷新，那么如何自动打开浏览器显示我们想显示的index.html，这就要涉及 webpack 的pulgins啦。 小试webpack plugins 安装 open-browser-webpack-plugin ，终端进入 webpack-demos 文件下，输入如下命令：1cnpm install --save-dev open-browser-webpack-plugin 修改 webpack.config.js 如下：123456789101112131415161718192021var OpenBrowserPlugin = require('open-browser-webpack-plugin');module.exports=&#123; entry:&#123; bundle1:__dirname+"/src/module1.js", bundle2:__dirname+"/src/module2.js" &#125;, output:&#123; path:__dirname+"/dist", filename:"[name].js" &#125;, devServer:&#123; contentBase:"./dist", inline:true, port:9090 &#125;, plugins:[ new OpenBrowserPlugin(&#123; url: 'http://localhost:9090' &#125;) ]&#125; 终端敲下 webpack-dev-server ，运行完之后就会自动打开浏览器显示index.html。经过以上的 demo ，我们大概熟悉了webpack的一些基本的东西，接下去我们来看下 webpack 里最为强大的两个功能： loaders 和 plugins。 webpack中的Loaders 有时候我在想，假如 webpack 没有 Loaders ，估计 webpack 早就不知道哪去了。也不会像今天这么火。 webpack 提供了很多的loader ，这个有点像express的中间件的感觉，从原文件到打包后的文件之间引入了不同的 loader 来预处理不同的文件。而这也是webpack 最大的一个特色。我们这边会介绍几个我平时比较常用的 loader json-loader 安装 open-browser-webpack-plugin ，终端进入 webpack-demos 文件下，输入如下命令：1cnpm install --save-dev json-loader 修改 webpack.config.js 如下：123456789101112131415161718192021222324252627var OpenBrowserPlugin = require('open-browser-webpack-plugin');module.exports=&#123; entry:&#123; bundle1:__dirname+"/src/module1.js", bundle2:__dirname+"/src/module2.js" &#125;, output:&#123; path:__dirname+"/dist", filename:"[name].js" &#125;, devServer:&#123; contentBase:"./dist", inline:true, port:9090 &#125;, plugins:[ new OpenBrowserPlugin(&#123; url: 'http://localhost:9090' &#125;) ], module:&#123; loaders:[&#123; test:/\.json$/, loader:"json-loader" ／／这里不建议写成json，有可能导致编译失败 &#125;] &#125;&#125; test：值为正则表达式，匹配加载文件的扩展名（必填） loader：使用的loader名称（必填） include/exclude：加载的时候可以设置打包/不打包哪些文件，比如我们打包js文件的时候不需要包含node_modules中的js文件，这样可以大大提高打包的速度（选填） query：为loader提供额外的参数（选填） 以上是Loaders常规需要配置的参数，如果按照这里的配置写法，无法编译过json文件，报的错误为You may need an appropriate loader to handle this file type. 在src文件夹中创建index.json，内容如下：123&#123; "index":"这是json文件中的index属性"&#125; 修改module1.js的文件内容如下：12var data=require("./index.json");document.write('&lt;h1&gt;'+data.index+'&lt;/h1&gt;'); 终端敲下 webpack-dev-server ，运行完之后就会自动打开浏览器显示如下： style-loader与css-loader css-loader和style-loader是webpack处理样式文件的loader，二者的作用不同。css-loader用于加载css文件，允许你使用@import或者url(…)这种类似require引入文件的方式，而style-loader在于将css-loader加载打开的css文件按照内联样式表的方式引入到页面中。我们要使用它，同样要安装，在终端敲下如下命令：1cnpm install --save-dev css-loader style-loader 在src新增一个文件index.css，编写如下代码： 123456body&#123; background-color:gray; &#125;h1&#123; color:#FFF;&#125; 分别修改module1.js和webpack.config.js文件如下：12345678910111213141516//module1.jsvar css=require("./index.css");var data=require("./index.json");document.write('&lt;h1&gt;'+data.index+'&lt;/h1&gt;');//webpack.config.js//前面部分省略module:&#123; loaders:[&#123; test:/\.json$/, loader:"json" &#125;,&#123; test:/\.css$/, loader:"style-loader!css-loader" //!用于分隔两个loader，执行顺序是从右向左 &#125;]&#125;终端敲下 webpack-dev-server ，运行完之后就会自动打开浏览器显示如下： 加载打包 css文件，webpack 把 index.css 当做一个模块打包了，不是真正意义上的 CSS Module，不懂的可以参考下阮一峰写的教程。 url-loaderbabel-loaderuglifyJsPluginwebpack中的pluginsHtmlwebpackPlugin]]></content>
-      <categories>
-        <category>前段工程化</category>
-      </categories>
-      <tags>
-        <tag>webpack</tag>
-        <tag>react</tag>
-        <tag>babel</tag>
-        <tag>javaScript</tag>
-        <tag>css</tag>
-        <tag>html</tag>
-        <tag>image</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[解剖jQuery源码系列之$.extend与$().extend方法]]></title>
-    <url>%2F2017%2F05%2F31%2FjQuery20170531%2F</url>
-    <content type="text"><![CDATA[我们经常看到各种各样的jQuery插件，有时候我们也需要针对我们的具体业务写一些定制化比较强的插件，而我们项目中又用到了jQuery，那么就可以在jQuery里通过$.extend或者$().extend来实现这个需求。 $.extend与$().extend的使用方法第一种用法：只写一个对象字面量，jQuery中扩展插件的方法123456789101112131415161718192021222324//$.extend,扩展工具也就是底层方法$.extend(&#123; a:function()&#123; console.log("a"); &#125;, b:function()&#123; console.log("b"); &#125;&#125;)//调用$.a(); //"a"$.b(); //"b"//$().extend,扩展jQuery对象的原型方法，也就是扩展jQuery对象实例的方法。$.fn.extend(&#123; a:function()&#123; console.log("a"); &#125;, b:function()&#123; console.log("b"); &#125;&#125;)//调用$().a(); //"a"$().b(); //"b" 以下两种用法，$().extend()同样可以也可以实现，所以只写了$.extend 第二种用法：当写多个对象字面量，后面的对象扩展到第一个对象上1234var a = &#123;&#125;;var b = &#123;'name':'suhq'&#125;;$.extend(a,b);console.log(a); //&#123;'name':'suhq'&#125; 第三种用法：浅拷贝与深拷贝1234567891011121314151617//浅拷贝var a = &#123;&#125;;var b = &#123;'name':'suhq'&#125;;$.extend(a,b);a.name='huo'console.log(b.name); //suhqvar c = &#123;'obj':&#123;'name':suhq&#125;&#125;;//这种和第二种用法一样，也是浅拷贝，为了好理解所以区分开来，这种情况可参考第二种用途$.extend(a,c);//这里主要说的是如下形式$.extend(false,a,c); a.obj.name='huo';console.log(c.obj.name);//'huo'//深拷贝$.extend(true,a,c);a.obj.name='huo';console.log(c.obj.name);//'suhq' 在了解完了$.extend与$().extend的使用方法后，我们来看下jQuery中是如何实现？ jQuery中extend方法的源码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374jQuery.extend = jQuery.fn.extend = function() &#123; //定义了一些局部变量，方便后续使用 var options, name, src, copy, copyIsArray, clone, target = arguments[0] || &#123;&#125;, i = 1, length = arguments.length, deep = false; //处理第三种用法中的深拷贝：$.extend(true,a,c); //此时target=arguments[0]也就是true，是一个boolean类型值，可以进入if语句里 if ( typeof target === "boolean" ) &#123; //经过以下代码处理：deep等于true，target等于a deep = target; target = arguments[1] || &#123;&#125;; //i等于2主要是为了后续直接定位到b，直接跳过前两个参数 i = 2; &#125; //针对异常情况，比如target是一个字符串或者其他不是对象的数据时 //如果target不是一个对象或者函数（函数也是对象），那么就将target赋值为空对象 if ( typeof target !== "object" &amp;&amp; !jQuery.isFunction(target) ) &#123; target = &#123;&#125;; &#125; //这个处理的第一种用法的，判断当前传参的个数与是否一样，也就是说，按照上面代码的逻辑，如果不是深拷贝，那么i值就不会变化，而且又恰巧只传一个参数，那么就是在$或者$.fn上扩展方法。 //所以目标对象变成了this，也就是$或者是$实例对象上 //此时i等于0 if ( length === i ) &#123; target = this; --i; &#125; //1.第一种用途：此时i等于0，length等于1 $.extend(&#123;a:function()&#123;console.log("a");&#125;,b:function()&#123;console.log("b");&#125;&#125;) //2.第二种用途：此时i等于1，length等于2 $.extend(a,b) //3.第三种用途：此时i等于2，length等于3 $.extend(true,a,b)或者$.extend(false,a,b) for ( ; i &lt; length; i++ ) &#123; //1.第一种用途，此时options等于&#123;a:function()&#123;console.log("a");&#125;,b:function()&#123;console.log("b");&#125;&#125; //2.第二种用途，此时options等于b //3.第三种用途，此时options等于b //if判断主要是为了除去arguments[ i ]等于undefined或者null if ( (options = arguments[ i ]) != null ) &#123; // Extend the base object for ( name in options ) &#123; src = target[ name ]; copy = options[ name ]; // Prevent never-ending loop if ( target === copy ) &#123; continue; &#125; // Recurse if we're merging plain objects or arrays if ( deep &amp;&amp; copy &amp;&amp; ( jQuery.isPlainObject(copy) || (copyIsArray = jQuery.isArray(copy)) ) ) &#123; if ( copyIsArray ) &#123; copyIsArray = false; clone = src &amp;&amp; jQuery.isArray(src) ? src : []; &#125; else &#123; clone = src &amp;&amp; jQuery.isPlainObject(src) ? src : &#123;&#125;; &#125; // Never move original objects, clone them target[ name ] = jQuery.extend( deep, clone, copy ); // Don't bring in undefined values &#125; else if ( copy !== undefined ) &#123; target[ name ] = copy; &#125; &#125; &#125; &#125; // Return the modified object return target;&#125;;]]></content>
-      <categories>
-        <category>前端技术</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-        <tag>jQuery</tag>
-        <tag>Dom</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[你应该知道的HTTP报文首部]]></title>
-    <url>%2F2017%2F05%2F30%2Fhttp20170530%2F</url>
-    <content type="text"><![CDATA[HTTP报文首部 接着上一篇你应该掌握的14种常用的HTTP状态码，我们再来看看HTTP首部。工作中跟HTTP协议打交道还是很多的，尤其是在浏览器端调试的时候，我们经常需要查看发送的请求HTTP首部（查看发送的数据，无论是GET还是POST等请求方式），以及响应HTTP首部，以此来判断请求与响应的正确与否。最经常的应用场景有：1.接口联调。2.抓包调试。3.前端自测等。当然还有很多应用场景，我这边只是列了我工作中经常使用的场景。 说到HTTP协议，我们平时感知不是很多，因为我们输入一些网站的地址时，例如：www.baidu.com。并没有输入 http:// 开头，但是浏览器在访问时会自动为我们加上这个协议头。说明我们的web应用就是基于这个协议而建立起来的。可以这么说没有HTTP协议，我们现在的web应用不会这么的丰富。 HTTP报文首部是HTTP协议里很重要的一部分，它就相当于我们平时说话的语言，为客户端和服务器端之间的沟通奠定了基础。HTTP报文首部包含请求报文首部和响应报文首部。通过请求报文首部，服务器可以知道客户端想要做什么，而通过响应报文首部，客户端可以知道服务器响应了什么了。 HTTP报文结构包括：报文首部、空行、报文主体。123456//在客户端和服务器端相互沟通起着至关重要的信息都在报文首部里报文首部//空行//所需要的用户和资源信息都在这（其实很多时候并不是所有请求都有报文主体的，比如GET请求。//如果是POST请求，例如请求数据，此时这里放置就是请求参数了。）报文主体 HTTP请求报文 在请求中，HTTP请求报文一个大致结构可以参考如下图片： 这是一个POST请求，这种请求方法会有报文主体，如果是GET请求的话，参数会挂在URL地址上，也就没有图中的报文主体，其他格式和POST请求一样。这张图显示了一个HTTP请求报文的大致结构，关于HTTP请求报文里的很多首部字段，请往下看。我们大致可以从图片中看到一个HTTP请求报文包括：报文首部和报文主体，报文首部又包括请求行（请求方法、请求URI、HTTP版本）、HTTP首部字段（请求首部字段、通用首部字段、实体首部字段），而报文主体则是这个请求所需要携带的相关参数（格式是：字段名=字段值，分隔符是：&amp;）。 HTTP响应报文 在响应中，HTTP响应报文一个大致结构可以参考如下图片： 接上一个请求，服务器返回的响应报文如上图所示，我们可以看到HTTP响应报文和HTTP请求报文很像，都是由报文首部和报文主体，只是上图的响应无返回报文主体。对比以上两张图片可以看出，HTTP请求报文和HTTP响应报文的区别在于，HTTP请求报文是请求行，首部字段中是请求首部字段，而HTTP响应报文是状态行，首部字段中是响应首部字段。不仅如此，请求行和状态行的格式也是不一样的。但是从整体来看，我们可以看出来HTTP报文首部字段的格式如下：1首部字段名：字段值 可以分为以下四种类型： 通用首部字段（General Header Fields）：请求报文和响应报文两方都会使用的首部。 请求首部字段（Request Header Fields）：从客户端向服务器端发送请求报文时使用的首部。 响应首部字段（Response Header Fields）：从服务器向客户端返回响应报文时使用的首部。 实体首部字段（Entity Header Fields）：针对请求报文和响应报文的实体部分使用的首部。 以下字段内容参考至图解HTTP这本书。 通用首部字段 首部字段名 说明 Cache-Control 控制缓存的行为 Connection 逐跳首部、连接的管理 Date 创建报文的日期时间 Pragma 报文指令 Trailer 报文末端的首部一览 Transfer-Encoding 指定报文主体的传输编码方式 Upgrade 升级为其他协议 Via 代理服务器的相关信息 Warining 错误通知 以上的字段，可能对应的说明说的不是很清楚，后续会有相对应的文章分类的详细说下。 请求首部字段 首部字段名 说明 Accept 用户代理可处理的媒体类型 Accept-Charset 优先的字符集 Accept-Encoding 优先的内容编码 Accept-Language 优先的语言（自然语言） Authorization Web认证信息 Expect 期待服务器的特定行为 From 用户的电子邮箱地址 Host 请求资源所在的服务器 If-Match 比较实体标记（Etag） If-Modified-Since 比较资源的更新时间 If-None-Match 比较实体标记（与If-Match相反） If-Range 资源未更新时发送实体Byte的范围请求 If-Unmodified-Since 比较资源的更新时间（与If-Modified-Since相反） Match-Forwards 最大传输逐跳数 Proxy-Authorization 代理服务器要求客户端的认证信息 Range 实体的字节范围请求 Referer 对请求中URI的原始获取方 TE 传输编码的优先级 User-Agent HTTP客户端程序的信息 响应首部字段 首部字段名 说明 Accept-Range 是否接受字节范围请求 Age 推算资源创建经过时间 ETag 资源的匹配信息 Location 令客户端重定向至指定URI Proxy-Authenticate 代理服务器对客户端的认证信息 Retry-After 对再次发起请求的时机要求 Server HTTP服务器的安装信息 Vary 代理服务器缓存的管理信息 WWW-Authenticate 服务器对客户端的认证信息 实体首部字段 首部字段名 说明 Allow 资源可支持的HTTP方法 Content-Encoding 实体主体适用的编码方式 Content-Language 实体主体的自然语言 Content-Length 实体主体的大小（单位：字节） Content-Location 替代对应资源的URI Content-MD5 实体主体的报文摘要 Content-Range 实体主体的位置范围 Content-Type 实体主体的媒体类型 Expires 实体主体过期的日期时间 Last-Modified 资源的最后修改日期时间]]></content>
-      <categories>
-        <category>计算机网络</category>
-      </categories>
-      <tags>
-        <tag>HTTP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[你应该掌握的14种常用的HTTP状态码]]></title>
-    <url>%2F2017%2F05%2F29%2FhttpCode%2F</url>
-    <content type="text"><![CDATA[最近在看《图解HTTP》这本书，书很薄，大概250页左右，阅读起来比较轻松，虽然有些理论平时项目中并没遇到，但是总体感觉还是很不错的一本书。 HTTP状态码 所谓的HTTP状态码，我个人认为是服务器在接收客户端请求处理结果的反馈，就是告知浏览器，服务器处理了你的请求，结果是怎么样的。说到这个状态码，印象最深刻还是美团校招面试时，问的我常见的状态码有几种分别做什么用。非科班出身的我，当时回答的还是项目中常遇到的那几个，比如200、500,其他，其他是什么，我也不知道。工作中遇到各种不同的状态码，不同的服务器请求结果，才让我有很深刻的意识，我应该掌握好HTTP。以下是状态码的类别： 类别 原因短语 1XX Information（信息性状态码） 接收的请求正在处理 2XX Success （成功状态码） 请求正常处理完毕 3XX Redirection （重定向状态码） 需要进行附加操作以完成请求 4XX Client Error （客户端错误状态码） 服务器无法处理请求 5XX Server Error （服务器错误状态码） 服务器处理请求出错 这里要特别提一句：只要符合状态码的类别即可。很多时候我在项目中遇到的状态码更多的根据我们的业务需求去划分，根据不同的返回错误提示，给出不同的状态码。但大体不会超出以下将要列出的状态码。 2XX 成功 2XX的响应结果就是表示服务器正常处理了请求。但是有时候也会遇到一种情况那就是后端返回状态码200，但是返回了错误提示，后端是将错误提示和状态码放在返回的字符串数据里：{code:404,message:”找不到taskId为38456的工单”}，这种情况下返回的状态码不可信，需要和后端规范下，请求返回的正确格式。 200 OK 这个状态码是我们平时遇到最多的，可以说经常遇到，简单点的意思就是说，服务器对于浏览器的请求完全理解并正确处理了。 这个状态码返回的内容跟请求方式有关系，如果是GET请求，返回包含响应主体，如果是HEAD请求，返回不包括响应主体。 204 No Content 这个状态码，看右边的原因短语，顾名思义，表示的是服务器已经正确并成功处理了浏览器的请求，但是返回的响应报文中不包含实体的主体部分。另外，也不允许返回任何实体的主体。（有点绕）当浏览器发出请求，如果服务器返回的是这个状态码，而此时页面又有展示，那么显示的页面不发生更新，因为没有新的主体返回。 这个状态码一般的使用场景是当客户端向服务器端发送请求，而且服务器不需要向客户端发送新内容的场景下。 206 Partial Content 这个状态码比较好理解，浏览器向服务器进行了返回内容的范围请求，比如只需要某一篇文章的50%，请求方会在请求首部设置范围字段Range，告知服务器我要请求哪一部分的内容，服务器收到请求后会返回这个返回的数据，并在响应报文里的字段Content-Range里显示了当前返回的数据范围。 3XX 重定向 3XX表示服务器需要执行某些特殊的处理才能以正确的方式响应请求。 301 Moved Permanently 理解这个最好的例子就是，你在浏览器收藏了某一个页面的书签，或者某一个资源的书签，当你下次请求时，服务器告知你需要重定向到另一个地址去获取这个页面或者资源，并告知你浏览器的书签也需要更新（当然更不更新取决于你）。浏览器更新的URI地址取于服务器返回的响应报文里的Location字段。 例如我们经常会请求这么一个地址：http://www.Mmyton.com/sample 也就是后续不加上斜杠，此时服务器就会告知浏览器重定向到 http://www.Mmyton.com/sample/ 这个地址请求资源，这时候就会产生301状态码。 302 Found 临时重定向。它和301很像，301是永久重定向，302状态码的意思是浏览器请求的资源已经被分配到新的URI了，希望浏览器这次的请求使用新的URI访问。既然是临时，也就是说它并不会要求你更新浏览器书签里这个页面或者资源的URI地址，后续是否会继续临时重定向到这个URI地址得看服务器是如何分配的。服务器返回的响应报文里的Location字段仍然是你之前书签里保存的那个地址。 303 See Other 书中的解释：该状态码表示由于请求对应的资源存在着另一个URI，应使用GET方法定向获取请求的资源。这个解释其实和302很像，感觉好想都是重定向，其实还是有明确的区别的，302虽然也重定向，但并没有要求浏览器特定采用什么请求方式，请求页面或者资源新的URI地址，但是303就明确要求使用GET方式，这个就是它们之间最大的区别。 304 Not Modified 这个状态码虽然划分到3XX系列里，但和重定向没有任何关系，它也是我们经常会遇到的一个状态码，它表示客户端发送附带条件的请求（指的是客户端采用GET方法的请求报文中包含If-Match、If-Modified-Since、If-None-Match、If-Range、If-Unmodified-Since中任一首部）时，服务器允许请求访问资源，但因发生请求资源未满足条件的情况后，直接返回304 Not Modified。其实就是资源没有改变，可以直接使用客户端未过期的缓存，这也是为什么我们在访问一些页面第一次访问会比较慢，但是第二次访问却很快的原因所在。 307 Temporary Redirect 这个其实和302是一样的，都是临时重定向。在HTTP标准里，当你是采用POST请求时，如果返回的是302状态码，标准是禁止将POST改成了GET请求，但是很多浏览器在实现时并没有按照标准走，很多时候重定向时会将你原先的POST请求方式改为GET方式请求新的URI地址。307状态码会严格遵照标准，不会将请求从POST改为GET，但是实际中，各个浏览器的实现又不尽相同，仍有些浏览器会改为GET。 这个状态码遇到的次数比较少。 4XX 客户端错误 这一系列状态码也是平时遇到比较多的。当出现这个状态码时，错误一般出现在客户端，表示服务器不能正常解析请求。 400 Bad Request 这个状态码的意思是请求报文中存在语法错误，服务器无法理解这个请求。这个错误发生时，我们就要看服务器返回的错误信息是什么，比如“请求缺少了XXX字段”。 401 Unauthorized 该状态的意思是客户端请求时需要进行HTTP认证，也就是我们需要输入用户名和密码进行认证，认证通过了就可以正常请求资源，如果认证失败，请求会再次返回401状态码，并告知认证失败。这时就需要重新请求和重新认证了。 403 Forbidden 该状态表示的意思就是服务器拒绝了客户端请求某一个页面或者资源。比如跨域经常就会出现这样一个状态码。其实就是没有权限，这时候就需要服务器对当前请求所在的IP或者域名设置白名单或者修改访问权限等。 404 Not Found 浏览器上没有请求所对应的资源 5XX服务器错误 这个状态码的意思就是服务器端出现错误了，可能是处理请求时出现问题，比如程序撰写逻辑不对进入死循环，也有可能是服务器挂了。 500 Internal Server Error 该状态吗表示服务器在处理请求时出现了问题。这些问题可能是web应用存在bug，也可能是某些临时的故障，比如内存爆了。此时我们可以查看服务器相关日志的信息，以便更快的定位问题并解决问题。 503 Service Unavailable 该状态码表明服务器暂时处于超负载或正在进行停机维护，现在无法处理请求。如果事先知道解除以上状况需要的时间，建议写入Retry-After首付字段返回给客户端。 以上就是我们常见的14种状态码，其实学习起来很快，加上项目中遇到的错误，平时有意的去注意出现错误时返回的状态码并去定位问题，久而久之这些状态码肯定了然于胸了。]]></content>
-      <categories>
-        <category>计算机网络</category>
-      </categories>
-      <tags>
-        <tag>HTTP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[解剖jQuery源码系列之jQuery工具方法]]></title>
-    <url>%2F2017%2F05%2F23%2FjQuery20170523%2F</url>
-    <content type="text"></content>
-      <categories>
-        <category>前端技术</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-        <tag>jQuery</tag>
-        <tag>Dom</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[解剖jQuery源码系列之jQuery.prototype.init方法]]></title>
-    <url>%2F2017%2F05%2F20%2FjQuery20170520%2F</url>
-    <content type="text"><![CDATA[今天日子是5月20号，比较特殊，原本打算出去浪一下，奈何对象有事。就静下心来把jQuery源码中的init方法总结下。篇幅会略长些。 jQuery.prototype.init 说起jQuery.prototype.init这个方法，不知道大家还有没有印象，这个方法在jQuery源码中出现在两个地方，什么作用呢？我们来看以下的代码：12345678910//这里出现了第一次jQuery = function( selector, context ) &#123; return new jQuery.fn.init( selector, context, rootjQuery );&#125;//这里是第二次jQuery.fn = jQuery.prototype = &#123; init: function( selector, context, rootjQuery ) &#123; //中间省略无数代码，一会再来看 &#125;&#125; 从上可以看出来，init方法是jQuery原型上的一个方法。那这个具体有什么作用？我们再来看下我们平时使用jQuery或者$创建jQuery对象有几种使用方式，大致可以分为以下123456789101112//$就是jQuery//第一种分类$(""), $(null), $(undefined), $(false)//第二种分类$('#div1') $('.box') $('div') $('#div1 div.box')$('&lt;li&gt;') $('&lt;li&gt;1&lt;/li&gt;&lt;li&gt;2&lt;/li&gt;') $('&lt;li&gt;hhehe')//第三种分类$(this) $(document)//第四种分类$(function()&#123;&#125;)//第五种分类$([]) $(&#123;&#125;) 看到这里，可能会有点疑惑，这个跟init方法有什么关系，我们来看一个例子：$(‘#div1’)，当执行这段代码时，$也就是jQuery函数就会执行起来，传入参数，其中selector就是#div1，传入到函数体内后，selector参数传给了jQuery.fn.init( selector, context, rootjQuery )这个构造函数，并new一个这个构造函数的实例，new一个时就会执行init的方法，最终$(‘#div1’)返回的是init的一个实例对象。从以上逻辑可以看出init方法主要做的是根据$或者jQuery构造函数执行时传入不同参数做差异化处理后返回init实例。根据我们平时使用的，$(‘#div’)的作用在于选中页面id为div的元素，而selector由上面的代码可以看出，可以传入不同的参数，那么init方法是如何针对传入的不同selector参数选中不同的Dom元素或者执行某个函数或者做其他处理呢？我们来看下init方法的源码：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127jQuery.fn = jQuery.prototype = &#123; //传入三个参数，其中selector作为选择器元素， //context为selector的执行上下文，rootjQuery就是$(document) init: function( selector, context, rootjQuery ) &#123; // 方法进来定义两个变量，第一个变量是后续匹配selector为字符串时使用 // 第二个参数主要用于存储document.getElementById获取到的Dom元素 var match, elem; // 第一种分类处理: $(""), $(null), $(undefined), $(false) // 如果传进来的是这四种情况直接返回this，关于this是什么可往下看 if ( !selector ) &#123; return this; &#125; // 第二种分类处理： // $('#div1') $('.box') $('div') $('#div1 div.box') // $('&lt;li&gt;') $('&lt;li&gt;1&lt;/li&gt;&lt;li&gt;2&lt;/li&gt;') $('&lt;li&gt;hhehe') // 判断传进来的selector，例如$('#div1')，那么selector就是'#div1' // 如果判断为真则进入if语句，否则进入第94行的else if // 也就是我们上面分类的第二类可以进入 if ( typeof selector === "string" ) &#123; // 第二种分类进来后，再次筛选，判断是否是标签 // 能进入if的有$('&lt;li&gt;') $('&lt;li&gt;1&lt;/li&gt;&lt;li&gt;2&lt;/li&gt;') // 而我们知道这2种类型属于创建标签 if ( selector.charAt(0) === "&lt;" &amp;&amp; selector.charAt( selector.length - 1 ) === "&gt;" &amp;&amp; selector.length &gt;= 3 ) &#123; // 进入if后给match赋值一个数组，这个数组最终编程是 // match = [ null, '&lt;li&gt;', null ]; // match = [ null, '&lt;li&gt;1&lt;/li&gt;&lt;li&gt;2&lt;/li&gt;' , null ]; match = [ null, selector, null ]; &#125; else &#123; // 能进入else的有 // $('#div1') $('.box') $('div') $('#div1 div.box') $('&lt;li&gt;hhehe') // 这一部分后面有写，可翻到后面看 // 最终match由两个取值 // $('#div1')对应的match=[‘#div1’, null, ’div1‘] // $('&lt;li&gt;hhehe')对应的match为match=[‘&lt;li&gt;hhehe’, ‘&lt;li&gt;’, null] // $('.box') $('div') $('#div1 div.box')对应的match为null match = rquickExpr.exec( selector ); &#125; // 判断match是否存在，并且 match[1]存在或者不存在context这个执行上下文 // 能进入if的有 $('&lt;li&gt;') $('&lt;li&gt;1&lt;/li&gt;&lt;li&gt;2&lt;/li&gt;') $('&lt;li&gt;hhehe')这种属于match存在并且match[1]也存在 // 还有$('#div1')，这种属于match存在，match[1]不存在，因为我们通过id获取元素是不需要执行上下文，因此context不需要传，为undefined，因此!context为真 if ( match &amp;&amp; (match[1] || !context) ) &#123; // 能通过if的有$('&lt;li&gt;') $('&lt;li&gt;1&lt;/li&gt;&lt;li&gt;2&lt;/li&gt;') $('&lt;li&gt;hhehe') if ( match[1] ) &#123; // 这段三目判断的原因在于我们在写创建标签时可以由如下两种写法(因为创建标签只能是通过document创建，所以执行上下文只能是document) // 第一种$('&lt;li&gt;','document') // 第二种$('&lt;li&gt;',$('document')) // 所以先判断执行上下文context是不是JQuery类型，也就是$('&lt;li&gt;',$('document'))这种情况，此时返回context[0]也就是$('document')[0]，其实就是'document' // 如果不是jQuery类型那么直接返回执行上下文context，也就是$('&lt;li&gt;','document')这种情况 context = context instanceof jQuery ? context[0] : context; // 这一块代码涉及到两个JQuery工具方法 // jQuery.merge:合并数组使用的，如果第一个传参是this这种对象，那就是合并对象 // jQuery.parseHTML:将Dom字符串转成数组，例如'&lt;li&gt;1&lt;/li&gt;'转完之后变成['li'] // 后续篇幅有分析这两个方法 // 最终的生成this对象，也就是jQuery对象 // $('&lt;li&gt;') $('&lt;li&gt;hhehe')对应的this对象为&#123;0:'li',length:1,...其他属性&#125; // $('&lt;li&gt;')对应的this对象为&#123;0:'li',1:'li',length:2,...其他属性&#125; jQuery.merge( this, jQuery.parseHTML(match[1],context &amp;&amp; context.nodeType ? context.ownerDocument || context : document,true)); // 创建标签带属性，只支持单标签$('&lt;li&gt;') $('&lt;li&gt;1&lt;/li&gt;')例如 $('&lt;li&gt;',&#123;title:'hi',html:'abcd'&#125;) // rsingleTag.test( match[1] ) 是否是单标签，如果是判断context是不是对象字面量，如果是才走if if ( rsingleTag.test( match[1] ) &amp;&amp; jQuery.isPlainObject( context ) ) &#123; // for in循环下context这个对象字面量，给选中的元素添加上属性 for ( match in context ) &#123; // 判断context中的属性是不是JQuery的工具方法，如果是调用工具方法，传入这个属性的值给这个工具方法，如上面这里例子中的html属性 if ( jQuery.isFunction( this[ match ] ))&#123; // 相当于$('li').html('abcd') this[ match ]( context[ match ] ); // 如果不是方法，那么直接走JQuery的工具方法attr，传入属性和属性值 &#125; else &#123; // 相当于$('li').attr('title','hi') this.attr( match, context[ match ] ); &#125; &#125; &#125; // 最后返回处理后的this对象，也就是JQuery对象 return this; // 处理的是: $('#div1') &#125; else &#123; // 通过原生的document.getElementById获取id所对应的Dom元素 elem = document.getElementById( match[2] ); // 这个是兼容处理，这个兼容处理可忽略 // 以下语句走完,例如有一个ul，id为ul，则this对象为&#123;ul#ul,length:1,context:document,selector:'#ul'&#125; if ( elem &amp;&amp; elem.parentNode ) &#123; this.length = 1; this[0] = elem; &#125; this.context = document; this.selector = selector; return this; &#125; // 以下开始处理: $('.box') $('div') $('#div1 div.box') // 判断context存在不，不存在可以进入if里，如果存在，还需要判断是不是jQuery对象 &#125; else if ( !context || context.jquery ) &#123; // 以下语句等价于 // $('.box'):$(document).find('.box') // $('div'):$(document).find('div') // $('#div1 div.box'):$(document).find('#div1 div.box') // $('.box',$('ul')):$('ul').find('.box') // 其中find方法是sizzle模块中的一个方法 return ( context || rootjQuery ).find( selector ); // 处理比如$('.box','ul') &#125; else &#123; // 等价于$('ul').find('.box') // 其中this.constructor其实就是jQuery构造函数，这也就是为什么在jQuery原型中还需要修正下原型属性constructor指向jQuery构造函数的原因之一 return this.constructor( context ).find( selector ); &#125; // 处理第三种分类: $(document) $(this) // 返回的this对象为&#123;0:document,context:document,length:1&#125; &#125; else if ( selector.nodeType ) &#123; this.context = this[0] = selector; this.length = 1; return this; // 处理第四种分类: $(function()&#123;&#125;) // 以下说明平时我们这么写$(function()&#123;&#125;)和$(document).ready(function()&#123;&#125;)是等价的 &#125; else if ( jQuery.isFunction( selector ) ) &#123; return rootjQuery.ready( selector ); &#125; // 处理 $($("ul")) if ( selector.selector !== undefined ) &#123; this.selector = selector.selector; this.context = selector.context; &#125; // 处理第五种：$(&#123;&#125;),$([]) return jQuery.makeArray( selector, this ); &#125;,&#125; jQuery中的this对象 牵扯到this对象其实就涉及到JavaScript很神奇的this，而我们这边要涉及的是构造函数中的this。例如如下的代码：12345678function demo()&#123; this.name="hehe";&#125;demo.prototype.say()&#123; console.log(this.name);&#125;var demo1=new demo();demo1.say();//此时this指的就是demo1,其实指的就是实例对象 由以上的例子来看jQuery里的this，其实是类似的，它代表的是jQuery的实例对象，例如$(“#div”)这么调用相当于创建了一个jQuery实例对象，也就可以调用jQuery原型对象的各种方法：$(“#div”).html(“hhh”);但是jQuery中的this对象还是有些不一样的，我们举个例子，页面中有3个li标签，那么我们获取这些标签可以这么获取：$(“li”)，此时this对象为1234567this=&#123; 0:'li', 1:'li', 2:'li', length:3, 其他属性...&#125; jQuery.parseHTML方法 这里不涉及这个方法的源码分析，先说下其是做什么用的，有几种用法。1234567var str = '&lt;li&gt;1&lt;/li&gt;&lt;li&gt;2&lt;/li&gt;&lt;li&gt;3&lt;/li&gt;&lt;script&gt;alert(4)&lt;\/script&gt;';//第一种用法：两个参数，第三个参数默认falsevar arr=jQuery.parseHTML(str,document);console.log(arr);//['li','li','li']//第二种用法：三个参数var arr=jQuery.parseHTML(str,document,true);console.log(arr);//['li','li','li','script'] 从以上可以看出来，jQuery.parseHTML的作用是将字符串的Dom转成数组。 jQuery.merge方法 我们这里也是不涉及jQuery.merge源码，先说下用法。123456789101112131415161718192021222324var arr1=[1,2];var arr2=[3,4];var obj1=&#123; 0:1, 1:2, length:2&#125;var obj2=&#123; 0:3, 1:4, length:2&#125;//第一种用法：合并数组var arr=jQuery.merge(arr1,arr2);console.log(arr);//[1,2,3,4]//第二种用法：生成一个类似我们上面说的this格式的对象var obj=jQuery.merge(obj1,arr2);console.log(obj);//&#123;0:1,1:2,2:3,3:4,length:4&#125;//另一种写法var obj=jQuery.merge(arr2,obj1);console.log(obj);//&#123;0:3,1:4,2:1,3:2,length:4&#125;//最后一种写法var obj=jQuery.merge(obj1,obj2);console.log(obj);//&#123;0:1,1:2,2:3,3:4,length:4&#125; 作用的话用法里已经说明了。看到这里在回过头来看init中怎么调用它，最后产生什么的结果就比较好理解了。]]></content>
-      <categories>
-        <category>前端技术</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-        <tag>jQuery</tag>
-        <tag>Dom</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[浅谈项目中经常需要使用到的less功能]]></title>
-    <url>%2F2017%2F04%2F27%2Fless%2F</url>
-    <content type="text"></content>
-      <categories>
-        <category>前端技术</category>
-      </categories>
-      <tags>
-        <tag>less</tag>
-        <tag>css</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[从统计分析自动生成系统看gulp的自动化构建]]></title>
-    <url>%2F2017%2F04%2F27%2Fgulp%2F</url>
-    <content type="text"></content>
-      <categories>
-        <category>前端技术</category>
-      </categories>
-      <tags>
-        <tag>gulp</tag>
-        <tag>jade</tag>
-        <tag>npm</tag>
-        <tag>javascript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[ES6基础项目构建]]></title>
-    <url>%2F2017%2F04%2F27%2Fes6%2F</url>
-    <content type="text"></content>
-      <categories>
-        <category>前端技术</category>
-      </categories>
-      <tags>
-        <tag>gulp</tag>
-        <tag>npm</tag>
-        <tag>ES6</tag>
-        <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[解剖jQuery源码系列之JQuery构造函数]]></title>
-    <url>%2F2017%2F04%2F27%2Fjquery20170427%2F</url>
-    <content type="text"><![CDATA[jQuery从2006年由John Resig等人创建一直风靡到今天，每个在使用jQuery时，应该都深深的被其便捷性的Dom操作，数据缓存，异步操作等折服，jQuery的api设计让我们可以如此的简单自如的操作web界面，如果你没有感受到，那你应该面壁思过下。 jQuery整体架构 说到jQuery的架构，可以点击右边图片来感受下： 其实jQuery的整体架构还是很清晰（虽然各个模块具体源码看起来感觉也挺乱的）。通过这张图我们大概可以把jQuery分为18块内容。整个jQuery最核心的代码用匿名函数包起来，具体可参考上一篇文章：解剖JQuery源码系列之匿名函数自执行 接着上一篇我们继续来说，这个主要是因为ES5中只有函数作用域和全局作用域，并无块级作用域。jQuery设计时为了不影响全局作用域，以及不同脚本文件引入后互相影响，选择了匿名函数，我们都知道匿名函数自执行（也就是Immediately-Invoked Function Expression (IIFE)），函数体定义的变量以及函数属于局部变量和局部函数，不会影响到全局作用域里定义的同名变量和函数。全局作用域也访问不到这些局部变量和函数，有点类似私有的意味。jQuery设计者也是基于此而采用这种方式。 那么问题来了，既然匿名函数里的变量和函数全局作用域访问不到，那么我们平时为什么可以直接在我们的js中引用jQuery的各种方法呢？我们来看如下的代码：12345678910111213141516171819//jQuery2.0.3版本//这个就是jQuery匿名函数(function( window, undefined ) &#123; //判断是nodejs等common.js（CMD）规范的环境 if ( typeof module === "object" &amp;&amp; module &amp;&amp; typeof module.exports === "object" ) &#123; //通过exports导出 module.exports = jQuery;&#125; else &#123; //判断是否是AMD这种模块化环境 if ( typeof define === "function" &amp;&amp; define.amd ) &#123; //定义jquery模块 define( "jquery", [], function () &#123; return jQuery; &#125; ); &#125;&#125; //if判断主要是确定下window和window.document是不是对象，也就是不是AMD、CMD等模块化环境，如果是对象就把JQuery挂载到全局对象window上 if ( typeof window === "object" &amp;&amp; typeof window.document === "object" ) &#123; window.jQuery = window.$ = jQuery;//秘密就在这一行代码。 &#125;&#125;)( window );123456789101112131415161718192021222324252627282930313233//jQuery3.2.1版本//这个就是jQuery匿名函数( function( global, factory ) &#123; "use strict"; //这是判断如果是nodejs环境的导出方式 //与2.0.3版本的区别就是module.exports导出的不是jQuery构造函数， //而是factory这个函数，也就是我们匿名函数传参的第二个参数function( window, noGlobal) &#123;&#125; if ( typeof module === "object" &amp;&amp; typeof module.exports === "object" ) &#123; module.exports = global.document ? factory( global, true ) : function( w ) &#123; if ( !w.document ) &#123; throw new Error( "jQuery requires a window with a document" ); &#125; return factory( w ); &#125;; &#125; else &#123; factory( global ); &#125;&#125;)( typeof window !== "undefined" ? window : this, function( window, noGlobal ) &#123; //判断如果是AMD模块化的环境就走if里的语句定义一个jquery模块 if ( typeof define === "function" &amp;&amp; define.amd ) &#123; define( "jquery", [], function() &#123; return jQuery; &#125; ); &#125; //这个判断上一篇文章已有涉及，这里就不在赘述 if ( !noGlobal ) &#123; window.jQuery = window.$ = jQuery; &#125; return jQuery;&#125;); 我们之所以可以在全局作用域里自如的使用的jQuery的方法，是因为如上代码的，将jQuery这个构造函数根据不同环境采用不同的方式引用（为什么说是构造函数，我们后续再分析），例如：挂载在全局对象window上，这样我们在任何js文件里都可以引用jQuery的方法了。（看到这里估计你还是晕的，没关系，再往下看你就明白了。） jQuery构造函数 在分析jQuery构造函数，我们先来看下原生js中的面向对象，以下是我们一般在写面向对象的写法：1234567891011121314//这个就是构造函数（说白点就是函数）function suhq()&#123; //这里写一些实例属性和方法，非共享。&#125;//通过在suhq的原型（suhq.prototype）上写些suhq实例共享的属性和方法suhq.prototype.init=function()&#123; //这里主要是new一个新实例时需要初始化的相关内容。&#125;//这个就是实例共享的方法suhq.prototype.say=function()&#123; &#125;var s1=new suhq();//创建实例s1.init();//初始化s1.say();//调用原型上的共享方法 其实，js中是没有如同java中类这种面向对象语法的（ES6引入了），那js中是如何实现面向对象的呢？如上代码所示，js是通过原型来模拟java中类的行为，然后new一个实例出来，这个实例不仅可以拥有构造函数的实例属性，也可以访问原型上的共享属性与方法。如果jQuery按照这样写的应该如何写？123456function jQuery()&#123;&#125;jQuery.prototype.init=function()&#123;&#125;jQuery.prototype.say=function()&#123; &#125; 接下去调用的方法和上面是一样的，但是我们用过jQuery都知道jQuery是这么调用的，例如$().say()或者jQuery().say()或者$.each()，那jQuery是如何写的呢？我们来看如下的代码：123jQuery = function( selector, context ) &#123; return new jQuery.fn.init( selector, context, rootjQuery );&#125; jQuery的写法和我们一般写面向对象不太一样，为什么这么说呢？我们来看下jQuery构造函数里返回的是什么？返回的是jQuery.fn.init()这个init构造函数的实例，看到这一句，是不是有点懵逼，按照js原生面向对象的写法，jQuery构造函数应该是在这个函数里写一些实例独有的属性与方法，为什么直接返回这么一个实例对象？而且我们平时调用jQuery的API时明明是这么调用的，例如：$(‘div’).css(“background”,”red”);，再比如:$.each(function(item){});等，按照这样的调用方法，第一种调用看起来像是调用的是原型上的方法，第二种看起来像是调用构造函数的实例方法。可源码中写的却是返回这么一个实例。而且我们调用API貌似都没new一下产生实例对象，就能调用jQuery的各种API，是不是感觉很神奇，其实这恰恰是JQuery能这么火的原因之一。这个我们叫做jQuery无new操作。接下去我们来分析，jQuery是如何做到这一点的。 jQuery无NEW操作符 我们在前面写的suhq这个构造函数，调用时需要new suhq()一下产生一个suhq的实例对象，而我们平时在调用时却不需要，原因是因为jQuery构造函数里写的这么一句话1234 jQuery = function( selector, context ) &#123; //就是这一句代码 return new jQuery.fn.init( selector, context, rootjQuery );&#125; 那是因为从jQuery构造函数中的代码可以看出jQuery已经帮我们做了这么一个new操作了。但是new的却是init的实例对象，而不是jQuery的实例，那么我们平时调用时是如何能访问到jQuery原型上的方法呢？为了更好的理解这个意思，我们举个例子，比如：$(“div”).css(“background”,”red”)其中”div”就是selector参数的实参，执行$(“div”)这个操作（按照jQuery构造函数写的）返回的是init构造函数的一个实例对象，那么css这个方法要么是init构造函数的实例方法或者是原型方法，但是我们如果稍微了解下jQuery如何写插件和扩展方法就知道，css这个方法其实是jQuery原型上的一个方法。其实，奥秘就在如下代码中：123//这是一段在匿名函数中的两行代码jQuery.fn = jQuery.prototype = &#123;&#125;;jQuery.fn.init.prototype = jQuery.fn; 第一句是jQuery.fn指向了jQuery.prototype，话句话说fn就是prototype，第二句是jQuery.fn.init的原型指向了jQuery.fn也就是指向了jQuery.prototype，简单点就是init构造函数被重写成了jQuery的原型，所以init的实例对象才能访问到jQuery对象的属性与方法（因为构造函数new一个对象时就会在实例对象上创建一个属性(proto)指向原型，我们在访问实例对象的属性或者方法时，如果实例对象本身没有，就会朝着(proto)指向的原型上找）。]]></content>
-      <categories>
-        <category>前端技术</category>
-      </categories>
-      <tags>
-        <tag>jQuery</tag>
-        <tag>Dom</tag>
-        <tag>javaScript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[解剖jQuery源码系列之匿名函数自执行]]></title>
-    <url>%2F2017%2F04%2F25%2Fjquery20170425%2F</url>
-    <content type="text"><![CDATA[最近公司开始逐步放弃掉了支持IE8，转而从IE9支持起，jQuery版本也从1.8.0开始需要升级到2.0+以上，工作中用到jQuery也蛮多的，刚好最近不是很忙打算梳理下jQuery的相关内容。 相比于最近前端界流行的vue、react、angular等等框架，jQuery的热度再也不像之前那么火热，甚至有种被遗弃的感觉，很多人开口闭口都是各种新出的框架。记得老大说过，技术其实要适应生产环境才是最重要的。很多时候在工作中遇到问题更多的是基础的问题，远远谈不到这个框架的优劣。ES5仍然博大精深。本系列主要分析jQuery2.0.3版本，也会加上最新版jQuery3.2.1的相应解剖。 框架总有过时的时候，基础才是真材实料。 jQuery2.0.3匿名函数 其实，开始看jQuery源码，真的蛮头疼的，细细品味下来，再结合工作中遇到的各种坑。体会还是蛮多的，以下是2.0.3版本源码抽出来的，整个源码就是包在一个匿名函数里，让这个匿名函数自执行。说到匿名函数，我们首先要知道js中定义函数的几种方式（顺便复习下基础）： 第一种，经常使用，比较常规：123function func(a)&#123; console.log(a)&#125; 第二种，利用构造函数Function，需要传入两个参数：1.函数参数列表2.函数体。这种写法在函数体很多的时候特别不方便，不建议这么写。1var func=new Function(a,'console.log(a);') 第三种，匿名函数定义赋给变量123var func=function(a)&#123; console.log(a);&#125; 了解了js中函数的定义的几种方法，我们再来看下匿名函数自执行的几种定义形式。1234567891011121314151617181920//1.jQuery的写法(function( window, undefined ) &#123; //这边是jQuery的核心代码&#125;)( window );//2.其他写法，这种写法在IE8下会出现问题，undefined可以定义为变量，修改成其他值。IE9以上和高级浏览器，undefined都不可以修改。(function( window,undefined) &#123; //这边是jQuery的核心代码&#125;)( window, undefined);//3.这种写法和第一种其实是一样的。(function( window, undefined) &#123; //这边是jQuery的核心代码&#125;( window)); 从以上来看，匿名函数自执行简单的说就是定义一个匿名函数，然后立即执行，在原生js里的语法是把匿名函数包在一对()里，然后按照函数的正常调用传参数即可，jQuery就是采用这种方式，匿名函数传了一个实参window，为什么要传window这个全局对象呢？其实这个跟我们js查找变量所走的作用域有关系，分析后主要有2个原因： 1.匿名函数里用到window这个全局对象，不需要沿着作用域一层层往上去查找，直接在传参中获取，提高了获取window对象的速度。 2.方便压缩，实参传入形参（普及下实参和形参的概念，实参就是你传入函数实际传入的值，形参就是你定义函数时，函数的参数。），形参就可以直接压缩成一个字母w。 那为什么jQuery匿名函数还要传入第二个参数呢？我也总结了有两个原因： 1.匿名函数内部需要用到，undefined的值，可以从变量的角度来理解，因为匿名函数自执行时并没有传这个参数，函数中没有传参数，这个值默认为undefined。相比较第2种写法，undefined放在函数的形参里，实参不传，主要是为了兼容IE下的bug：可以定义undefined并修改它的值。 2.方便压缩成字母u。 jQuery3.2.1架构（最新版） 这个版本的整体写法改了风格，但是其实内容和原理变化不大，主要做了兼容Node、sea.js等符合Common.js规范或者类似Common.js规范的js框架。123456789101112131415161718192021222324(function( global, factory ) &#123; if ( typeof module === "object" &amp;&amp; typeof module.exports === "object" ) &#123; // For CommonJS and CommonJS-like environments where a proper window is present, // execute the factory and get jQuery // For environments that do not inherently posses a window with a document // (such as Node.js), expose a jQuery-making factory as module.exports // This accentuates the need for the creation of a real window // e.g. var jQuery = require("jquery")(window); // See ticket #14549 for more info module.exports = global.document ? factory( global, true ) : function( w ) &#123; if ( !w.document ) &#123; throw new Error( "jQuery requires a window with a document" ); &#125; return factory( w ); &#125;; &#125; else &#123; factory( global ); &#125;// Pass this if window is not defined yet&#125;(typeof window !== "undefined" ? window : this, function( window, noGlobal ) &#123; //说白了这里就是写各种JQ各种功能函数的地方，大概有一万多行&#125;)); 最新版的jQuery写法稍微修改了下，其实大体是一样的，我们先简化如下所示：123(function( global, factory ) &#123; //这里先不看&#125;(a,b); 整个函数就是个匿名函数自执行。其中， a参数为三目运算（typeof window !== “undefined” ? window : this），这个是判断当前运行环境是否支持window这个全局对象，主要是为了兼容node.js等类似common.js规范环境，例如nodejs中的全局对象是global，当nodejs某一个模块不支持window时，这个参数就是this也就是global。 b参数为:123function( window, noGlobal ) &#123; //说白了这里就是写各种JQ各种功能函数的地方，大概有一万多行&#125; 分析了下这两个参数，我们再来看下这个匿名函数的函数体。首行的判断语句：if ( typeof module === “object” &amp;&amp; typeof module.exports === “object” ) 。玩过node.js就知道module和module.exports就是nodejs用来创建模块并输出模块对象的方法。若此条件成立，if里执行的代码就是用来兼容nodejs。我们来看支持的情况下：123456789101112&#123; module.exports = global.document ? //三目运算符，先判断当前环境是否支持window.document属性 //（注意我们上面提到过形参global的实参是window） factory( global, true ) : //支持的话就好办啦，常规的浏览器一般都是支持的，那就直接module.exports = factory( global, true )， //把JQ后面那一万多行的功能函数扩展到node.js里面。（注意我们上面提到过形参factory的实参是实现JQ各种功能的一个外部函数） function( w ) &#123; //如果当前环境不支持window.document属性，那就写个函数扔个Error说这环境不适用JQ，但依旧返回JQ的功能函数（但大部分估计是不能用的了） if ( !w.document ) &#123; throw new Error( "jQuery requires a window with a document" ); &#125; return factory( w ); &#125;;&#125; 如果我们使用的环境不是node.js等类似common.js规范环境，那么if ( typeof module === “object” &amp;&amp; typeof module.exports === “object” ) 这个判断就为false，走else，直接执行factory( global ); 看到以上的分析，是否有一个参数，大家会觉得略奇怪些：noGlobal，这个是做什么用的？全局搜索了下jQuery源码，发现有用到的地方就是如下了：123456// Expose jQuery and $ identifiers, even in AMD// (#7102#comment:10, https://github.com/jquery/jquery/pull/557)// and CommonJS for browser emulators (#13566)if ( !noGlobal ) &#123; window.jQuery = window.$ = jQuery;&#125; 当noGlobal为假（也就是浏览器环境）时才执行if里的语句，把jQuery挂载在window下，从以上代码我们也可以看出来，jQuery和$是等价的，都指向jQuery对象。如果为真（那就是类似nodej或者其他类似AMD和CommonJS的环境里），就不执行if里的语句，那么其他环境如何使用到jQuery的相关方法呢？在整个源码的最后有一句代码：return jQuery;根据前面分析的匿名函数传参以及return jQuery;这一句代码，我们在nodejs环境中应该按照如下的方式调用(当然如果你改写了下jQuery那也可以用别的方式引入，这边就不说了)：1var $=require('jquery')(window); 以上就是这两个版本中采用的匿名函数自执行。当然采用匿名函数自执行最大的目的就是匿名函数内部都是局部变量，不会污染全局作用域。当页面引用多个库时也能很好的避免变量重名，函数重名等等一系列问题。 此篇分享先到此，接下去还会其他系列的分享。]]></content>
-      <categories>
-        <category>前端技术</category>
-      </categories>
-      <tags>
-        <tag>jQuery</tag>
-        <tag>Dom</tag>
-        <tag>javaScript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[点滴的生活就是幸福]]></title>
-    <url>%2F2017%2F04%2F24%2FsinFuture%2F</url>
-    <content type="text"><![CDATA[我把我新博客第一篇文章给了人生中最重的事！]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>生活</tag>
-      </tags>
-  </entry>
+<search> 
+  
+    
+    <entry>
+      <title><![CDATA[kindeditor不支持上传图片格式校验]]></title>
+      <url>/2017/06/16/kingeditor/</url>
+      <content type="html"><![CDATA[<h4 id="kingeditor"><a href="#kingeditor" class="headerlink" title="kingeditor"></a>kingeditor</h4><p>　　最近在做公司的一个问题反馈模块，因为接入第三方组件的原因，它们使用的是<code>KindEditor</code>，为了匹配，前端也用了下这个富文本编辑器，不过这个富文本编辑器在<code>2011</code>年已经停止维护了。对于第三方组件选择这个富文本也是无语了。具体看<a href="http://kindeditor.net/about.php" target="_blank" rel="external">官网</a>。<a id="more"></a><br>　　官网下载下来的大概的一个文件组织如下所示(这边省略了一些不需要用到的目录)：<br><img src="/images/kingeditor.png" class="full-image"><br>　　这里分享下怎么使用，源码上增加下对上传图片格式的校验（原有的不支持），以及页面样式影响富文本框内容的展示怎么解决。不涉及到后端。我们先看下整个<code>Demo</code>的代码：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>kingEditor Demo<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">href</span>=<span class="string">"./themes/default/default.css"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">textarea</span> <span class="attr">id</span>=<span class="string">"text"</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"./kindeditor-min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">createKindEditor</span>(<span class="params">id</span>)</span>&#123;</div><div class="line">      <span class="keyword">return</span> KindEditor.create(<span class="string">'#'</span>+id,&#123;</div><div class="line">        <span class="attr">width</span>:<span class="string">'700px'</span>,</div><div class="line">        <span class="attr">height</span>:<span class="string">'200px'</span>,</div><div class="line">        <span class="attr">langType</span>:<span class="string">'zh_CN'</span>,</div><div class="line">        <span class="attr">uploadJson</span> : <span class="string">'/api/si/feedbackKindEditorUpload'</span>,</div><div class="line">        <span class="attr">resizeType</span> : <span class="number">1</span>,</div><div class="line">        <span class="attr">allowPreviewEmoticons</span> : <span class="literal">false</span>,</div><div class="line">        <span class="attr">allowImageUpload</span> : <span class="literal">true</span>,</div><div class="line">        <span class="attr">allowImageRemote</span> : <span class="literal">false</span>,</div><div class="line">        <span class="attr">imageType</span> : [<span class="string">".jpeg"</span>,<span class="string">".jpg"</span>,<span class="string">".gif"</span>,<span class="string">".bmp"</span>,<span class="string">".png"</span>],</div><div class="line">        <span class="attr">items</span> : [<span class="string">'formatblock'</span>, <span class="string">'fontname'</span>, <span class="string">'fontsize'</span>, <span class="string">'|'</span>, <span class="string">'forecolor'</span>, <span class="string">'hilitecolor'</span>, <span class="string">'bold'</span>, <span class="string">'italic'</span>,<span class="string">'underline'</span>, <span class="string">'|'</span>,<span class="string">'justifyleft'</span>, <span class="string">'justifycenter'</span>, <span class="string">'justifyright'</span>, <span class="string">'insertorderedlist'</span>, <span class="string">'insertunorderedlist'</span>, <span class="string">'|'</span>,<span class="string">'emoticons'</span>, <span class="string">'image'</span>, <span class="string">'link'</span>, <span class="string">'|'</span>, <span class="string">'removeformat'</span>,<span class="string">'undo'</span>, <span class="string">'redo'</span>, <span class="string">'fullscreen'</span>, <span class="string">'source'</span>, <span class="string">'about'</span>],</div><div class="line">        <span class="attr">afterBlur</span> : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">          <span class="keyword">this</span>.sync();</div><div class="line">        &#125;</div><div class="line">      &#125;);</div><div class="line">    &#125;</div><div class="line">    createKindEditor(<span class="string">"text"</span>);</div><div class="line">  <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span>　</div></pre></td></tr></table></figure><br>　　展示的效果如下：<br><img src="/images/kingeditor1.png" class="full-image"></p>
+<h4 id="KindEditor使用参数介绍"><a href="#KindEditor使用参数介绍" class="headerlink" title="KindEditor使用参数介绍"></a>KindEditor使用参数介绍</h4><p>　　<code>KindEditor</code>的调用需要引入两个文件：<code>default.css</code>和<code>kindeditor-min.js</code>，这边注意下，需要先引入<code>kindeditor-min.js</code>方可调用<code>KindEditor.create</code>创建富文本编辑器。这边为了复用，所以写了一个函数<code>createKindEditor</code>，当然具体的写法一般会写在公共方法中，作为对象的属性进行引用。<br>　　<code>KindEditor.create</code>传入两个参数，一个<code>textarea</code>标签的<code>id</code>，另一个参数就是配置富文本初始化参数。<br>　　<code>width</code>：设置富文本编辑器的宽度<br>　　<code>height</code>：设置富文本编辑器的高度<br>　　<code>langType</code>：设置富文本编辑器的语言，语言文件在<code>lang</code>目录下，对应的属性值为文件名<br>　　<code>uploadJson</code>：图片上传的url地址<br>　　<code>resizeType</code>：编辑器可以拖动改变宽度和高度，0不可以拖动，1可以拖动高度，2可以拖动高度和宽度<br>　　<code>allowPreviewEmoticons</code>：true时鼠标放在表情上可以预览表情<br>　　<code>allowImageUpload</code>：true时显示图片上传按钮<br>　　<code>allowImageRemote</code>：true时显示网络图片标签，false时不显示<br>　　<code>items</code>：配置编辑器的工具栏，其中”/”表示换行，”|”表示分隔符。具体值参考<a href="http://kindeditor.net/docs/option.html#items" target="_blank" rel="external">官网</a><br>　　<code>afterBlur</code>：编辑器失去焦点(blur)时执行的回调函数。<br>　　<code style="background:pink;">imageType</code>：扩展编辑器支持图片格式的校验</p>
+<h4 id="让KindEditor支持上传图片格式校验"><a href="#让KindEditor支持上传图片格式校验" class="headerlink" title="让KindEditor支持上传图片格式校验"></a>让KindEditor支持上传图片格式校验</h4><p>　　通过查看源码，我们需要修改<code style="background:pink;">plugins/image/image.js</code>的源码。</p>
+<h4 id="解决页面展示富文本内容样式冲突问题"><a href="#解决页面展示富文本内容样式冲突问题" class="headerlink" title="解决页面展示富文本内容样式冲突问题"></a>解决页面展示富文本内容样式冲突问题</h4>]]></content>
+      
+        <categories>
+            
+            <category> 前端技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> javaScript </tag>
+            
+            <tag> kingeditor </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[我眼中的React生命周期]]></title>
+      <url>/2017/06/11/react-life/</url>
+      <content type="html"><![CDATA[<p>　　相信很多人在初次看到生命周期这个词，总有那么一点困惑。生命周期从人的一生来看就是出生、成长、成熟、衰退直到死亡。而<code>React</code>的生命周期也是如此，但又有所不同。我们人一生的生命周期是单向不可逆的，而软件领域的生命周期并不一定是单向，可能还会在还没完成前重新开始。要是我们人也可以如此那就好了。<a id="more"></a></p>
+<h4 id="React生命周期"><a href="#React生命周期" class="headerlink" title="React生命周期"></a>React生命周期</h4><p>　　<code>React</code>生命周期在<code>React</code>的世界里就是组件的生命周期，因为<code>React</code>就是主张组件化构建页面。组建的生命周期直接影响着页面的渲染。<code>React</code>组件生命周期可以分为两个过程：</p>
+<ul>
+<li>组件挂载或者卸载时</li>
+<li>组件接收到新的数据时更新组件的渲染</li>
+</ul>
+<p>　　这里贴一张<code>React</code>生命周期整体流程图，具体可以看下面：<br><img src="/images/react_life.png" class="full-image"><br>　　懂的人自然一眼就能看明白，不懂的可以先不看这张图或者大致浏览下。</p>
+<h4 id="组件挂载或者卸载过程"><a href="#组件挂载或者卸载过程" class="headerlink" title="组件挂载或者卸载过程"></a>组件挂载或者卸载过程</h4><h5 id="组件挂载的过程"><a href="#组件挂载的过程" class="headerlink" title="组件挂载的过程"></a>组件挂载的过程</h5><p>　　为了比较形象的展示下组件挂载过程的生命周期，我大致画了一张图，具体如下：<br><img src="/images/react_life1.png" class="full-image"><br>　　因为<code>React</code>构建组件的方式有3种，其中两种就是图中<code>ES6 classes</code>和<code>createClass</code>。这张图展示就是<code>React</code>初始化并挂载页面的过程，这个过程会调用图中所展示的生命周期方法。图中展示的除了初始化过程所调用的方法不太一样（功能一样，只是写法不一样），组件调用的生命周期方法基本一样。</p>
+<ul>
+<li><code style="background:pink;">static propTypes</code>和<code style="background:pink;">propTypes</code>：代表<code>props</code>类型检查。</li>
+<li><code style="background:pink;">Static defaultProps</code>和<code style="background:pink;">getDefaultProps</code>：设置<code>props</code>的默认值。</li>
+<li><code style="background:pink;">Constructor(this.state)</code>和<code style="background:pink;">getInitialState</code>：这里在生命周期范围内涉及的是设置<code>static</code>组件内部状态。</li>
+<li><code style="background:pink;">componentWillMount</code>：组件在渲染之前，也就是<code>render</code>方法之前执行。如果在这里执行<code>setState</code>方法，组件虽然会更新内部状态<code>state</code>，但只会渲染组件一次。因此如果在这里执行更改内部状态其实在整个组件生命周期来看是毫无意义的。只会徒增组件渲染的性能消耗。</li>
+<li><code style="background:pink;">render</code>：渲染组件。</li>
+<li><code style="background:pink;">componentDidMount</code>：组件在渲染完成之后，也就是<code>render</code>方法之后执行。如果在这里执行<code>setState</code>方法，组件不仅会更新内部状态<code>state</code>，还会重新渲染一次组件。需不需要在这里执行更新内部状态要依据业务场景而定。<br>　　具体代码可以参看如下：后续补上。　<h5 id="组件卸载的过程"><a href="#组件卸载的过程" class="headerlink" title="组件卸载的过程"></a>组件卸载的过程</h5>　　组件的卸载就比较简单了，只会涉及到如下两个方法：
+　　</li>
+<li><code style="background:pink;">unmountComponentAtNode()</code>：使用这个方法来卸载组件。比较少用到，其实当页面切换或者关闭时，组件会自动的卸载。</li>
+<li><p><code style="background:pink;">componentWillUnmount</code>：组件在卸载前会执行这个方法，一个我们比较熟悉的应用场景就是移除时间监听器和停止计数器。</p>
+<h4 id="组件更新数据时"><a href="#组件更新数据时" class="headerlink" title="组件更新数据时"></a>组件更新数据时</h4><h5 id="组件state改变时"><a href="#组件state改变时" class="headerlink" title="组件state改变时"></a>组件state改变时</h5><p>　　为了更好理解我同样画了一张图：<br><img src="/images/react_life2.png" class="full-image"></p>
+</li>
+<li><p><code style="background:pink;">shouldComponentUpdate</code>：这个方法有两个参数：<code>newProps</code>和<code>newState</code>，所以当组件接收到新的<code>state</code>状态值或者新的<code>props</code>值，这里有一个应用场景：当父组件的<code>props</code>改变时，<code>React</code>会渲染所有的节点，而我们只是希望部分甚至单个组件更新时，可以在这方法做些处理过滤掉不需要处理的组件。其实这也是组件优化的一方面，减少不必要的更新。这个方法如果返回值是<code>true</code>，则执行更新组件，反之，忽略更新，重新渲染原有的组件，也就是不更新了，为了页面正确展示组件，<code>render</code>会重新执行。</p>
+</li>
+<li><code style="background:pink;">componentWillUpdate</code>：组件更新之前运行。在这个方法中不能通过<code>this.setState</code>来更新内部状态，后续会有文章加以说明。</li>
+<li><code style="background:pink;">render</code>：渲染更新<code>state</code>后的组件。</li>
+<li><code style="background:pink;">componentDidUpdate</code>：此方法在组件更新以及<code>render</code>方法被调用过后被调用。<h5 id="组件prop改变时"><a href="#组件prop改变时" class="headerlink" title="组件prop改变时"></a>组件prop改变时</h5>　　不说了直接上图：<br><img src="/images/react_life3.png" class="full-image"><br>　　这里涉及到的方法和组件<code>state</code>改变时差不多，除了一个新方法：</li>
+<li><code style="background:pink;">componentWillReceiveProps</code>：如果是父组件更新<code>props</code>，<code>componentWillReceiveProps</code>会先于<code>shouldComponentUpdate</code>执行，这个方法有一个参数，就是更新的<code>props</code>，在这个时候调用<code>this.setState</code>，组件不会进行第二次渲染。<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4>　　通过以上过程的梳理，我们在回过头来看本文第一张图是不是清晰很多了。关于<code>React</code>的使用可以参考我另一篇文章<a href="http://www.mmyton.com/2017/06/11/es6-react/">用ES6重写React组件</a>。</li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> react </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> webpack </tag>
+            
+            <tag> react </tag>
+            
+            <tag> react-dom </tag>
+            
+            <tag> babel </tag>
+            
+            <tag> jsx </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[用ES6重写React组件]]></title>
+      <url>/2017/06/11/es6-react/</url>
+      <content type="html"><![CDATA[<p>　　<code>React</code>组件基本上由组件的构建方式、组件内的属性状态（<code>state</code>和<code>props</code>）与生命周期方法组成。这篇文章主要写下<code>React</code>组件的3种构建方式，以及用<code>ES6 classes</code>的构建方式重写阮一峰的<code>React</code>入门<a href="http://www.ruanyifeng.com/blog/2015/03/react.html" target="_blank" rel="external"><code>Demo</code></a>。<a id="more"></a></p>
+<h4 id="React-组件构建方式"><a href="#React-组件构建方式" class="headerlink" title="React 组件构建方式"></a>React 组件构建方式</h4><h5 id="React-classes"><a href="#React-classes" class="headerlink" title="React.classes"></a>React.classes</h5><h5 id="ES6-classes"><a href="#ES6-classes" class="headerlink" title="ES6 classes"></a>ES6 classes</h5><h5 id="无状态函数"><a href="#无状态函数" class="headerlink" title="无状态函数"></a>无状态函数</h5><h4 id="React-classes与ES6-classes构建组件的区别"><a href="#React-classes与ES6-classes构建组件的区别" class="headerlink" title="React.classes与ES6 classes构建组件的区别"></a>React.classes与ES6 classes构建组件的区别</h4><p><img src="/images/react_demo.png" class="full-image"></p>
+]]></content>
+      
+        <categories>
+            
+            <category> react </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> webpack </tag>
+            
+            <tag> react </tag>
+            
+            <tag> react-dom </tag>
+            
+            <tag> babel </tag>
+            
+            <tag> jsx </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[其实webpack入门很简单]]></title>
+      <url>/2017/06/11/webpack/</url>
+      <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>如果你能耐心的跟着这篇文章敲打一遍代码，那你基本掌握 <code>webpack</code> 大部分知识。也许有部分你没掌握，但是其实都是大同小异的。</p>
+</blockquote>
+<a id="more"></a>
+<p>　　关于 <code>webpack</code> 是什么东西，感兴趣的可以百度下。这边贴一张图，可以感受下 <code>webpack</code> 主要做的是什么？webpack就是把你的工程项目当做一个整体，通过一个给定的主文件（如： <code>index.js</code> ，我们接下去例子的主文件就是这个）， <code>webpack</code> 将从这个文件开始找到你的项目的所有依赖文件，使用对应的loaders来处理它们，最后打包为一个浏览器可识别的 <code>JavaScript</code> 文件。这种情况下 <code>CSS</code> 和 <code>JavaScript</code> 就会混合一起，针对这种情况 <code>webpack</code> 还可以分离文件。具体的可以看后面。<br><img src="/images/what-is-webpack.png" class="full-image"><br>　　其实网上也有类似的教程，写的也蛮详细，但是写法在 <code>webpack2.0</code> 之后还是略有差别的，我在项目实践中也踩了一些坑。有兴趣可以借鉴下。这里贴下 <code>webpack</code> 的<a href="https://doc.webpack-china.org/configuration/module/#rule-loader" target="_blank" rel="external">中文文档地址</a>。</p>
+<h4 id="项目初始化"><a href="#项目初始化" class="headerlink" title="项目初始化"></a>项目初始化</h4><p>　　在进入 <code>webpack</code> 世界之前，先说下，我所采用的系统是 <code>MAC</code> ，这里不涉及 <code>window</code> 下怎么操作，在 <code>window</code> 中可能会和 <code>MAC</code> 下系统的操作有些细小的差别，但是我这边列的所有例子均可以在 <code>window</code> 跑通。<br>　　第一步，在桌面创建一个文件夹 <code>webpack-demos</code> ，打开命令行终端（这个不知道的可以百度），通过命令: <code>cd Desktop/webpack-demos</code> 进入到 <code>webpack-demos</code> 目录下。然后用命令行 <code>npm init</code> 初始化项目，一路按回车键就好。此时我们可以看到在我们的 <code>webpack-demos</code> 目录下生成了一个文件： <code>package.json</code><br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"name"</span>: <span class="string">"webpack-demos"</span>,</div><div class="line">  <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</div><div class="line">  <span class="attr">"main"</span>: <span class="string">"index.js"</span>,</div><div class="line">  <span class="attr">"scripts"</span>: &#123;</div><div class="line">    <span class="attr">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">"author"</span>: <span class="string">""</span>,</div><div class="line">  <span class="attr">"license"</span>: <span class="string">"ISC"</span>,</div><div class="line">  <span class="attr">"description"</span>: <span class="string">""</span></div><div class="line">&#125;</div></pre></td></tr></table></figure><br>　　第二步，安装 <code>webpack</code> ，打开命令行终端进入到 <code>webpack-demos</code> 目录下。输入如下命令安装 <code>webpack</code> ，关于 <code>cnpm</code>看<a href="http://npm.taobao.org/" target="_blank" rel="external">淘宝NPM镜像</a><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnpm install --save-dev webpack</div></pre></td></tr></table></figure><br><div class="note info"><p>–save-dev是指将包信息添加到devDependencies，表示你开发时依赖的包裹。<br>–save是指将包信息添加到dependencies，表示你发布时依赖的包裹。</p>
+</div><br>　　安装完之后，<code>package.json</code> 长这样子：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"name"</span>: <span class="string">"webpack-demos"</span>,</div><div class="line">  <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</div><div class="line">  <span class="attr">"main"</span>: <span class="string">"index.js"</span>,</div><div class="line">  <span class="attr">"scripts"</span>: &#123;</div><div class="line">    <span class="attr">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">"author"</span>: <span class="string">""</span>,</div><div class="line">  <span class="attr">"license"</span>: <span class="string">"ISC"</span>,</div><div class="line">  <span class="attr">"description"</span>: <span class="string">""</span>,</div><div class="line">  <span class="attr">"devDependencies"</span>: &#123;</div><div class="line">    <span class="attr">"webpack"</span>: <span class="string">"^2.6.1"</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><br>　　项目根目录会多一个　<code>node_modules</code> 目录，里面存放的是<code>webpack</code> 源文件以及依赖的 <code>npm</code> 包。　　</p>
+<h4 id="Webpack初体验"><a href="#Webpack初体验" class="headerlink" title="Webpack初体验"></a>Webpack初体验</h4><p>　　在根目录下面创建 <code>src</code> 和 <code>dist</code> 文件夹， <code>src</code> 存放的项目源文件， <code>dist</code> 存放的是 <code>webpack</code>打包后的 <code>JavaScript</code> 文件。在 <code>src</code> 目录中创建文件 <code>index.js</code> ，代码如下所示：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.write(<span class="string">"Webpack初体验"</span>);</div></pre></td></tr></table></figure>　<br>　　在 <code>dist</code> 目录中创建 <code>index.html</code> ，代码如下所示：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--苏火强--&gt;</span></div><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Webpack初体验<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"bundle.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure><br>　　在终端进入 <code>webpack-demos</code> 目录下，运行如下命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">node_modules/.bin/webpack src/index.js dist/bundle.js</div></pre></td></tr></table></figure><br>　　执行之后，可以在 <code>dist</code> 目录下找到一个文件 <code>bundle.js</code> ，里面的内容可以不用去看懂，这时候在浏览器打开 <code>index.html</code> ，可以看到如下画面：<br><img src="/images/webpack-demos1.png" class="full-image"><br>　　恭喜你正式完成了一个 <code>webpack</code> 打包程序，但是每次都写这么一大段的命令，而且是在命令终端写，不仅麻烦还容易出错，这时就要提到 <code>npm scripts</code> ，如果不太清楚这个的，可以参考阮一峰写的<a href="http://www.ruanyifeng.com/blog/2016/10/npm_scripts.html" target="_blank" rel="external">npm scripts使用指南</a>，这篇文章写的蛮通俗易懂的。当然我们这篇文章里的蛮多例子也是参考阮一峰写的<a href="https://github.com/ruanyf/webpack-demos" target="_blank" rel="external">webpack入门案例</a><br>　　为了减少在命令行输入这么一大长串命令，我们需要在我们的 <code>package.json</code> 文件中的 <code>scripts</code> 加入如下代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="string">"scripts"</span>: &#123;</div><div class="line">    <span class="string">"start"</span>: <span class="string">"webpack src/index.js dist/bundle.js"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure><br>　　这时候，我们只需要在命令终端输入 <code>npm start</code>即可完成我们上面的功能，是不是少了蛮多的命令的，这时候你也许发现了一个很奇怪的地方，为什么 <code>start</code> 对应只是 <code>webpack src/index.js dist/bundle.js</code> ，而不是 <code>node_modules/.bin/webpack src/index.js dist/bundle.js</code> ，那是因为<code>npm scripts</code> 在执行时，自动会加载<code>node_modules/.bin/webpack</code> 。这时候，你可能又奇怪， <code>webpack</code> 就这么点功能么？答案当然不是。</p>
+<h4 id="通过配置使用webpack"><a href="#通过配置使用webpack" class="headerlink" title="通过配置使用webpack"></a>通过配置使用webpack</h4><p>　　 <code>webpack</code> 很多功能都需要在一个叫 <code>webpack.config.js</code> 文件中配置。在根目录下再创建 <code>webpack.config.js</code> ，其中配置如下： 　<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//按照common.js的规范输出一个对象，</span></div><div class="line"><span class="comment">//这个对象有两个属性：entry和output，分别对应着源文件和输出文件</span></div><div class="line"><span class="comment">//__dirname这个是nodejs中的全局变量，表示的是当前执行脚本所在的绝对路劲</span></div><div class="line"><span class="built_in">module</span>.exports=&#123;</div><div class="line">  <span class="attr">entry</span>:__dirname+<span class="string">"/src/index.js"</span>, </div><div class="line">  <span class="attr">output</span>:&#123;</div><div class="line">    <span class="attr">path</span>:__dirname+<span class="string">"/dist"</span>, <span class="comment">//这是输出路劲</span></div><div class="line">    filename:<span class="string">"bundle.js"</span> <span class="comment">//这是输出的文件名，这里可以随意写，页面引入文件需要和这里的名字保持一致。</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><br>　　配置完之后我们又可以将之前 <code>package.json</code> 中写的 <code>scripts</code> 改为如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="string">"scripts"</span>: &#123;</div><div class="line">  <span class="string">"start"</span>: <span class="string">"webpack"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure><br>　　也就是说 <code>webpack.config.js</code> 的配置等价于告知 <code>webpack</code> 打包的源文件和输出文件分别是什么。可是使用到这里，我们仍然没有感觉到 <code>webpack</code>的特别之处吧？别急，我们再往下看，现在我们在 <code>src</code> 的目录下，建一个 <code>moduleA.js</code> ，写下如下代码： 　<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="string">"webpack加载moduleA模块"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>　<br>　　同时修改下 <code>index.js</code> 的代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> moduleA=<span class="built_in">require</span>(<span class="string">"./moduleA.js"</span>);</div><div class="line"><span class="built_in">document</span>.write(<span class="string">"Webpack初体验 "</span>+moduleA());</div></pre></td></tr></table></figure><br>　　终端敲下<code>npm start</code> ，在浏览器打开 <code>index.html</code> ，效果如下所示：<br><img src="/images/webpack-demos2.png" class="full-image"><br>　　是不是感觉很赞，这还仅是 <code>webpack</code> 的冰山一角，往下更精彩。　　</p>
+<h4 id="开启webpack精彩世界"><a href="#开启webpack精彩世界" class="headerlink" title="开启webpack精彩世界"></a>开启webpack精彩世界</h4><h5 id="打包两个文件输出两个文件"><a href="#打包两个文件输出两个文件" class="headerlink" title="打包两个文件输出两个文件"></a>打包两个文件输出两个文件</h5><p>　　在 <code>src</code> 下建一个 <code>module1.js</code> 和　<code>module2.js</code> ，在里面分别敲上如下代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//module1.js</span></div><div class="line"><span class="built_in">document</span>.write(<span class="string">'&lt;h1&gt;Hello module1&lt;/h1&gt;'</span>);</div><div class="line"><span class="comment">//module2.js</span></div><div class="line"><span class="built_in">document</span>.write(<span class="string">'&lt;h1&gt;Hello module2&lt;/h1&gt;'</span>);</div></pre></td></tr></table></figure><br>　　修改 <code>webpack.config.js</code> 和 <code>index.html</code> 如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//webpack.config.js</span></div><div class="line"><span class="built_in">module</span>.exports=&#123;</div><div class="line">  <span class="attr">entry</span>:&#123;</div><div class="line">    <span class="attr">bundle1</span>:__dirname+<span class="string">"/src/module1.js"</span>,</div><div class="line">    <span class="attr">bundle2</span>:__dirname+<span class="string">"/src/module2.js"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">output</span>:&#123;</div><div class="line">    <span class="attr">path</span>:__dirname+<span class="string">"/dist"</span>,</div><div class="line">    <span class="attr">filename</span>:<span class="string">"[name].js"</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">//index.html</span></div><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span></div><div class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Webpack初体验<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"bundle1.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"bundle2.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure><br>　　终端敲下<code>npm start</code> ，在浏览器打开 <code>index.html</code> ，效果如下所示：<br><img src="/images/webpack-demos3.png" class="full-image"></p>
+<h5 id="webpack静态服务器"><a href="#webpack静态服务器" class="headerlink" title="webpack静态服务器"></a>webpack静态服务器</h5><p>　　经过上面3个小 <code>demo</code> 的演示，是不是对<code>webpack</code> 略有感觉呢？但是有没有发现每次修改 <code>webpack.config.js</code> 配置，还有其他文件，都需要经历 <code>打包</code> <code>浏览器查看</code> ，写多了需要经常这么干也是很烦的，如果可以自动打包，实时刷新，自动打开浏览器那就好了，好吧，我承认我比较懒。这时候我们就需要使用到 <code>webpack</code> 静态服务器（也叫本地服务器）啦。<br>　　webpack提供有一个叫 <code>webpack-dev-server</code> 的静态服务器，这个服务是基于<code>node.js</code> 和 <code>express.js</code> 写的，感兴趣的可以翻下 <code>webpack</code> 的源码，这里还必须提及下，<code>JQuery</code> 源码的学习让我再也不惧怕阅读任何框架的源代码。<br>　　安装 <code>webpack-dev-server</code> ，终端进入 <code>webpack-demos</code> 文件下，输入如下命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnpm install --save-dev webpack-dev-server</div></pre></td></tr></table></figure><br>　　安装完之后我们需要配置下，具体配置项参考：<a href="http://www.css88.com/doc/webpack2/configuration/dev-server/" target="_blank" rel="external">webpack-dev-server配置参数</a>，我们先来看如果不配置会出现什么情况，我们直接在根目录下敲入<code>webpack-dev-server</code>，然后回车即可，这时终端控制台是这样子的：<br><img src="/images/webpack-demos4.png" class="full-image"><br>　　我们在浏览器的<code>URL</code>输入：<a href="http://localhost:8080" target="_blank" rel="external">http://localhost:8080</a> ，将会出现如下画面：<br><img src="/images/webpack-demos5.png" class="full-image"><br>　　这个跟我们平时使用的ft启动服务后一样。为了启动服务器之后不用再选择文件查看，我们需要配置一些参数，如下所示：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports=&#123;</div><div class="line">  <span class="attr">entry</span>:&#123;</div><div class="line">    <span class="attr">bundle1</span>:__dirname+<span class="string">"/src/module1.js"</span>,</div><div class="line">    <span class="attr">bundle2</span>:__dirname+<span class="string">"/src/module2.js"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">output</span>:&#123;</div><div class="line">    <span class="attr">path</span>:__dirname+<span class="string">"/dist"</span>,</div><div class="line">    <span class="attr">filename</span>:<span class="string">"[name].js"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">devServer</span>:&#123;</div><div class="line">    <span class="attr">contentBase</span>:<span class="string">"./dist"</span>, <span class="comment">//这个就是设置打包后的文件所在，启动服务就会加载index.html</span></div><div class="line">    inline:<span class="literal">true</span>, <span class="comment">//实时刷新</span></div><div class="line">    port:<span class="string">"9090"</span> <span class="comment">//不填写默认8080</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><br>　　配置完之后，按照之前的步骤启动服务，在浏览器的<code>URL</code>输入：<a href="http://localhost:9090，这时候浏览器打开就是" target="_blank" rel="external">http://localhost:9090，这时候浏览器打开就是</a><code>index.html</code>，修改<code>src</code>文件中的<code>module1.js</code>输出的字符串，看看浏览器是否自动刷新。答案肯定是自动刷新，这里就不演示了。<br>　　完成了第一步，自动打包和实时刷新，那么如何自动打开浏览器显示我们想显示的<code>index.html</code>，这就要涉及 <code>webpack</code> 的pulgins啦。　　</p>
+<h5 id="小试webpack-plugins"><a href="#小试webpack-plugins" class="headerlink" title="小试webpack plugins"></a>小试webpack plugins</h5><p>　　安装 <code>open-browser-webpack-plugin</code> ，终端进入 <code>webpack-demos</code> 文件下，输入如下命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnpm install --save-dev open-browser-webpack-plugin</div></pre></td></tr></table></figure><br>　　修改 <code>webpack.config.js</code> 如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> OpenBrowserPlugin = <span class="built_in">require</span>(<span class="string">'open-browser-webpack-plugin'</span>);</div><div class="line"><span class="built_in">module</span>.exports=&#123;</div><div class="line">  <span class="attr">entry</span>:&#123;</div><div class="line">    <span class="attr">bundle1</span>:__dirname+<span class="string">"/src/module1.js"</span>,</div><div class="line">    <span class="attr">bundle2</span>:__dirname+<span class="string">"/src/module2.js"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">output</span>:&#123;</div><div class="line">    <span class="attr">path</span>:__dirname+<span class="string">"/dist"</span>,</div><div class="line">      <span class="attr">filename</span>:<span class="string">"[name].js"</span></div><div class="line">    &#125;,</div><div class="line">  <span class="attr">devServer</span>:&#123;</div><div class="line">    <span class="attr">contentBase</span>:<span class="string">"./dist"</span>,</div><div class="line">    <span class="attr">inline</span>:<span class="literal">true</span>,</div><div class="line">    <span class="attr">port</span>:<span class="number">9090</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">plugins</span>:[</div><div class="line">    <span class="keyword">new</span> OpenBrowserPlugin(&#123;</div><div class="line">      <span class="attr">url</span>: <span class="string">'http://localhost:9090'</span></div><div class="line">    &#125;)</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure><br>　　终端敲下 <code>webpack-dev-server</code> ，运行完之后就会自动打开浏览器显示<code>index.html</code>。经过以上的 <code>demo</code> ，我们大概熟悉了webpack的一些基本的东西，接下去我们来看下 <code>webpack</code> 里最为强大的两个功能： <code>loaders</code> 和  <code>plugins</code>。　　</p>
+<h4 id="webpack中的Loaders"><a href="#webpack中的Loaders" class="headerlink" title="webpack中的Loaders"></a>webpack中的Loaders</h4><p>　　有时候我在想，假如 <code>webpack</code> 没有 <code>Loaders</code> ，估计 <code>webpack</code> 早就不知道哪去了。也不会像今天这么火。 <code>webpack</code> 提供了很多的<code>loader</code> ，这个有点像<code>express</code>的中间件的感觉，从原文件到打包后的文件之间引入了不同的 <code>loader</code> 来预处理不同的文件。而这也是<code>webpack</code> 最大的一个特色。我们这边会介绍几个我平时比较常用的 <code>loader</code>　　 </p>
+<h5 id="json-loader"><a href="#json-loader" class="headerlink" title="json-loader　　"></a>json-loader　　</h5><p>　　安装 <code>open-browser-webpack-plugin</code> ，终端进入 <code>webpack-demos</code> 文件下，输入如下命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnpm install --save-dev json-loader</div></pre></td></tr></table></figure><br>　　修改 <code>webpack.config.js</code> 如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> OpenBrowserPlugin = <span class="built_in">require</span>(<span class="string">'open-browser-webpack-plugin'</span>);</div><div class="line"><span class="built_in">module</span>.exports=&#123;</div><div class="line">  <span class="attr">entry</span>:&#123;</div><div class="line">    <span class="attr">bundle1</span>:__dirname+<span class="string">"/src/module1.js"</span>,</div><div class="line">    <span class="attr">bundle2</span>:__dirname+<span class="string">"/src/module2.js"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">output</span>:&#123;</div><div class="line">    <span class="attr">path</span>:__dirname+<span class="string">"/dist"</span>,</div><div class="line">      <span class="attr">filename</span>:<span class="string">"[name].js"</span></div><div class="line">    &#125;,</div><div class="line">  <span class="attr">devServer</span>:&#123;</div><div class="line">    <span class="attr">contentBase</span>:<span class="string">"./dist"</span>,</div><div class="line">    <span class="attr">inline</span>:<span class="literal">true</span>,</div><div class="line">    <span class="attr">port</span>:<span class="number">9090</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">plugins</span>:[</div><div class="line">    <span class="keyword">new</span> OpenBrowserPlugin(&#123;</div><div class="line">      <span class="attr">url</span>: <span class="string">'http://localhost:9090'</span></div><div class="line">    &#125;)</div><div class="line">  ],</div><div class="line">  <span class="attr">module</span>:&#123;</div><div class="line">    <span class="attr">loaders</span>:[&#123;</div><div class="line">      <span class="attr">test</span>:<span class="regexp">/\.json$/</span>,</div><div class="line">      <span class="attr">loader</span>:<span class="string">"json-loader"</span>　　　／／这里不建议写成json，有可能导致编译失败</div><div class="line">    &#125;]</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li><code>test</code>：值为正则表达式，匹配加载文件的扩展名（必填）</li>
+<li><code>loader</code>：使用的loader名称（必填）</li>
+<li><code>include/exclude</code>：加载的时候可以设置打包/不打包哪些文件，比如我们打包js文件的时候不需要包含node_modules中的js文件，这样可以大大提高打包的速度（选填）</li>
+<li><code>query</code>：为loader提供额外的参数（选填）</li>
+</ul>
+<p>　　以上是<code>Loaders</code>常规需要配置的参数，如果按照<a href="http://www.css88.com/doc/webpack2/loaders/json-loader/" target="_blank" rel="external">这里</a>的配置写法，无法编译过<code>json</code>文件，报的错误为<code>You may need an appropriate loader to handle this file type.</code><br>　　在<code>src</code>文件夹中创建<code>index.json</code>，内容如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="string">"index"</span>:<span class="string">"这是json文件中的index属性"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure><br>　　修改<code>module1.js</code>的文件内容如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> data=<span class="built_in">require</span>(<span class="string">"./index.json"</span>);</div><div class="line"><span class="built_in">document</span>.write(<span class="string">'&lt;h1&gt;'</span>+data.index+<span class="string">'&lt;/h1&gt;'</span>);</div></pre></td></tr></table></figure>　<br>　　终端敲下 <code>webpack-dev-server</code> ，运行完之后就会自动打开浏览器显示如下：<br><img src="/images/webpack-demos6.png" class="full-image"></p>
+<h5 id="style-loader与css-loader"><a href="#style-loader与css-loader" class="headerlink" title="style-loader与css-loader"></a>style-loader与css-loader</h5><p>　　<code>css-loader</code>和<code>style-loader</code>是<code>webpack</code>处理样式文件的<code>loader</code>，二者的作用不同。<code>css-loader</code>用于加载<code>css</code>文件，允许你使用<code>@import</code>或者<code>url(…)</code>这种类似<code>require</code>引入文件的方式，而<code>style-loader</code>在于将<code>css-loader</code>加载打开的<code>css</code>文件按照内联样式表的方式引入到页面中。我们要使用它，同样要安装，在终端敲下如下命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnpm install --save-dev css-loader style-loader</div></pre></td></tr></table></figure><br>　　在<code>src</code>新增一个文件<code>index.css</code>，编写如下代码：　<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">body</span>&#123;</div><div class="line">  <span class="attribute">background-color</span>:gray; </div><div class="line">&#125;</div><div class="line"><span class="selector-tag">h1</span>&#123;</div><div class="line">  <span class="attribute">color</span>:<span class="number">#FFF</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure><br>　　分别修改<code>module1.js</code>和<code>webpack.config.js</code>文件如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//module1.js</span></div><div class="line"><span class="keyword">var</span> css=<span class="built_in">require</span>(<span class="string">"./index.css"</span>);</div><div class="line"><span class="keyword">var</span> data=<span class="built_in">require</span>(<span class="string">"./index.json"</span>);</div><div class="line"><span class="built_in">document</span>.write(<span class="string">'&lt;h1&gt;'</span>+data.index+<span class="string">'&lt;/h1&gt;'</span>);</div><div class="line"></div><div class="line"><span class="comment">//webpack.config.js</span></div><div class="line"><span class="comment">//前面部分省略</span></div><div class="line"><span class="built_in">module</span>:&#123;</div><div class="line">  <span class="attr">loaders</span>:[&#123;</div><div class="line">    <span class="attr">test</span>:<span class="regexp">/\.json$/</span>,</div><div class="line">    <span class="attr">loader</span>:<span class="string">"json"</span></div><div class="line">  &#125;,&#123;</div><div class="line">    <span class="attr">test</span>:<span class="regexp">/\.css$/</span>,</div><div class="line">    <span class="attr">loader</span>:<span class="string">"style-loader!css-loader"</span>  <span class="comment">//!用于分隔两个loader，执行顺序是从右向左</span></div><div class="line">  &#125;]</div><div class="line">&#125;</div></pre></td></tr></table></figure><br>终端敲下 <code>webpack-dev-server</code> ，运行完之后就会自动打开浏览器显示如下：<br><img src="/images/webpack-demos7.png" class="full-image"><br>　　加载打包 <code>css</code>文件，<code>webpack</code> 把 <code>index.css</code> 当做一个模块打包了，不是真正意义上的 <a href="http://www.ruanyifeng.com/blog/2016/06/css_modules.html" target="_blank" rel="external"><code>CSS Module</code></a>，不懂的可以参考下阮一峰写的教程。 </p>
+<h5 id="url-loader"><a href="#url-loader" class="headerlink" title="url-loader"></a>url-loader</h5><h5 id="babel-loader"><a href="#babel-loader" class="headerlink" title="babel-loader"></a>babel-loader</h5><h5 id="uglifyJsPlugin"><a href="#uglifyJsPlugin" class="headerlink" title="uglifyJsPlugin"></a>uglifyJsPlugin</h5><h4 id="webpack中的plugins"><a href="#webpack中的plugins" class="headerlink" title="webpack中的plugins"></a>webpack中的plugins</h4><h5 id="HtmlwebpackPlugin"><a href="#HtmlwebpackPlugin" class="headerlink" title="HtmlwebpackPlugin   　　  　　　　"></a>HtmlwebpackPlugin   　　  　　　　</h5>]]></content>
+      
+        <categories>
+            
+            <category> 前段工程化 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> webpack </tag>
+            
+            <tag> react </tag>
+            
+            <tag> babel </tag>
+            
+            <tag> javaScript </tag>
+            
+            <tag> css </tag>
+            
+            <tag> html </tag>
+            
+            <tag> image </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[解剖jQuery源码系列之$.extend与$().extend方法]]></title>
+      <url>/2017/05/31/jQuery20170531/</url>
+      <content type="html"><![CDATA[<p>　　我们经常看到各种各样的jQuery插件，有时候我们也需要针对我们的具体业务写一些定制化比较强的插件，而我们项目中又用到了jQuery，那么就可以在jQuery里通过$.extend或者$().extend来实现这个需求。<a id="more"></a></p>
+<h4 id="extend与-extend的使用方法"><a href="#extend与-extend的使用方法" class="headerlink" title="$.extend与$().extend的使用方法"></a>$.extend与$().extend的使用方法</h4><h5 id="第一种用法：只写一个对象字面量，jQuery中扩展插件的方法"><a href="#第一种用法：只写一个对象字面量，jQuery中扩展插件的方法" class="headerlink" title="第一种用法：只写一个对象字面量，jQuery中扩展插件的方法"></a>第一种用法：只写一个对象字面量，jQuery中扩展插件的方法</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//$.extend,扩展工具也就是底层方法</span></div><div class="line">$.extend(&#123;</div><div class="line">  <span class="attr">a</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"a"</span>);</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">b</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"b"</span>);</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line"><span class="comment">//调用</span></div><div class="line">$.a();   <span class="comment">//"a"</span></div><div class="line">$.b();   <span class="comment">//"b"</span></div><div class="line"><span class="comment">//$().extend,扩展jQuery对象的原型方法，也就是扩展jQuery对象实例的方法。</span></div><div class="line">$.fn.extend(&#123;</div><div class="line">  <span class="attr">a</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"a"</span>);</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">b</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"b"</span>);</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line"><span class="comment">//调用</span></div><div class="line">$().a();   <span class="comment">//"a"</span></div><div class="line">$().b();   <span class="comment">//"b"</span></div></pre></td></tr></table></figure>
+<p>　　以下两种用法，$().extend()同样可以也可以实现，所以只写了$.extend</p>
+<h5 id="第二种用法：当写多个对象字面量，后面的对象扩展到第一个对象上"><a href="#第二种用法：当写多个对象字面量，后面的对象扩展到第一个对象上" class="headerlink" title="第二种用法：当写多个对象字面量，后面的对象扩展到第一个对象上"></a>第二种用法：当写多个对象字面量，后面的对象扩展到第一个对象上</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = &#123;&#125;;</div><div class="line"><span class="keyword">var</span> b = &#123;<span class="string">'name'</span>:<span class="string">'suhq'</span>&#125;;</div><div class="line">$.extend(a,b);</div><div class="line"><span class="built_in">console</span>.log(a); <span class="comment">//&#123;'name':'suhq'&#125;</span></div></pre></td></tr></table></figure>
+<h5 id="第三种用法：浅拷贝与深拷贝"><a href="#第三种用法：浅拷贝与深拷贝" class="headerlink" title="第三种用法：浅拷贝与深拷贝"></a>第三种用法：浅拷贝与深拷贝</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//浅拷贝</span></div><div class="line"><span class="keyword">var</span> a = &#123;&#125;;</div><div class="line"><span class="keyword">var</span> b = &#123;<span class="string">'name'</span>:<span class="string">'suhq'</span>&#125;;</div><div class="line">$.extend(a,b);</div><div class="line">a.name=<span class="string">'huo'</span></div><div class="line"><span class="built_in">console</span>.log(b.name); <span class="comment">//suhq</span></div><div class="line"><span class="keyword">var</span> c = &#123;<span class="string">'obj'</span>:&#123;<span class="string">'name'</span>:suhq&#125;&#125;;</div><div class="line"><span class="comment">//这种和第二种用法一样，也是浅拷贝，为了好理解所以区分开来，这种情况可参考第二种用途</span></div><div class="line">$.extend(a,c);</div><div class="line"><span class="comment">//这里主要说的是如下形式</span></div><div class="line">$.extend(<span class="literal">false</span>,a,c); </div><div class="line">a.obj.name=<span class="string">'huo'</span>;</div><div class="line"><span class="built_in">console</span>.log(c.obj.name);<span class="comment">//'huo'</span></div><div class="line"><span class="comment">//深拷贝</span></div><div class="line">$.extend(<span class="literal">true</span>,a,c);</div><div class="line">a.obj.name=<span class="string">'huo'</span>;</div><div class="line"><span class="built_in">console</span>.log(c.obj.name);<span class="comment">//'suhq'</span></div></pre></td></tr></table></figure>
+<p>　　在了解完了$.extend与$().extend的使用方法后，我们来看下jQuery中是如何实现？</p>
+<h4 id="jQuery中extend方法的源码"><a href="#jQuery中extend方法的源码" class="headerlink" title="jQuery中extend方法的源码"></a>jQuery中extend方法的源码</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div></pre></td><td class="code"><pre><div class="line">jQuery.extend = jQuery.fn.extend = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">//定义了一些局部变量，方便后续使用</span></div><div class="line">  <span class="keyword">var</span> options, name, src, copy, copyIsArray, clone,</div><div class="line">      target = <span class="built_in">arguments</span>[<span class="number">0</span>] || &#123;&#125;,</div><div class="line">      i = <span class="number">1</span>,</div><div class="line">      length = <span class="built_in">arguments</span>.length,</div><div class="line">      deep = <span class="literal">false</span>;</div><div class="line"></div><div class="line">  <span class="comment">//处理第三种用法中的深拷贝：$.extend(true,a,c);</span></div><div class="line">  <span class="comment">//此时target=arguments[0]也就是true，是一个boolean类型值，可以进入if语句里</span></div><div class="line">  <span class="keyword">if</span> ( <span class="keyword">typeof</span> target === <span class="string">"boolean"</span> ) &#123;</div><div class="line">      <span class="comment">//经过以下代码处理：deep等于true，target等于a</span></div><div class="line">      deep = target;</div><div class="line">      target = <span class="built_in">arguments</span>[<span class="number">1</span>] || &#123;&#125;;</div><div class="line">      <span class="comment">//i等于2主要是为了后续直接定位到b，直接跳过前两个参数</span></div><div class="line">      i = <span class="number">2</span>;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">//针对异常情况，比如target是一个字符串或者其他不是对象的数据时</span></div><div class="line">  <span class="comment">//如果target不是一个对象或者函数（函数也是对象），那么就将target赋值为空对象</span></div><div class="line">  <span class="keyword">if</span> ( <span class="keyword">typeof</span> target !== <span class="string">"object"</span> &amp;&amp; !jQuery.isFunction(target) ) &#123;</div><div class="line">      target = &#123;&#125;;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">//这个处理的第一种用法的，判断当前传参的个数与是否一样，也就是说，按照上面代码的逻辑，如果不是深拷贝，那么i值就不会变化，而且又恰巧只传一个参数，那么就是在$或者$.fn上扩展方法。</span></div><div class="line">  <span class="comment">//所以目标对象变成了this，也就是$或者是$实例对象上</span></div><div class="line">  <span class="comment">//此时i等于0</span></div><div class="line">  <span class="keyword">if</span> ( length === i ) &#123;</div><div class="line">      target = <span class="keyword">this</span>;</div><div class="line">      --i;</div><div class="line">  &#125;</div><div class="line">  <span class="comment">//1.第一种用途：此时i等于0，length等于1   $.extend(&#123;a:function()&#123;console.log("a");&#125;,b:function()&#123;console.log("b");&#125;&#125;)</span></div><div class="line">  <span class="comment">//2.第二种用途：此时i等于1，length等于2   $.extend(a,b)</span></div><div class="line">  <span class="comment">//3.第三种用途：此时i等于2，length等于3   $.extend(true,a,b)或者$.extend(false,a,b)</span></div><div class="line">  <span class="keyword">for</span> ( ; i &lt; length; i++ ) &#123;</div><div class="line">      <span class="comment">//1.第一种用途，此时options等于&#123;a:function()&#123;console.log("a");&#125;,b:function()&#123;console.log("b");&#125;&#125;</span></div><div class="line">      <span class="comment">//2.第二种用途，此时options等于b</span></div><div class="line">      <span class="comment">//3.第三种用途，此时options等于b</span></div><div class="line">      <span class="comment">//if判断主要是为了除去arguments[ i ]等于undefined或者null</span></div><div class="line">      <span class="keyword">if</span> ( (options = <span class="built_in">arguments</span>[ i ]) != <span class="literal">null</span> ) &#123;</div><div class="line">        <span class="comment">// Extend the base object</span></div><div class="line">        <span class="keyword">for</span> ( name <span class="keyword">in</span> options ) &#123;</div><div class="line">          src = target[ name ];</div><div class="line">          copy = options[ name ];</div><div class="line"></div><div class="line">          <span class="comment">// Prevent never-ending loop</span></div><div class="line">          <span class="keyword">if</span> ( target === copy ) &#123;</div><div class="line">            <span class="keyword">continue</span>;</div><div class="line">          &#125;</div><div class="line"></div><div class="line">          <span class="comment">// Recurse if we're merging plain objects or arrays</span></div><div class="line">          <span class="keyword">if</span> ( deep &amp;&amp; copy &amp;&amp; ( jQuery.isPlainObject(copy) || (copyIsArray = jQuery.isArray(copy)) ) ) &#123;</div><div class="line">            <span class="keyword">if</span> ( copyIsArray ) &#123;</div><div class="line">              copyIsArray = <span class="literal">false</span>;</div><div class="line">              clone = src &amp;&amp; jQuery.isArray(src) ? src : [];</div><div class="line"></div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">              clone = src &amp;&amp; jQuery.isPlainObject(src) ? src : &#123;&#125;;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="comment">// Never move original objects, clone them</span></div><div class="line">            target[ name ] = jQuery.extend( deep, clone, copy );</div><div class="line"></div><div class="line">            <span class="comment">// Don't bring in undefined values</span></div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> ( copy !== <span class="literal">undefined</span> ) &#123;</div><div class="line">              target[ name ] = copy;</div><div class="line">            &#125;</div><div class="line">          &#125;</div><div class="line">       &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// Return the modified object</span></div><div class="line">  <span class="keyword">return</span> target;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> 前端技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> JavaScript </tag>
+            
+            <tag> jQuery </tag>
+            
+            <tag> Dom </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[你应该知道的HTTP报文首部]]></title>
+      <url>/2017/05/30/http20170530/</url>
+      <content type="html"><![CDATA[<h4 id="HTTP报文首部"><a href="#HTTP报文首部" class="headerlink" title="HTTP报文首部"></a>HTTP报文首部</h4><p>　　接着上一篇<a href="http://www.mmyton.com/2017/05/29/httpCode">你应该掌握的14种常用的HTTP状态码</a>，我们再来看看HTTP首部。工作中跟HTTP协议打交道还是很多的，尤其是在浏览器端调试的时候，我们经常需要查看发送的请求HTTP首部（查看发送的数据，无论是GET还是POST等请求方式），以及响应HTTP首部，以此来判断请求与响应的正确与否。最经常的应用场景有：1.接口联调。2.抓包调试。3.前端自测等。当然还有很多应用场景，我这边只是列了我工作中经常使用的场景。<a id="more"></a><br>　　说到HTTP协议，我们平时感知不是很多，因为我们输入一些网站的地址时，例如：www.baidu.com。并没有输入 http:// 开头，但是浏览器在访问时会自动为我们加上这个协议头。说明我们的web应用就是基于这个协议而建立起来的。可以这么说没有HTTP协议，我们现在的web应用不会这么的丰富。<br>　　HTTP报文首部是HTTP协议里很重要的一部分，它就相当于我们平时说话的语言，为客户端和服务器端之间的沟通奠定了基础。HTTP报文首部包含请求报文首部和响应报文首部。通过请求报文首部，服务器可以知道客户端想要做什么，而通过响应报文首部，客户端可以知道服务器响应了什么了。<br>　　HTTP报文结构包括：报文首部、空行、报文主体。<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//在客户端和服务器端相互沟通起着至关重要的信息都在报文首部里</div><div class="line">报文首部</div><div class="line">//空行</div><div class="line">//所需要的用户和资源信息都在这（其实很多时候并不是所有请求都有报文主体的，比如GET请求。</div><div class="line">//如果是POST请求，例如请求数据，此时这里放置就是请求参数了。）</div><div class="line">报文主体</div></pre></td></tr></table></figure></p>
+<h4 id="HTTP请求报文"><a href="#HTTP请求报文" class="headerlink" title="HTTP请求报文"></a>HTTP请求报文</h4><p>　　在请求中，HTTP请求报文一个大致结构可以参考如下图片：<br><img src="/images/http1.png" class="full-image"><br>　　这是一个POST请求，这种请求方法会有报文主体，如果是GET请求的话，参数会挂在URL地址上，也就没有图中的报文主体，其他格式和POST请求一样。这张图显示了一个HTTP请求报文的大致结构，关于HTTP请求报文里的很多首部字段，请往下看。我们大致可以从图片中看到一个HTTP请求报文包括：报文首部和报文主体，报文首部又包括请求行（请求方法、请求URI、HTTP版本）、HTTP首部字段（请求首部字段、通用首部字段、实体首部字段），而报文主体则是这个请求所需要携带的相关参数（格式是：字段名=字段值，分隔符是：&amp;）。</p>
+<h4 id="HTTP响应报文"><a href="#HTTP响应报文" class="headerlink" title="HTTP响应报文"></a>HTTP响应报文</h4><p>　　在响应中，HTTP响应报文一个大致结构可以参考如下图片：　<br><img src="/images/http2.png" class="full-image"><br>　　接上一个请求，服务器返回的响应报文如上图所示，我们可以看到HTTP响应报文和HTTP请求报文很像，都是由报文首部和报文主体，只是上图的响应无返回报文主体。对比以上两张图片可以看出，HTTP请求报文和HTTP响应报文的区别在于，HTTP请求报文是请求行，首部字段中是请求首部字段，而HTTP响应报文是状态行，首部字段中是响应首部字段。不仅如此，请求行和状态行的格式也是不一样的。但是从整体来看，我们可以看出来HTTP报文首部字段的格式如下：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">首部字段名：字段值</div></pre></td></tr></table></figure>　　<br>　　可以分为以下四种类型：</p>
+<ul>
+<li>通用首部字段（General Header Fields）：请求报文和响应报文两方都会使用的首部。</li>
+<li>请求首部字段（Request Header Fields）：从客户端向服务器端发送请求报文时使用的首部。</li>
+<li>响应首部字段（Response Header Fields）：从服务器向客户端返回响应报文时使用的首部。</li>
+<li>实体首部字段（Entity Header Fields）：针对请求报文和响应报文的实体部分使用的首部。</li>
+</ul>
+<p>　　以下字段内容参考至图解HTTP这本书。</p>
+<h4 id="通用首部字段"><a href="#通用首部字段" class="headerlink" title="通用首部字段"></a>通用首部字段</h4><table>
+<thead>
+<tr>
+<th style="text-align:left">首部字段名</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Cache-Control</td>
+<td style="text-align:left">控制缓存的行为</td>
+</tr>
+<tr>
+<td style="text-align:left">Connection</td>
+<td style="text-align:left">逐跳首部、连接的管理</td>
+</tr>
+<tr>
+<td style="text-align:left">Date</td>
+<td style="text-align:left">创建报文的日期时间</td>
+</tr>
+<tr>
+<td style="text-align:left">Pragma</td>
+<td style="text-align:left">报文指令</td>
+</tr>
+<tr>
+<td style="text-align:left">Trailer</td>
+<td style="text-align:left">报文末端的首部一览</td>
+</tr>
+<tr>
+<td style="text-align:left">Transfer-Encoding</td>
+<td style="text-align:left">指定报文主体的传输编码方式</td>
+</tr>
+<tr>
+<td style="text-align:left">Upgrade</td>
+<td style="text-align:left">升级为其他协议</td>
+</tr>
+<tr>
+<td style="text-align:left">Via</td>
+<td style="text-align:left">代理服务器的相关信息</td>
+</tr>
+<tr>
+<td style="text-align:left">Warining</td>
+<td style="text-align:left">错误通知</td>
+</tr>
+</tbody>
+</table>
+<p>　　以上的字段，可能对应的说明说的不是很清楚，后续会有相对应的文章分类的详细说下。　　</p>
+<h4 id="请求首部字段"><a href="#请求首部字段" class="headerlink" title="请求首部字段"></a>请求首部字段</h4><table>
+<thead>
+<tr>
+<th style="text-align:left">首部字段名</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Accept</td>
+<td style="text-align:left">用户代理可处理的媒体类型</td>
+</tr>
+<tr>
+<td style="text-align:left">Accept-Charset</td>
+<td style="text-align:left">优先的字符集</td>
+</tr>
+<tr>
+<td style="text-align:left">Accept-Encoding</td>
+<td style="text-align:left">优先的内容编码</td>
+</tr>
+<tr>
+<td style="text-align:left">Accept-Language</td>
+<td style="text-align:left">优先的语言（自然语言）</td>
+</tr>
+<tr>
+<td style="text-align:left">Authorization</td>
+<td style="text-align:left">Web认证信息</td>
+</tr>
+<tr>
+<td style="text-align:left">Expect</td>
+<td style="text-align:left">期待服务器的特定行为</td>
+</tr>
+<tr>
+<td style="text-align:left">From</td>
+<td style="text-align:left">用户的电子邮箱地址</td>
+</tr>
+<tr>
+<td style="text-align:left">Host</td>
+<td style="text-align:left">请求资源所在的服务器</td>
+</tr>
+<tr>
+<td style="text-align:left">If-Match</td>
+<td style="text-align:left">比较实体标记（Etag）</td>
+</tr>
+<tr>
+<td style="text-align:left">If-Modified-Since</td>
+<td style="text-align:left">比较资源的更新时间</td>
+</tr>
+<tr>
+<td style="text-align:left">If-None-Match</td>
+<td style="text-align:left">比较实体标记（与If-Match相反）</td>
+</tr>
+<tr>
+<td style="text-align:left">If-Range</td>
+<td style="text-align:left">资源未更新时发送实体Byte的范围请求</td>
+</tr>
+<tr>
+<td style="text-align:left">If-Unmodified-Since</td>
+<td style="text-align:left">比较资源的更新时间（与If-Modified-Since相反）</td>
+</tr>
+<tr>
+<td style="text-align:left">Match-Forwards</td>
+<td style="text-align:left">最大传输逐跳数</td>
+</tr>
+<tr>
+<td style="text-align:left">Proxy-Authorization</td>
+<td style="text-align:left">代理服务器要求客户端的认证信息</td>
+</tr>
+<tr>
+<td style="text-align:left">Range</td>
+<td style="text-align:left">实体的字节范围请求</td>
+</tr>
+<tr>
+<td style="text-align:left">Referer</td>
+<td style="text-align:left">对请求中URI的原始获取方</td>
+</tr>
+<tr>
+<td style="text-align:left">TE</td>
+<td style="text-align:left">传输编码的优先级</td>
+</tr>
+<tr>
+<td style="text-align:left">User-Agent</td>
+<td style="text-align:left">HTTP客户端程序的信息</td>
+</tr>
+</tbody>
+</table>
+<h4 id="响应首部字段"><a href="#响应首部字段" class="headerlink" title="响应首部字段"></a>响应首部字段</h4><table>
+<thead>
+<tr>
+<th style="text-align:left">首部字段名</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Accept-Range</td>
+<td style="text-align:left">是否接受字节范围请求</td>
+</tr>
+<tr>
+<td style="text-align:left">Age</td>
+<td style="text-align:left">推算资源创建经过时间</td>
+</tr>
+<tr>
+<td style="text-align:left">ETag</td>
+<td style="text-align:left">资源的匹配信息</td>
+</tr>
+<tr>
+<td style="text-align:left">Location</td>
+<td style="text-align:left">令客户端重定向至指定URI</td>
+</tr>
+<tr>
+<td style="text-align:left">Proxy-Authenticate</td>
+<td style="text-align:left">代理服务器对客户端的认证信息</td>
+</tr>
+<tr>
+<td style="text-align:left">Retry-After</td>
+<td style="text-align:left">对再次发起请求的时机要求</td>
+</tr>
+<tr>
+<td style="text-align:left">Server</td>
+<td style="text-align:left">HTTP服务器的安装信息</td>
+</tr>
+<tr>
+<td style="text-align:left">Vary</td>
+<td style="text-align:left">代理服务器缓存的管理信息</td>
+</tr>
+<tr>
+<td style="text-align:left">WWW-Authenticate</td>
+<td style="text-align:left">服务器对客户端的认证信息 　</td>
+</tr>
+</tbody>
+</table>
+<h4 id="实体首部字段"><a href="#实体首部字段" class="headerlink" title="实体首部字段"></a>实体首部字段</h4><table>
+<thead>
+<tr>
+<th style="text-align:left">首部字段名</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Allow</td>
+<td style="text-align:left">资源可支持的HTTP方法</td>
+</tr>
+<tr>
+<td style="text-align:left">Content-Encoding</td>
+<td style="text-align:left">实体主体适用的编码方式</td>
+</tr>
+<tr>
+<td style="text-align:left">Content-Language</td>
+<td style="text-align:left">实体主体的自然语言</td>
+</tr>
+<tr>
+<td style="text-align:left">Content-Length</td>
+<td style="text-align:left">实体主体的大小（单位：字节）</td>
+</tr>
+<tr>
+<td style="text-align:left">Content-Location</td>
+<td style="text-align:left">替代对应资源的URI</td>
+</tr>
+<tr>
+<td style="text-align:left">Content-MD5</td>
+<td style="text-align:left">实体主体的报文摘要</td>
+</tr>
+<tr>
+<td style="text-align:left">Content-Range</td>
+<td style="text-align:left">实体主体的位置范围</td>
+</tr>
+<tr>
+<td style="text-align:left">Content-Type</td>
+<td style="text-align:left">实体主体的媒体类型</td>
+</tr>
+<tr>
+<td style="text-align:left">Expires</td>
+<td style="text-align:left">实体主体过期的日期时间</td>
+</tr>
+<tr>
+<td style="text-align:left">Last-Modified</td>
+<td style="text-align:left">资源的最后修改日期时间</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+      
+        <categories>
+            
+            <category> 计算机网络 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> HTTP </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[你应该掌握的14种常用的HTTP状态码]]></title>
+      <url>/2017/05/29/httpCode/</url>
+      <content type="html"><![CDATA[<p>　　最近在看《图解HTTP》这本书，书很薄，大概250页左右，阅读起来比较轻松，虽然有些理论平时项目中并没遇到，但是总体感觉还是很不错的一本书。<a id="more"></a></p>
+<h4 id="HTTP状态码"><a href="#HTTP状态码" class="headerlink" title="HTTP状态码"></a>HTTP状态码</h4><p>　　所谓的HTTP状态码，我个人认为是服务器在接收客户端请求处理结果的反馈，就是告知浏览器，服务器处理了你的请求，结果是怎么样的。说到这个状态码，印象最深刻还是美团校招面试时，问的我常见的状态码有几种分别做什么用。非科班出身的我，当时回答的还是项目中常遇到的那几个，比如200、500,其他，其他是什么，我也不知道。工作中遇到各种不同的状态码，不同的服务器请求结果，才让我有很深刻的意识，我应该掌握好HTTP。以下是状态码的类别：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">类别</th>
+<th style="text-align:center">原因短语</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1XX</td>
+<td style="text-align:center">Information（信息性状态码）</td>
+<td style="text-align:center">接收的请求正在处理</td>
+</tr>
+<tr>
+<td style="text-align:center">2XX</td>
+<td style="text-align:center">Success （成功状态码）</td>
+<td style="text-align:center">请求正常处理完毕</td>
+</tr>
+<tr>
+<td style="text-align:center">3XX</td>
+<td style="text-align:center">Redirection （重定向状态码）</td>
+<td style="text-align:center">需要进行附加操作以完成请求</td>
+</tr>
+<tr>
+<td style="text-align:center">4XX</td>
+<td style="text-align:center">Client Error （客户端错误状态码）</td>
+<td style="text-align:center">服务器无法处理请求</td>
+</tr>
+<tr>
+<td style="text-align:center">5XX</td>
+<td style="text-align:center">Server Error （服务器错误状态码）</td>
+<td style="text-align:center">服务器处理请求出错</td>
+</tr>
+</tbody>
+</table>
+<p>　　    这里要特别提一句：只要符合状态码的类别即可。很多时候我在项目中遇到的状态码更多的根据我们的业务需求去划分，根据不同的返回错误提示，给出不同的状态码。但大体不会超出以下将要列出的状态码。</p>
+<h4 id="2XX-成功"><a href="#2XX-成功" class="headerlink" title="2XX 成功"></a>2XX 成功</h4><p>　　2XX的响应结果就是表示服务器正常处理了请求。但是有时候也会遇到一种情况那就是后端返回状态码200，但是返回了错误提示，后端是将错误提示和状态码放在返回的字符串数据里：{code:404,message:”找不到taskId为38456的工单”}，这种情况下返回的状态码不可信，需要和后端规范下，请求返回的正确格式。</p>
+<h5 id="200-OK"><a href="#200-OK" class="headerlink" title="200 OK"></a>200 OK</h5><p>　　这个状态码是我们平时遇到最多的，可以说经常遇到，简单点的意思就是说，服务器对于浏览器的请求完全理解并正确处理了。<br>　　这个状态码返回的内容跟请求方式有关系，如果是GET请求，返回包含响应主体，如果是HEAD请求，返回不包括响应主体。</p>
+<h5 id="204-No-Content"><a href="#204-No-Content" class="headerlink" title="204 No Content"></a>204 No Content</h5><p>　　这个状态码，看右边的原因短语，顾名思义，表示的是服务器已经正确并成功处理了浏览器的请求，但是返回的响应报文中不包含实体的主体部分。另外，也不允许返回任何实体的主体。（有点绕）当浏览器发出请求，如果服务器返回的是这个状态码，而此时页面又有展示，那么显示的页面不发生更新，因为没有新的主体返回。<br>　　这个状态码一般的使用场景是当客户端向服务器端发送请求，而且服务器不需要向客户端发送新内容的场景下。</p>
+<h5 id="206-Partial-Content"><a href="#206-Partial-Content" class="headerlink" title="206 Partial Content　"></a>206 Partial Content　</h5><p>　　这个状态码比较好理解，浏览器向服务器进行了返回内容的范围请求，比如只需要某一篇文章的50%，请求方会在请求首部设置范围字段Range，告知服务器我要请求哪一部分的内容，服务器收到请求后会返回这个返回的数据，并在响应报文里的字段Content-Range里显示了当前返回的数据范围。</p>
+<h4 id="3XX-重定向"><a href="#3XX-重定向" class="headerlink" title="3XX 重定向"></a>3XX 重定向</h4><p>　　3XX表示服务器需要执行某些特殊的处理才能以正确的方式响应请求。</p>
+<h5 id="301-Moved-Permanently"><a href="#301-Moved-Permanently" class="headerlink" title="301 Moved Permanently"></a>301 Moved Permanently</h5><p>   理解这个最好的例子就是，你在浏览器收藏了某一个页面的书签，或者某一个资源的书签，当你下次请求时，服务器告知你需要重定向到另一个地址去获取这个页面或者资源，并告知你浏览器的书签也需要更新（当然更不更新取决于你）。浏览器更新的URI地址取于服务器返回的响应报文里的Location字段。<br>   例如我们经常会请求这么一个地址：<a href="http://www.Mmyton.com/sample">http://www.Mmyton.com/sample</a>  也就是后续不加上斜杠，此时服务器就会告知浏览器重定向到 <a href="http://www.Mmyton.com/sample/">http://www.Mmyton.com/sample/</a> 这个地址请求资源，这时候就会产生301状态码。</p>
+<h5 id="302-Found"><a href="#302-Found" class="headerlink" title="302 Found"></a>302 Found</h5><p>　　临时重定向。它和301很像，301是永久重定向，302状态码的意思是浏览器请求的资源已经被分配到新的URI了，希望浏览器这次的请求使用新的URI访问。既然是临时，也就是说它并不会要求你更新浏览器书签里这个页面或者资源的URI地址，后续是否会继续临时重定向到这个URI地址得看服务器是如何分配的。服务器返回的响应报文里的Location字段仍然是你之前书签里保存的那个地址。</p>
+<h5 id="303-See-Other"><a href="#303-See-Other" class="headerlink" title="303 See Other"></a>303 See Other</h5><p>　　书中的解释：该状态码表示由于请求对应的资源存在着另一个URI，应使用GET方法定向获取请求的资源。这个解释其实和302很像，感觉好想都是重定向，其实还是有明确的区别的，302虽然也重定向，但并没有要求浏览器特定采用什么请求方式，请求页面或者资源新的URI地址，但是303就明确要求使用GET方式，这个就是它们之间最大的区别。</p>
+<h5 id="304-Not-Modified"><a href="#304-Not-Modified" class="headerlink" title="304 Not Modified"></a>304 Not Modified</h5><p>　　这个状态码虽然划分到3XX系列里，但和重定向没有任何关系，它也是我们经常会遇到的一个状态码，它表示客户端发送附带条件的请求（指的是客户端采用GET方法的请求报文中包含If-Match、If-Modified-Since、If-None-Match、If-Range、If-Unmodified-Since中任一首部）时，服务器允许请求访问资源，但因发生请求资源未满足条件的情况后，直接返回304 Not Modified。其实就是资源没有改变，可以直接使用客户端未过期的缓存，这也是为什么我们在访问一些页面第一次访问会比较慢，但是第二次访问却很快的原因所在。</p>
+<h5 id="307-Temporary-Redirect"><a href="#307-Temporary-Redirect" class="headerlink" title="307 Temporary Redirect"></a>307 Temporary Redirect</h5><p>　　这个其实和302是一样的，都是临时重定向。在HTTP标准里，当你是采用POST请求时，如果返回的是302状态码，标准是禁止将POST改成了GET请求，但是很多浏览器在实现时并没有按照标准走，很多时候重定向时会将你原先的POST请求方式改为GET方式请求新的URI地址。307状态码会严格遵照标准，不会将请求从POST改为GET，但是实际中，各个浏览器的实现又不尽相同，仍有些浏览器会改为GET。<br>　　这个状态码遇到的次数比较少。</p>
+<h4 id="4XX-客户端错误"><a href="#4XX-客户端错误" class="headerlink" title="4XX 客户端错误"></a>4XX 客户端错误</h4><p>　　这一系列状态码也是平时遇到比较多的。当出现这个状态码时，错误一般出现在客户端，表示服务器不能正常解析请求。</p>
+<h5 id="400-Bad-Request"><a href="#400-Bad-Request" class="headerlink" title="400 Bad Request"></a>400 Bad Request</h5><p>　　这个状态码的意思是请求报文中存在语法错误，服务器无法理解这个请求。这个错误发生时，我们就要看服务器返回的错误信息是什么，比如“请求缺少了XXX字段”。</p>
+<h5 id="401-Unauthorized"><a href="#401-Unauthorized" class="headerlink" title="401 Unauthorized"></a>401 Unauthorized</h5><p>　　该状态的意思是客户端请求时需要进行HTTP认证，也就是我们需要输入用户名和密码进行认证，认证通过了就可以正常请求资源，如果认证失败，请求会再次返回401状态码，并告知认证失败。这时就需要重新请求和重新认证了。</p>
+<h5 id="403-Forbidden"><a href="#403-Forbidden" class="headerlink" title="403 Forbidden"></a>403 Forbidden</h5><p>　　该状态表示的意思就是服务器拒绝了客户端请求某一个页面或者资源。比如跨域经常就会出现这样一个状态码。其实就是没有权限，这时候就需要服务器对当前请求所在的IP或者域名设置白名单或者修改访问权限等。</p>
+<h5 id="404-Not-Found"><a href="#404-Not-Found" class="headerlink" title="404 Not Found"></a>404 Not Found</h5><p>　　浏览器上没有请求所对应的资源</p>
+<h4 id="5XX服务器错误"><a href="#5XX服务器错误" class="headerlink" title="5XX服务器错误"></a>5XX服务器错误</h4><p>　　这个状态码的意思就是服务器端出现错误了，可能是处理请求时出现问题，比如程序撰写逻辑不对进入死循环，也有可能是服务器挂了。</p>
+<h5 id="500-Internal-Server-Error"><a href="#500-Internal-Server-Error" class="headerlink" title="500 Internal  Server Error"></a>500 Internal  Server Error</h5><p>　　该状态吗表示服务器在处理请求时出现了问题。这些问题可能是web应用存在bug，也可能是某些临时的故障，比如内存爆了。此时我们可以查看服务器相关日志的信息，以便更快的定位问题并解决问题。</p>
+<h5 id="503-Service-Unavailable"><a href="#503-Service-Unavailable" class="headerlink" title="503 Service Unavailable"></a>503 Service Unavailable</h5><p>　　该状态码表明服务器暂时处于超负载或正在进行停机维护，现在无法处理请求。如果事先知道解除以上状况需要的时间，建议写入Retry-After首付字段返回给客户端。<br>　　以上就是我们常见的14种状态码，其实学习起来很快，加上项目中遇到的错误，平时有意的去注意出现错误时返回的状态码并去定位问题，久而久之这些状态码肯定了然于胸了。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 计算机网络 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> HTTP </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[解剖jQuery源码系列之jQuery工具方法]]></title>
+      <url>/2017/05/23/jQuery20170523/</url>
+      <content type="html"></content>
+      
+        <categories>
+            
+            <category> 前端技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> JavaScript </tag>
+            
+            <tag> jQuery </tag>
+            
+            <tag> Dom </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[解剖jQuery源码系列之jQuery.prototype.init方法]]></title>
+      <url>/2017/05/20/jQuery20170520/</url>
+      <content type="html"><![CDATA[<p>　　今天日子是5月20号，比较特殊，原本打算出去浪一下，奈何对象有事。就静下心来把jQuery源码中的init方法总结下。篇幅会略长些。<a id="more"></a></p>
+<h4 id="jQuery-prototype-init"><a href="#jQuery-prototype-init" class="headerlink" title="jQuery.prototype.init"></a>jQuery.prototype.init</h4><p>　　说起jQuery.prototype.init这个方法，不知道大家还有没有印象，这个方法在jQuery源码中出现在两个地方，什么作用呢？我们来看以下的代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//这里出现了第一次</span></div><div class="line">jQuery = <span class="function"><span class="keyword">function</span>(<span class="params"> selector, context </span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> jQuery.fn.init( selector, context, rootjQuery );</div><div class="line">&#125;</div><div class="line"><span class="comment">//这里是第二次</span></div><div class="line">jQuery.fn = jQuery.prototype = &#123;</div><div class="line">  <span class="attr">init</span>: <span class="function"><span class="keyword">function</span>(<span class="params"> selector, context, rootjQuery </span>) </span>&#123;</div><div class="line">    <span class="comment">//中间省略无数代码，一会再来看</span></div><div class="line">  &#125;</div><div class="line">&#125;  </div></pre></td></tr></table></figure><br>　　从上可以看出来，init方法是jQuery原型上的一个方法。那这个具体有什么作用？我们再来看下我们平时使用jQuery或者$创建jQuery对象有几种使用方式，大致可以分为以下<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//$就是jQuery</span></div><div class="line"><span class="comment">//第一种分类</span></div><div class="line">$(<span class="string">""</span>), $(<span class="literal">null</span>), $(<span class="literal">undefined</span>), $(<span class="literal">false</span>)</div><div class="line"><span class="comment">//第二种分类</span></div><div class="line">$(<span class="string">'#div1'</span>) $(<span class="string">'.box'</span>) $(<span class="string">'div'</span>)  $(<span class="string">'#div1 div.box'</span>)</div><div class="line">$(<span class="string">'&lt;li&gt;'</span>)  $(<span class="string">'&lt;li&gt;1&lt;/li&gt;&lt;li&gt;2&lt;/li&gt;'</span>) $(<span class="string">'&lt;li&gt;hhehe'</span>)</div><div class="line"><span class="comment">//第三种分类</span></div><div class="line">$(<span class="keyword">this</span>)  $(<span class="built_in">document</span>)</div><div class="line"><span class="comment">//第四种分类</span></div><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;)</div><div class="line"><span class="comment">//第五种分类</span></div><div class="line">$([])  $(&#123;&#125;)</div></pre></td></tr></table></figure><br>　　看到这里，可能会有点疑惑，这个跟init方法有什么关系，我们来看一个例子：$(‘#div1’)，当执行这段代码时，$也就是jQuery函数就会执行起来，传入参数，其中selector就是#div1，传入到函数体内后，selector参数传给了jQuery.fn.init( selector, context, rootjQuery )这个构造函数，并new一个这个构造函数的实例，new一个时就会执行init的方法，最终$(‘#div1’)返回的是init的一个实例对象。从以上逻辑可以看出init方法主要做的是根据$或者jQuery构造函数执行时传入不同参数做差异化处理后返回init实例。根据我们平时使用的，$(‘#div’)的作用在于选中页面id为div的元素，而selector由上面的代码可以看出，可以传入不同的参数，那么init方法是如何针对传入的不同selector参数选中不同的Dom元素或者执行某个函数或者做其他处理呢？我们来看下init方法的源码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div></pre></td><td class="code"><pre><div class="line">jQuery.fn = jQuery.prototype = &#123;</div><div class="line">  <span class="comment">//传入三个参数，其中selector作为选择器元素，</span></div><div class="line">  <span class="comment">//context为selector的执行上下文，rootjQuery就是$(document)</span></div><div class="line">  init: <span class="function"><span class="keyword">function</span>(<span class="params"> selector, context, rootjQuery </span>) </span>&#123;</div><div class="line">    <span class="comment">// 方法进来定义两个变量，第一个变量是后续匹配selector为字符串时使用</span></div><div class="line">    <span class="comment">// 第二个参数主要用于存储document.getElementById获取到的Dom元素</span></div><div class="line">    <span class="keyword">var</span> match, elem;    </div><div class="line">    </div><div class="line">    <span class="comment">// 第一种分类处理: $(""), $(null), $(undefined), $(false)</span></div><div class="line">    <span class="comment">// 如果传进来的是这四种情况直接返回this，关于this是什么可往下看</span></div><div class="line">    <span class="keyword">if</span> ( !selector ) &#123;</div><div class="line">      <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">// 第二种分类处理：</span></div><div class="line">    <span class="comment">// $('#div1') $('.box') $('div')  $('#div1 div.box')</span></div><div class="line">    <span class="comment">// $('&lt;li&gt;')  $('&lt;li&gt;1&lt;/li&gt;&lt;li&gt;2&lt;/li&gt;') $('&lt;li&gt;hhehe')</span></div><div class="line">    <span class="comment">// 判断传进来的selector，例如$('#div1')，那么selector就是'#div1'</span></div><div class="line">    <span class="comment">// 如果判断为真则进入if语句，否则进入第94行的else if</span></div><div class="line">    <span class="comment">// 也就是我们上面分类的第二类可以进入</span></div><div class="line">    <span class="keyword">if</span> ( <span class="keyword">typeof</span> selector === <span class="string">"string"</span> ) &#123;</div><div class="line">      <span class="comment">// 第二种分类进来后，再次筛选，判断是否是标签</span></div><div class="line">      <span class="comment">// 能进入if的有$('&lt;li&gt;')  $('&lt;li&gt;1&lt;/li&gt;&lt;li&gt;2&lt;/li&gt;') </span></div><div class="line">      <span class="comment">// 而我们知道这2种类型属于创建标签</span></div><div class="line">      <span class="keyword">if</span> ( selector.charAt(<span class="number">0</span>) === <span class="string">"&lt;"</span> &amp;&amp; selector.charAt( selector.length - <span class="number">1</span> ) === <span class="string">"&gt;"</span> &amp;&amp; selector.length &gt;= <span class="number">3</span> ) &#123;</div><div class="line">        <span class="comment">// 进入if后给match赋值一个数组，这个数组最终编程是</span></div><div class="line">        <span class="comment">// match = [ null, '&lt;li&gt;', null ];</span></div><div class="line">        <span class="comment">// match = [ null, '&lt;li&gt;1&lt;/li&gt;&lt;li&gt;2&lt;/li&gt;' , null ];</span></div><div class="line">        match = [ <span class="literal">null</span>, selector, <span class="literal">null</span> ];</div><div class="line">      &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="comment">// 能进入else的有</span></div><div class="line">        <span class="comment">// $('#div1') $('.box') $('div')  $('#div1 div.box') $('&lt;li&gt;hhehe')</span></div><div class="line">        <span class="comment">// 这一部分后面有写，可翻到后面看</span></div><div class="line">        <span class="comment">// 最终match由两个取值</span></div><div class="line">        <span class="comment">// $('#div1')对应的match=[‘#div1’, null, ’div1‘]</span></div><div class="line">        <span class="comment">// $('&lt;li&gt;hhehe')对应的match为match=[‘&lt;li&gt;hhehe’, ‘&lt;li&gt;’, null]</span></div><div class="line">        <span class="comment">// $('.box') $('div')  $('#div1 div.box')对应的match为null</span></div><div class="line">        match = rquickExpr.exec( selector );</div><div class="line">      &#125;</div><div class="line">      <span class="comment">// 判断match是否存在，并且 match[1]存在或者不存在context这个执行上下文</span></div><div class="line">      <span class="comment">// 能进入if的有 $('&lt;li&gt;')  $('&lt;li&gt;1&lt;/li&gt;&lt;li&gt;2&lt;/li&gt;') $('&lt;li&gt;hhehe')这种属于match存在并且match[1]也存在</span></div><div class="line">      <span class="comment">// 还有$('#div1')，这种属于match存在，match[1]不存在，因为我们通过id获取元素是不需要执行上下文，因此context不需要传，为undefined，因此!context为真</span></div><div class="line">      <span class="keyword">if</span> ( match &amp;&amp; (match[<span class="number">1</span>] || !context) ) &#123;</div><div class="line">        <span class="comment">// 能通过if的有$('&lt;li&gt;')  $('&lt;li&gt;1&lt;/li&gt;&lt;li&gt;2&lt;/li&gt;') $('&lt;li&gt;hhehe')</span></div><div class="line">        <span class="keyword">if</span> ( match[<span class="number">1</span>] ) &#123;</div><div class="line">          <span class="comment">// 这段三目判断的原因在于我们在写创建标签时可以由如下两种写法(因为创建标签只能是通过document创建，所以执行上下文只能是document)</span></div><div class="line">          <span class="comment">// 第一种$('&lt;li&gt;','document')</span></div><div class="line">          <span class="comment">// 第二种$('&lt;li&gt;',$('document'))</span></div><div class="line">          <span class="comment">// 所以先判断执行上下文context是不是JQuery类型，也就是$('&lt;li&gt;',$('document'))这种情况，此时返回context[0]也就是$('document')[0]，其实就是'document'</span></div><div class="line">          <span class="comment">// 如果不是jQuery类型那么直接返回执行上下文context，也就是$('&lt;li&gt;','document')这种情况</span></div><div class="line">          context = context <span class="keyword">instanceof</span> jQuery ? context[<span class="number">0</span>] : context;</div><div class="line">          <span class="comment">// 这一块代码涉及到两个JQuery工具方法</span></div><div class="line">          <span class="comment">// jQuery.merge:合并数组使用的，如果第一个传参是this这种对象，那就是合并对象</span></div><div class="line">          <span class="comment">// jQuery.parseHTML:将Dom字符串转成数组，例如'&lt;li&gt;1&lt;/li&gt;'转完之后变成['li']</span></div><div class="line">          <span class="comment">// 后续篇幅有分析这两个方法</span></div><div class="line">          <span class="comment">// 最终的生成this对象，也就是jQuery对象</span></div><div class="line">          <span class="comment">// $('&lt;li&gt;') $('&lt;li&gt;hhehe')对应的this对象为&#123;0:'li',length:1,...其他属性&#125;</span></div><div class="line">          <span class="comment">// $('&lt;li&gt;')对应的this对象为&#123;0:'li',1:'li',length:2,...其他属性&#125;</span></div><div class="line">          jQuery.merge( <span class="keyword">this</span>, jQuery.parseHTML(match[<span class="number">1</span>],context &amp;&amp; context.nodeType ? context.ownerDocument || context : <span class="built_in">document</span>,<span class="literal">true</span>));</div><div class="line">          <span class="comment">// 创建标签带属性，只支持单标签$('&lt;li&gt;') $('&lt;li&gt;1&lt;/li&gt;')例如 $('&lt;li&gt;',&#123;title:'hi',html:'abcd'&#125;)</span></div><div class="line">          <span class="comment">// rsingleTag.test( match[1] ) 是否是单标签，如果是判断context是不是对象字面量，如果是才走if</span></div><div class="line">            <span class="keyword">if</span> ( rsingleTag.test( match[<span class="number">1</span>] ) &amp;&amp; jQuery.isPlainObject( context ) ) &#123;</div><div class="line">              <span class="comment">// for in循环下context这个对象字面量，给选中的元素添加上属性</span></div><div class="line">              <span class="keyword">for</span> ( match <span class="keyword">in</span> context ) &#123;</div><div class="line">                <span class="comment">// 判断context中的属性是不是JQuery的工具方法，如果是调用工具方法，传入这个属性的值给这个工具方法，如上面这里例子中的html属性</span></div><div class="line">                <span class="keyword">if</span> ( jQuery.isFunction( <span class="keyword">this</span>[ match ] ))&#123;</div><div class="line">                  <span class="comment">// 相当于$('li').html('abcd')</span></div><div class="line">                  <span class="keyword">this</span>[ match ]( context[ match ] );</div><div class="line">                <span class="comment">// 如果不是方法，那么直接走JQuery的工具方法attr，传入属性和属性值</span></div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                  <span class="comment">// 相当于$('li').attr('title','hi')</span></div><div class="line">                  <span class="keyword">this</span>.attr( match, context[ match ] );</div><div class="line">                &#125;</div><div class="line">              &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="comment">// 最后返回处理后的this对象，也就是JQuery对象</span></div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">        <span class="comment">// 处理的是: $('#div1')</span></div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">          <span class="comment">// 通过原生的document.getElementById获取id所对应的Dom元素</span></div><div class="line">          elem = <span class="built_in">document</span>.getElementById( match[<span class="number">2</span>] );</div><div class="line">          <span class="comment">// 这个是兼容处理，这个兼容处理可忽略</span></div><div class="line">          <span class="comment">// 以下语句走完,例如有一个ul，id为ul，则this对象为&#123;ul#ul,length:1,context:document,selector:'#ul'&#125;</span></div><div class="line">          <span class="keyword">if</span> ( elem &amp;&amp; elem.parentNode ) &#123;</div><div class="line">            <span class="keyword">this</span>.length = <span class="number">1</span>;</div><div class="line">            <span class="keyword">this</span>[<span class="number">0</span>] = elem;</div><div class="line">          &#125;</div><div class="line">          <span class="keyword">this</span>.context = <span class="built_in">document</span>;</div><div class="line">          <span class="keyword">this</span>.selector = selector;</div><div class="line">          <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">        &#125;</div><div class="line">      <span class="comment">// 以下开始处理: $('.box') $('div')  $('#div1 div.box')</span></div><div class="line">      <span class="comment">// 判断context存在不，不存在可以进入if里，如果存在，还需要判断是不是jQuery对象</span></div><div class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> ( !context || context.jquery ) &#123;</div><div class="line">        <span class="comment">// 以下语句等价于</span></div><div class="line">        <span class="comment">// $('.box'):$(document).find('.box')</span></div><div class="line">        <span class="comment">// $('div'):$(document).find('div')</span></div><div class="line">        <span class="comment">// $('#div1 div.box'):$(document).find('#div1 div.box')</span></div><div class="line">        <span class="comment">// $('.box',$('ul')):$('ul').find('.box')</span></div><div class="line">        <span class="comment">// 其中find方法是sizzle模块中的一个方法</span></div><div class="line">        <span class="keyword">return</span> ( context || rootjQuery ).find( selector );</div><div class="line">      <span class="comment">// 处理比如$('.box','ul')</span></div><div class="line">      &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="comment">// 等价于$('ul').find('.box')</span></div><div class="line">        <span class="comment">// 其中this.constructor其实就是jQuery构造函数，这也就是为什么在jQuery原型中还需要修正下原型属性constructor指向jQuery构造函数的原因之一</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.constructor( context ).find( selector );</div><div class="line">      &#125;</div><div class="line">      <span class="comment">// 处理第三种分类: $(document) $(this)</span></div><div class="line">      <span class="comment">// 返回的this对象为&#123;0:document,context:document,length:1&#125;</span></div><div class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> ( selector.nodeType ) &#123;</div><div class="line">        <span class="keyword">this</span>.context = <span class="keyword">this</span>[<span class="number">0</span>] = selector;</div><div class="line">        <span class="keyword">this</span>.length = <span class="number">1</span>;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">      <span class="comment">// 处理第四种分类: $(function()&#123;&#125;)</span></div><div class="line">      <span class="comment">// 以下说明平时我们这么写$(function()&#123;&#125;)和$(document).ready(function()&#123;&#125;)是等价的</span></div><div class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> ( jQuery.isFunction( selector ) ) &#123;</div><div class="line">        <span class="keyword">return</span> rootjQuery.ready( selector );</div><div class="line">      &#125;</div><div class="line">      <span class="comment">// 处理 $($("ul"))</span></div><div class="line">      <span class="keyword">if</span> ( selector.selector !== <span class="literal">undefined</span> ) &#123;</div><div class="line">        <span class="keyword">this</span>.selector = selector.selector;</div><div class="line">        <span class="keyword">this</span>.context = selector.context;</div><div class="line">      &#125;</div><div class="line">      <span class="comment">// 处理第五种：$(&#123;&#125;),$([])</span></div><div class="line">      <span class="keyword">return</span> jQuery.makeArray( selector, <span class="keyword">this</span> );</div><div class="line">  &#125;,</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="jQuery中的this对象"><a href="#jQuery中的this对象" class="headerlink" title="jQuery中的this对象"></a>jQuery中的this对象</h4><p>　　牵扯到this对象其实就涉及到JavaScript很神奇的this，而我们这边要涉及的是构造函数中的this。例如如下的代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">demo</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.name=<span class="string">"hehe"</span>;</div><div class="line">&#125;</div><div class="line">demo.prototype.say()&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> demo1=<span class="keyword">new</span> demo();</div><div class="line">demo1.say();<span class="comment">//此时this指的就是demo1,其实指的就是实例对象</span></div></pre></td></tr></table></figure><br>　　由以上的例子来看jQuery里的this，其实是类似的，它代表的是jQuery的实例对象，例如$(“#div”)这么调用相当于创建了一个jQuery实例对象，也就可以调用jQuery原型对象的各种方法：$(“#div”).html(“hhh”);但是jQuery中的this对象还是有些不一样的，我们举个例子，页面中有3个li标签，那么我们获取这些标签可以这么获取：$(“li”)，此时this对象为<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">this</span>=&#123;</div><div class="line">  <span class="number">0</span>:<span class="string">'li'</span>,</div><div class="line">  <span class="number">1</span>:<span class="string">'li'</span>,</div><div class="line">  <span class="number">2</span>:<span class="string">'li'</span>,</div><div class="line">  <span class="attr">length</span>:<span class="number">3</span>,</div><div class="line">  其他属性...</div><div class="line">&#125;</div></pre></td></tr></table></figure>　　</p>
+<h4 id="jQuery-parseHTML方法"><a href="#jQuery-parseHTML方法" class="headerlink" title="jQuery.parseHTML方法"></a>jQuery.parseHTML方法</h4><p>　　这里不涉及这个方法的源码分析，先说下其是做什么用的，有几种用法。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'&lt;li&gt;1&lt;/li&gt;&lt;li&gt;2&lt;/li&gt;&lt;li&gt;3&lt;/li&gt;&lt;script&gt;alert(4)&lt;\/script&gt;'</span>;</div><div class="line"><span class="comment">//第一种用法：两个参数，第三个参数默认false</span></div><div class="line"><span class="keyword">var</span> arr=jQuery.parseHTML(str,<span class="built_in">document</span>);</div><div class="line"><span class="built_in">console</span>.log(arr);<span class="comment">//['li','li','li']</span></div><div class="line"><span class="comment">//第二种用法：三个参数</span></div><div class="line"><span class="keyword">var</span> arr=jQuery.parseHTML(str,<span class="built_in">document</span>,<span class="literal">true</span>);</div><div class="line"><span class="built_in">console</span>.log(arr);<span class="comment">//['li','li','li','script']</span></div></pre></td></tr></table></figure><br>　　从以上可以看出来，jQuery.parseHTML的作用是将字符串的Dom转成数组。</p>
+<h4 id="jQuery-merge方法"><a href="#jQuery-merge方法" class="headerlink" title="jQuery.merge方法"></a>jQuery.merge方法</h4><p>　　我们这里也是不涉及jQuery.merge源码，先说下用法。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr1=[<span class="number">1</span>,<span class="number">2</span>];</div><div class="line"><span class="keyword">var</span> arr2=[<span class="number">3</span>,<span class="number">4</span>];</div><div class="line"><span class="keyword">var</span> obj1=&#123;</div><div class="line">  <span class="number">0</span>:<span class="number">1</span>,</div><div class="line">  <span class="number">1</span>:<span class="number">2</span>,</div><div class="line">  <span class="attr">length</span>:<span class="number">2</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> obj2=&#123;</div><div class="line">  <span class="number">0</span>:<span class="number">3</span>,</div><div class="line">  <span class="number">1</span>:<span class="number">4</span>,</div><div class="line">  <span class="attr">length</span>:<span class="number">2</span></div><div class="line">&#125;</div><div class="line"><span class="comment">//第一种用法：合并数组</span></div><div class="line"><span class="keyword">var</span> arr=jQuery.merge(arr1,arr2);</div><div class="line"><span class="built_in">console</span>.log(arr);<span class="comment">//[1,2,3,4]</span></div><div class="line"><span class="comment">//第二种用法：生成一个类似我们上面说的this格式的对象</span></div><div class="line"><span class="keyword">var</span> obj=jQuery.merge(obj1,arr2);</div><div class="line"><span class="built_in">console</span>.log(obj);<span class="comment">//&#123;0:1,1:2,2:3,3:4,length:4&#125;</span></div><div class="line"><span class="comment">//另一种写法</span></div><div class="line"><span class="keyword">var</span> obj=jQuery.merge(arr2,obj1);</div><div class="line"><span class="built_in">console</span>.log(obj);<span class="comment">//&#123;0:3,1:4,2:1,3:2,length:4&#125;</span></div><div class="line"><span class="comment">//最后一种写法</span></div><div class="line"><span class="keyword">var</span> obj=jQuery.merge(obj1,obj2);</div><div class="line"><span class="built_in">console</span>.log(obj);<span class="comment">//&#123;0:1,1:2,2:3,3:4,length:4&#125;</span></div></pre></td></tr></table></figure><br>　　作用的话用法里已经说明了。看到这里在回过头来看init中怎么调用它，最后产生什么的结果就比较好理解了。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 前端技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> JavaScript </tag>
+            
+            <tag> jQuery </tag>
+            
+            <tag> Dom </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[浅谈项目中经常需要使用到的less功能]]></title>
+      <url>/2017/04/27/less/</url>
+      <content type="html"></content>
+      
+        <categories>
+            
+            <category> 前端技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> less </tag>
+            
+            <tag> css </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[从统计分析自动生成系统看gulp的自动化构建]]></title>
+      <url>/2017/04/27/gulp/</url>
+      <content type="html"></content>
+      
+        <categories>
+            
+            <category> 前端技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> gulp </tag>
+            
+            <tag> npm </tag>
+            
+            <tag> jade </tag>
+            
+            <tag> javascript </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[ES6基础项目构建]]></title>
+      <url>/2017/04/27/es6/</url>
+      <content type="html"></content>
+      
+        <categories>
+            
+            <category> 前端技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> ES6 </tag>
+            
+            <tag> JavaScript </tag>
+            
+            <tag> gulp </tag>
+            
+            <tag> npm </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[解剖jQuery源码系列之JQuery构造函数]]></title>
+      <url>/2017/04/27/jquery20170427/</url>
+      <content type="html"><![CDATA[<p>　　jQuery从2006年由John Resig等人创建一直风靡到今天，每个在使用jQuery时，应该都深深的被其便捷性的Dom操作，数据缓存，异步操作等折服，jQuery的api设计让我们可以如此的简单自如的操作web界面，如果你没有感受到，那你应该面壁思过下。<a id="more"></a></p>
+<h4 id="jQuery整体架构"><a href="#jQuery整体架构" class="headerlink" title="jQuery整体架构"></a>jQuery整体架构</h4><p>　　说到jQuery的架构，可以点击右边图片来感受下：<img src="/images/jquery.png" width="16"><br>　　其实jQuery的整体架构还是很清晰（虽然各个模块具体源码看起来感觉也挺乱的）。通过这张图我们大概可以把jQuery分为18块内容。整个jQuery最核心的代码用匿名函数包起来，具体可参考上一篇文章：<a href="http://www.mmyton.com/2017/04/25/jquery20170425/">解剖JQuery源码系列之匿名函数自执行</a><br>　　接着上一篇我们继续来说，这个主要是因为ES5中只有函数作用域和全局作用域，并无块级作用域。jQuery设计时为了不影响全局作用域，以及不同脚本文件引入后互相影响，选择了匿名函数，我们都知道匿名函数自执行（也就是Immediately-Invoked Function Expression (IIFE)），函数体定义的变量以及函数属于局部变量和局部函数，不会影响到全局作用域里定义的同名变量和函数。全局作用域也访问不到这些局部变量和函数，有点类似私有的意味。jQuery设计者也是基于此而采用这种方式。<br>　　那么问题来了，既然匿名函数里的变量和函数全局作用域访问不到，那么我们平时为什么可以直接在我们的js中引用jQuery的各种方法呢？我们来看如下的代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//jQuery2.0.3版本</span></div><div class="line"><span class="comment">//这个就是jQuery匿名函数</span></div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"> window, undefined </span>) </span>&#123;</div><div class="line">  <span class="comment">//判断是nodejs等common.js（CMD）规范的环境</span></div><div class="line">  <span class="keyword">if</span> ( <span class="keyword">typeof</span> <span class="built_in">module</span> === <span class="string">"object"</span> &amp;&amp; <span class="built_in">module</span> &amp;&amp; <span class="keyword">typeof</span> <span class="built_in">module</span>.exports === <span class="string">"object"</span> ) &#123;</div><div class="line">    <span class="comment">//通过exports导出</span></div><div class="line">    <span class="built_in">module</span>.exports = jQuery;</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">  <span class="comment">//判断是否是AMD这种模块化环境</span></div><div class="line">  <span class="keyword">if</span> ( <span class="keyword">typeof</span> define === <span class="string">"function"</span> &amp;&amp; define.amd ) &#123;</div><div class="line">    <span class="comment">//定义jquery模块</span></div><div class="line">    define( <span class="string">"jquery"</span>, [], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="keyword">return</span> jQuery; &#125; );</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">  <span class="comment">//if判断主要是确定下window和window.document是不是对象，也就是不是AMD、CMD等模块化环境，如果是对象就把JQuery挂载到全局对象window上</span></div><div class="line">  <span class="keyword">if</span> ( <span class="keyword">typeof</span> <span class="built_in">window</span> === <span class="string">"object"</span> &amp;&amp; <span class="keyword">typeof</span> <span class="built_in">window</span>.document === <span class="string">"object"</span> ) &#123;</div><div class="line">	 <span class="built_in">window</span>.jQuery = <span class="built_in">window</span>.$ = jQuery;<span class="comment">//秘密就在这一行代码。</span></div><div class="line">  &#125;</div><div class="line">&#125;)( <span class="built_in">window</span> );</div></pre></td></tr></table></figure><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//jQuery3.2.1版本</span></div><div class="line"><span class="comment">//这个就是jQuery匿名函数</span></div><div class="line">( <span class="function"><span class="keyword">function</span>(<span class="params"> global, factory </span>) </span>&#123;</div><div class="line"><span class="meta">  "use strict"</span>;</div><div class="line">  <span class="comment">//这是判断如果是nodejs环境的导出方式</span></div><div class="line">  <span class="comment">//与2.0.3版本的区别就是module.exports导出的不是jQuery构造函数，</span></div><div class="line">  <span class="comment">//而是factory这个函数，也就是我们匿名函数传参的第二个参数function( window, noGlobal) &#123;&#125;</span></div><div class="line">  <span class="keyword">if</span> ( <span class="keyword">typeof</span> <span class="built_in">module</span> === <span class="string">"object"</span> &amp;&amp; <span class="keyword">typeof</span> <span class="built_in">module</span>.exports === <span class="string">"object"</span> ) &#123;</div><div class="line">  <span class="built_in">module</span>.exports = global.document ?</div><div class="line">      factory( global, <span class="literal">true</span> ) :</div><div class="line">	  <span class="function"><span class="keyword">function</span>(<span class="params"> w </span>) </span>&#123;</div><div class="line">		 <span class="keyword">if</span> ( !w.document ) &#123;</div><div class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>( <span class="string">"jQuery requires a window with a document"</span> );</div><div class="line">		 &#125;</div><div class="line">		 <span class="keyword">return</span> factory( w );</div><div class="line">	  &#125;;</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">	  factory( global );</div><div class="line">  &#125;</div><div class="line">&#125;)( <span class="keyword">typeof</span> <span class="built_in">window</span> !== <span class="string">"undefined"</span> ? <span class="built_in">window</span> : <span class="keyword">this</span>, </div><div class="line"><span class="function"><span class="keyword">function</span>(<span class="params"> window, noGlobal </span>) </span>&#123;</div><div class="line">  <span class="comment">//判断如果是AMD模块化的环境就走if里的语句定义一个jquery模块</span></div><div class="line">  <span class="keyword">if</span> ( <span class="keyword">typeof</span> define === <span class="string">"function"</span> &amp;&amp; define.amd ) &#123;</div><div class="line">	define( <span class="string">"jquery"</span>, [], <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		<span class="keyword">return</span> jQuery;</div><div class="line">	&#125; );</div><div class="line">  &#125;</div><div class="line">  <span class="comment">//这个判断上一篇文章已有涉及，这里就不在赘述</span></div><div class="line">  <span class="keyword">if</span> ( !noGlobal ) &#123;</div><div class="line">	<span class="built_in">window</span>.jQuery = <span class="built_in">window</span>.$ = jQuery;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> jQuery;</div><div class="line">&#125;);</div></pre></td></tr></table></figure><br>　　我们之所以可以在全局作用域里自如的使用的jQuery的方法，是因为如上代码的，将jQuery这个构造函数根据不同环境采用不同的方式引用（为什么说是构造函数，我们后续再分析），例如：挂载在全局对象window上，这样我们在任何js文件里都可以引用jQuery的方法了。（看到这里估计你还是晕的，没关系，再往下看你就明白了。）</p>
+<h4 id="jQuery构造函数"><a href="#jQuery构造函数" class="headerlink" title="jQuery构造函数"></a>jQuery构造函数</h4><p>　　在分析jQuery构造函数，我们先来看下原生js中的面向对象，以下是我们一般在写面向对象的写法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//这个就是构造函数（说白点就是函数）</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">suhq</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="comment">//这里写一些实例属性和方法，非共享。</span></div><div class="line">&#125;</div><div class="line"><span class="comment">//通过在suhq的原型（suhq.prototype）上写些suhq实例共享的属性和方法</span></div><div class="line">suhq.prototype.init=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="comment">//这里主要是new一个新实例时需要初始化的相关内容。</span></div><div class="line">&#125;</div><div class="line"><span class="comment">//这个就是实例共享的方法</span></div><div class="line">suhq.prototype.say=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;	</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> s1=<span class="keyword">new</span> suhq();<span class="comment">//创建实例</span></div><div class="line">s1.init();<span class="comment">//初始化</span></div><div class="line">s1.say();<span class="comment">//调用原型上的共享方法</span></div></pre></td></tr></table></figure><br>　　其实，js中是没有如同java中类这种面向对象语法的（ES6引入了），那js中是如何实现面向对象的呢？如上代码所示，js是通过原型来模拟java中类的行为，然后new一个实例出来，这个实例不仅可以拥有构造函数的实例属性，也可以访问原型上的共享属性与方法。如果jQuery按照这样写的应该如何写？<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">jQuery</span>(<span class="params"></span>)</span>&#123;</div><div class="line">&#125;</div><div class="line">jQuery.prototype.init=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">&#125;</div><div class="line">jQuery.prototype.say=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;	</div><div class="line">&#125;</div></pre></td></tr></table></figure><br>　　接下去调用的方法和上面是一样的，但是我们用过jQuery都知道jQuery是这么调用的，例如$().say()或者jQuery().say()或者$.each()，那jQuery是如何写的呢？我们来看如下的代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">jQuery = <span class="function"><span class="keyword">function</span>(<span class="params"> selector, context </span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> jQuery.fn.init( selector, context,        rootjQuery );</div><div class="line">&#125;</div></pre></td></tr></table></figure><br>　　jQuery的写法和我们一般写面向对象不太一样，为什么这么说呢？我们来看下jQuery构造函数里返回的是什么？返回的是jQuery.fn.init()这个init构造函数的实例，看到这一句，是不是有点懵逼，按照js原生面向对象的写法，jQuery构造函数应该是在这个函数里写一些实例独有的属性与方法，为什么直接返回这么一个实例对象？而且我们平时调用jQuery的API时明明是这么调用的，例如：$(‘div’).css(“background”,”red”);，再比如:$.each(function(item){});等，按照这样的调用方法，第一种调用看起来像是调用的是原型上的方法，第二种看起来像是调用构造函数的实例方法。可源码中写的却是返回这么一个实例。而且我们调用API貌似都没new一下产生实例对象，就能调用jQuery的各种API，是不是感觉很神奇，其实这恰恰是JQuery能这么火的原因之一。这个我们叫做jQuery无new操作。接下去我们来分析，jQuery是如何做到这一点的。</p>
+<h4 id="jQuery无NEW操作符"><a href="#jQuery无NEW操作符" class="headerlink" title="jQuery无NEW操作符"></a>jQuery无NEW操作符</h4><p>　　我们在前面写的suhq这个构造函数，调用时需要new suhq()一下产生一个suhq的实例对象，而我们平时在调用时却不需要，原因是因为jQuery构造函数里写的这么一句话<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">  jQuery = <span class="function"><span class="keyword">function</span>(<span class="params"> selector, context </span>) </span>&#123;</div><div class="line">    <span class="comment">//就是这一句代码</span></div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> jQuery.fn.init( selector, context, rootjQuery );</div><div class="line">&#125;</div></pre></td></tr></table></figure><br>　　那是因为从jQuery构造函数中的代码可以看出jQuery已经帮我们做了这么一个new操作了。但是new的却是init的实例对象，而不是jQuery的实例，那么我们平时调用时是如何能访问到jQuery原型上的方法呢？为了更好的理解这个意思，我们举个例子，比如：$(“div”).css(“background”,”red”)其中”div”就是selector参数的实参，执行$(“div”)这个操作（按照jQuery构造函数写的）返回的是init构造函数的一个实例对象，那么css这个方法要么是init构造函数的实例方法或者是原型方法，但是我们如果稍微了解下jQuery如何写插件和扩展方法就知道，css这个方法其实是jQuery原型上的一个方法。其实，奥秘就在如下代码中：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//这是一段在匿名函数中的两行代码</span></div><div class="line">jQuery.fn = jQuery.prototype = &#123;&#125;;</div><div class="line">jQuery.fn.init.prototype = jQuery.fn;</div></pre></td></tr></table></figure><br>　　　第一句是jQuery.fn指向了jQuery.prototype，话句话说fn就是prototype，第二句是jQuery.fn.init的原型指向了jQuery.fn也就是指向了jQuery.prototype，简单点就是init构造函数被重写成了jQuery的原型，所以init的实例对象才能访问到jQuery对象的属性与方法（因为构造函数new一个对象时就会在实例对象上创建一个属性(<strong>proto</strong>)指向原型，我们在访问实例对象的属性或者方法时，如果实例对象本身没有，就会朝着(<strong>proto</strong>)指向的原型上找）。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 前端技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> jQuery </tag>
+            
+            <tag> Dom </tag>
+            
+            <tag> javaScript </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[解剖jQuery源码系列之匿名函数自执行]]></title>
+      <url>/2017/04/25/jquery20170425/</url>
+      <content type="html"><![CDATA[<p>　　最近公司开始逐步放弃掉了支持IE8，转而从IE9支持起，jQuery版本也从1.8.0开始需要升级到2.0+以上，工作中用到jQuery也蛮多的，刚好最近不是很忙打算梳理下jQuery的相关内容。<a id="more"></a><br>　　相比于最近前端界流行的vue、react、angular等等框架，jQuery的热度再也不像之前那么火热，甚至有种被遗弃的感觉，很多人开口闭口都是各种新出的框架。记得老大说过，技术其实要适应生产环境才是最重要的。很多时候在工作中遇到问题更多的是基础的问题，远远谈不到这个框架的优劣。ES5仍然博大精深。本系列主要分析jQuery2.0.3版本，也会加上最新版jQuery3.2.1的相应解剖。</p>
+<blockquote>
+<p>框架总有过时的时候，基础才是真材实料。</p>
+</blockquote>
+<h3 id="jQuery2-0-3匿名函数"><a href="#jQuery2-0-3匿名函数" class="headerlink" title="jQuery2.0.3匿名函数"></a>jQuery2.0.3匿名函数</h3><p>　　其实，开始看jQuery源码，真的蛮头疼的，细细品味下来，再结合工作中遇到的各种坑。体会还是蛮多的，以下是2.0.3版本源码抽出来的，整个源码就是包在一个匿名函数里，让这个匿名函数自执行。说到匿名函数，我们首先要知道js中定义函数的几种方式（顺便复习下基础）：<br>　　第一种，经常使用，比较常规：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params">a</span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(a)</div><div class="line">&#125;</div></pre></td></tr></table></figure><br>　　第二种，利用构造函数Function，需要传入两个参数：1.函数参数列表2.函数体。这种写法在函数体很多的时候特别不方便，不建议这么写。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> func=<span class="keyword">new</span> <span class="built_in">Function</span>(a,<span class="string">'console.log(a);'</span>)</div></pre></td></tr></table></figure>　　<br>　　第三种，匿名函数定义赋给变量<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> func=<span class="function"><span class="keyword">function</span>(<span class="params">a</span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(a);</div><div class="line">&#125;</div></pre></td></tr></table></figure>　<br>　　了解了js中函数的定义的几种方法，我们再来看下匿名函数自执行的几种定义形式。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//1.jQuery的写法</span></div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"> window, undefined </span>) </span>&#123;</div><div class="line"></div><div class="line">	<span class="comment">//这边是jQuery的核心代码</span></div><div class="line"></div><div class="line">&#125;)( <span class="built_in">window</span> );</div><div class="line"></div><div class="line"><span class="comment">//2.其他写法，这种写法在IE8下会出现问题，undefined可以定义为变量，修改成其他值。IE9以上和高级浏览器，undefined都不可以修改。</span></div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"> window,undefined</span>) </span>&#123;</div><div class="line"></div><div class="line">	<span class="comment">//这边是jQuery的核心代码</span></div><div class="line"></div><div class="line">&#125;)( <span class="built_in">window</span>, <span class="literal">undefined</span>);</div><div class="line"></div><div class="line"><span class="comment">//3.这种写法和第一种其实是一样的。</span></div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"> window, undefined</span>) </span>&#123;</div><div class="line"></div><div class="line">	<span class="comment">//这边是jQuery的核心代码</span></div><div class="line"></div><div class="line">&#125;( <span class="built_in">window</span>));</div></pre></td></tr></table></figure><br>　　从以上来看，匿名函数自执行简单的说就是定义一个匿名函数，然后立即执行，在原生js里的语法是把匿名函数包在一对()里，然后按照函数的正常调用传参数即可，jQuery就是采用这种方式，匿名函数传了一个实参window，为什么要传window这个全局对象呢？其实这个跟我们js查找变量所走的作用域有关系，分析后主要有2个原因：<br>　　1.匿名函数里用到window这个全局对象，不需要沿着作用域一层层往上去查找，直接在传参中获取，提高了获取window对象的速度。<br>　　2.方便压缩，实参传入形参（普及下实参和形参的概念，实参就是你传入函数实际传入的值，形参就是你定义函数时，函数的参数。），形参就可以直接压缩成一个字母w。<br>　　那为什么jQuery匿名函数还要传入第二个参数呢？我也总结了有两个原因：　　<br>　　1.匿名函数内部需要用到，undefined的值，可以从变量的角度来理解，因为匿名函数自执行时并没有传这个参数，函数中没有传参数，这个值默认为undefined。相比较第2种写法，undefined放在函数的形参里，实参不传，主要是为了兼容IE下的bug：可以定义undefined并修改它的值。<br>　　2.方便压缩成字母u。</p>
+<h3 id="jQuery3-2-1架构（最新版）"><a href="#jQuery3-2-1架构（最新版）" class="headerlink" title="jQuery3.2.1架构（最新版）"></a>jQuery3.2.1架构（最新版）</h3><p>　　这个版本的整体写法改了风格，但是其实内容和原理变化不大，主要做了兼容Node、sea.js等符合Common.js规范或者类似Common.js规范的js框架。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"> global, factory </span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> ( <span class="keyword">typeof</span> <span class="built_in">module</span> === <span class="string">"object"</span> &amp;&amp; <span class="keyword">typeof</span> <span class="built_in">module</span>.exports === <span class="string">"object"</span> ) &#123;</div><div class="line">        <span class="comment">// For CommonJS and CommonJS-like environments where a proper window is present,</span></div><div class="line">        <span class="comment">// execute the factory and get jQuery</span></div><div class="line">        <span class="comment">// For environments that do not inherently posses a window with a document</span></div><div class="line">        <span class="comment">// (such as Node.js), expose a jQuery-making factory as module.exports</span></div><div class="line">        <span class="comment">// This accentuates the need for the creation of a real window</span></div><div class="line">        <span class="comment">// e.g. var jQuery = require("jquery")(window);</span></div><div class="line">        <span class="comment">// See ticket #14549 for more info</span></div><div class="line">        <span class="built_in">module</span>.exports = global.document ?</div><div class="line">            factory( global, <span class="literal">true</span> ) :</div><div class="line">            <span class="function"><span class="keyword">function</span>(<span class="params"> w </span>) </span>&#123;</div><div class="line">                <span class="keyword">if</span> ( !w.document ) &#123;</div><div class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>( <span class="string">"jQuery requires a window with a document"</span> );</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">return</span> factory( w );</div><div class="line">            &#125;;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        factory( global );</div><div class="line">    &#125;</div><div class="line"><span class="comment">// Pass this if window is not defined yet</span></div><div class="line">&#125;(<span class="keyword">typeof</span> <span class="built_in">window</span> !== <span class="string">"undefined"</span> ? <span class="built_in">window</span> : <span class="keyword">this</span>, <span class="function"><span class="keyword">function</span>(<span class="params"> window, noGlobal </span>) </span>&#123;  </div><div class="line">　　　　<span class="comment">//说白了这里就是写各种JQ各种功能函数的地方，大概有一万多行</span></div><div class="line">&#125;));</div></pre></td></tr></table></figure><br>　　最新版的jQuery写法稍微修改了下，其实大体是一样的，我们先简化如下所示：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"> global, factory </span>) </span>&#123;</div><div class="line">    <span class="comment">//这里先不看</span></div><div class="line">&#125;(a,b);</div></pre></td></tr></table></figure><br>　　整个函数就是个匿名函数自执行。其中，<br>　　a参数为三目运算（typeof window !== “undefined” ? window : this），这个是判断当前运行环境是否支持window这个全局对象，主要是为了兼容node.js等类似common.js规范环境，例如nodejs中的全局对象是global，当nodejs某一个模块不支持window时，这个参数就是this也就是global。<br>　　b参数为:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>(<span class="params"> window, noGlobal </span>) </span>&#123;  </div><div class="line">　　<span class="comment">//说白了这里就是写各种JQ各种功能函数的地方，大概有一万多行</span></div><div class="line">&#125;</div></pre></td></tr></table></figure><br>　　分析了下这两个参数，我们再来看下这个匿名函数的函数体。首行的判断语句：if ( typeof module === “object” &amp;&amp; typeof module.exports === “object” ) 。玩过node.js就知道module和module.exports就是nodejs用来创建模块并输出模块对象的方法。若此条件成立，if里执行的代码就是用来兼容nodejs。我们来看支持的情况下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="built_in">module</span>.exports = global.document ?       <span class="comment">//三目运算符，先判断当前环境是否支持window.document属性</span></div><div class="line">    <span class="comment">//（注意我们上面提到过形参global的实参是window）</span></div><div class="line">    factory( global, <span class="literal">true</span> ) :            <span class="comment">//支持的话就好办啦，常规的浏览器一般都是支持的，那就直接module.exports = factory( global, true )，</span></div><div class="line">    <span class="comment">//把JQ后面那一万多行的功能函数扩展到node.js里面。（注意我们上面提到过形参factory的实参是实现JQ各种功能的一个外部函数）</span></div><div class="line">    <span class="function"><span class="keyword">function</span>(<span class="params"> w </span>) </span>&#123;          <span class="comment">//如果当前环境不支持window.document属性，那就写个函数扔个Error说这环境不适用JQ，但依旧返回JQ的功能函数（但大部分估计是不能用的了）</span></div><div class="line">        <span class="keyword">if</span> ( !w.document ) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>( <span class="string">"jQuery requires a window with a document"</span> );</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> factory( w );</div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure><br>　　如果我们使用的环境不是node.js等类似common.js规范环境，那么if ( typeof module === “object” &amp;&amp; typeof module.exports === “object” ) 这个判断就为false，走else，直接执行factory( global );<br>　　看到以上的分析，是否有一个参数，大家会觉得略奇怪些：noGlobal，这个是做什么用的？全局搜索了下jQuery源码，发现有用到的地方就是如下了：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Expose jQuery and $ identifiers, even in AMD</span></div><div class="line"><span class="comment">// (#7102#comment:10, https://github.com/jquery/jquery/pull/557)</span></div><div class="line"><span class="comment">// and CommonJS for browser emulators (#13566)</span></div><div class="line"><span class="keyword">if</span> ( !noGlobal ) &#123;</div><div class="line">	<span class="built_in">window</span>.jQuery = <span class="built_in">window</span>.$ = jQuery;</div><div class="line">&#125;</div></pre></td></tr></table></figure><br>　　当noGlobal为假（也就是浏览器环境）时才执行if里的语句，把jQuery挂载在window下，从以上代码我们也可以看出来，jQuery和$是等价的，都指向jQuery对象。如果为真（那就是类似nodej或者其他类似AMD和CommonJS的环境里），就不执行if里的语句，那么其他环境如何使用到jQuery的相关方法呢？在整个源码的最后有一句代码：return jQuery;根据前面分析的匿名函数传参以及return jQuery;这一句代码，我们在nodejs环境中应该按照如下的方式调用(当然如果你改写了下jQuery那也可以用别的方式引入，这边就不说了)：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> $=<span class="built_in">require</span>(<span class="string">'jquery'</span>)(<span class="built_in">window</span>);</div></pre></td></tr></table></figure>　　<br>　　以上就是这两个版本中采用的匿名函数自执行。当然采用匿名函数自执行最大的目的就是匿名函数内部都是局部变量，不会污染全局作用域。当页面引用多个库时也能很好的避免变量重名，函数重名等等一系列问题。<br>　　此篇分享先到此，接下去还会其他系列的分享。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 前端技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> jQuery </tag>
+            
+            <tag> Dom </tag>
+            
+            <tag> javaScript </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[点滴的生活就是幸福]]></title>
+      <url>/2017/04/24/sinFuture/</url>
+      <content type="html"><![CDATA[  <blockquote class="blockquote-center"><p>我把我新博客第一篇文章给了人生中最重的事！</p>
+</blockquote>
+  <a id="more"></a>
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=190563&auto=1&height=66"></iframe>
+]]></content>
+      
+        <categories>
+            
+            <category> 生活 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 生活 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+  
+  
 </search>

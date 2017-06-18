@@ -104,9 +104,15 @@
     <link href="http://www.Mmyton.com/2017/06/11/es6-react/"/>
     <id>http://www.Mmyton.com/2017/06/11/es6-react/</id>
     <published>2017-06-11T07:07:13.000Z</published>
-    <updated>2017-06-11T15:33:05.000Z</updated>
+    <updated>2017-06-18T02:28:07.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>　　<code>React</code>组件基本上由组件的构建方式、组件内的属性状态（<code>state</code>和<code>props</code>）与生命周期方法组成。这篇文章主要写下<code>React</code>组件的3种构建方式，以及用<code>ES6 classes</code>的构建方式重写阮一峰的<code>React</code>入门<a href="http://www.ruanyifeng.com/blog/2015/03/react.html" target="_blank" rel="external"><code>Demo</code></a>。<a id="more"></a></p>
+<h4 id="React-组件构建方式"><a href="#React-组件构建方式" class="headerlink" title="React 组件构建方式"></a>React 组件构建方式</h4><h5 id="React-classes"><a href="#React-classes" class="headerlink" title="React.classes"></a>React.classes</h5><h5 id="ES6-classes"><a href="#ES6-classes" class="headerlink" title="ES6 classes"></a>ES6 classes</h5><h5 id="无状态函数"><a href="#无状态函数" class="headerlink" title="无状态函数"></a>无状态函数</h5><h4 id="React-classes与ES6-classes构建组件的区别"><a href="#React-classes与ES6-classes构建组件的区别" class="headerlink" title="React.classes与ES6 classes构建组件的区别"></a>React.classes与ES6 classes构建组件的区别</h4><p><img src="/images/react_demo.png" class="full-image"></p>
+]]></content>
     
     <summary type="html">
+    
+      &lt;p&gt;　　&lt;code&gt;React&lt;/code&gt;组件基本上由组件的构建方式、组件内的属性状态（&lt;code&gt;state&lt;/code&gt;和&lt;code&gt;props&lt;/code&gt;）与生命周期方法组成。这篇文章主要写下&lt;code&gt;React&lt;/code&gt;组件的3种构建方式，以及用&lt;code&gt;ES6 classes&lt;/code&gt;的构建方式重写阮一峰的&lt;code&gt;React&lt;/code&gt;入门&lt;a href=&quot;http://www.ruanyifeng.com/blog/2015/03/react.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;code&gt;Demo&lt;/code&gt;&lt;/a&gt;。
     
     </summary>
     
@@ -642,9 +648,9 @@
     
       <category term="gulp" scheme="http://www.Mmyton.com/tags/gulp/"/>
     
-      <category term="jade" scheme="http://www.Mmyton.com/tags/jade/"/>
-    
       <category term="npm" scheme="http://www.Mmyton.com/tags/npm/"/>
+    
+      <category term="jade" scheme="http://www.Mmyton.com/tags/jade/"/>
     
       <category term="javascript" scheme="http://www.Mmyton.com/tags/javascript/"/>
     
@@ -664,13 +670,13 @@
       <category term="前端技术" scheme="http://www.Mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="gulp" scheme="http://www.Mmyton.com/tags/gulp/"/>
-    
-      <category term="npm" scheme="http://www.Mmyton.com/tags/npm/"/>
-    
       <category term="ES6" scheme="http://www.Mmyton.com/tags/ES6/"/>
     
       <category term="JavaScript" scheme="http://www.Mmyton.com/tags/JavaScript/"/>
+    
+      <category term="gulp" scheme="http://www.Mmyton.com/tags/gulp/"/>
+    
+      <category term="npm" scheme="http://www.Mmyton.com/tags/npm/"/>
     
   </entry>
   

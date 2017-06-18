@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.Mmyton.com/2017/06/11/es6-react/</loc>
+    
+    <lastmod>2017-06-18T02:28:07.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.Mmyton.com/2017/06/11/react-life/</loc>
     
     <lastmod>2017-06-17T14:17:41.000Z</lastmod>
@@ -19,13 +26,6 @@
     <loc>http://www.Mmyton.com/2017/06/11/webpack/</loc>
     
     <lastmod>2017-06-14T07:42:48.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.Mmyton.com/2017/06/11/es6-react/</loc>
-    
-    <lastmod>2017-06-11T15:33:05.000Z</lastmod>
     
   </url>
   
