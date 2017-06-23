@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://www.Mmyton.com/2017/06/16/kingeditor/</loc>
+    <lastmod>2017-06-23T12:47:05.000Z</lastmod>
+    <data>
+        <display>
+        <title>kindeditor不支持上传图片格式校验</title>
+        <pubTime>2017-06-16T04:23:02.000Z</pubTime>
+        
+        <tag>javaScript</tag>
+         
+        <tag>kingeditor</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端技术" url="http://www.Mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.Mmyton.com/2017/06/11/es6-react/</loc>
     <lastmod>2017-06-18T02:28:07.000Z</lastmod>
     <data>
@@ -53,28 +75,6 @@
            
              
               <breadCrumb title="react" url="http://www.Mmyton.com/categories/react/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.Mmyton.com/2017/06/16/kingeditor/</loc>
-    <lastmod>2017-06-16T15:34:50.000Z</lastmod>
-    <data>
-        <display>
-        <title>kindeditor不支持上传图片格式校验</title>
-        <pubTime>2017-06-16T04:23:02.000Z</pubTime>
-        
-        <tag>javaScript</tag>
-         
-        <tag>kingeditor</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端技术" url="http://www.Mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
           
         </display>
     </data>
