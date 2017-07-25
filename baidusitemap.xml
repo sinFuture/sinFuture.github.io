@@ -4,8 +4,32 @@
 
     
   <url>
+    <loc>http://www.Mmyton.com/2017/05/31/jQuery20170531/</loc>
+    <lastmod>2017-07-25T15:40:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>解剖jQuery源码系列之$.extend与$().extend方法</title>
+        <pubTime>2017-05-30T23:54:45.000Z</pubTime>
+        
+        <tag>JavaScript</tag>
+         
+        <tag>jQuery</tag>
+         
+        <tag>Dom</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端技术" url="http://www.Mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.Mmyton.com/2017/07/21/react-render/</loc>
-    <lastmod>2017-07-21T12:57:16.000Z</lastmod>
+    <lastmod>2017-07-21T13:25:45.000Z</lastmod>
     <data>
         <display>
         <title>React源码解析之渲染原理</title>
@@ -157,30 +181,6 @@
     </url>
 
     
-    
-  <url>
-    <loc>http://www.Mmyton.com/2017/05/31/jQuery20170531/</loc>
-    <lastmod>2017-06-01T16:34:25.000Z</lastmod>
-    <data>
-        <display>
-        <title>解剖jQuery源码系列之$.extend与$().extend方法</title>
-        <pubTime>2017-05-30T23:54:45.000Z</pubTime>
-        
-        <tag>JavaScript</tag>
-         
-        <tag>jQuery</tag>
-         
-        <tag>Dom</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端技术" url="http://www.Mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
     
   <url>
     <loc>http://www.Mmyton.com/2017/05/20/jQuery20170520/</loc>
