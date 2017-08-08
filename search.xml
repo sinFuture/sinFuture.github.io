@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[React源码解析之渲染原理]]></title>
     <url>%2F2017%2F07%2F21%2Freact-render%2F</url>
-    <content type="text"><![CDATA[我在学习React的时候，一开始看的是《深入React技术栈》这本书，然后做项目，对于React的实现原理还是很感兴趣的,这本书写的说实话对于读者来说挺不友好，我前前后后花了快1个月才把书大致看完了。中间也看了几十篇React实现原理的博客文章。不过看完了，倒是觉得自己身上的不足，对于算法以及数据结构仍然需要更深入更系统的学习，所以这也是我下半年的目标之一。 我写这篇博客的目的在于希望根据我自己的理解，结合源码（很多方法名和变量都是React中的），写一个简约版的React。中间为了简便，会结合JQuery的一些工具方法。想了解JQuery是如何实现，可以看我分析的一系列JQuery文章。 一、React的核心内容 在我看来React最核心的内容无非两个： React是如何渲染 React是如何更新的]]></content>
+    <content type="text"><![CDATA[我在学习React的时候，一开始看的是《深入React技术栈》这本书，然后做项目，对于React的实现原理还是很感兴趣的,这本书写的说实话对于读者来说挺不友好，我前前后后花了快1个月才把书大致看完了。中间也看了几十篇React实现原理的博客文章。不过看完了，倒是觉得自己身上的不足，对于算法以及数据结构仍然需要更深入更系统的学习，所以这也是我下半年的目标之一。 我写这篇博客的目的在于希望根据我自己的理解，结合源码（很多方法名和变量都是React中的），写一个简约版的React。中间为了简便，会结合JQuery的一些工具方法。想了解JQuery是如何实现，可以看我分析的一系列JQuery文章。 一、React的核心内容 先来看一张React技术栈的图片，如下： 在我看来React最核心的内容无非两个： React的渲染原理 React的更新原理 二、React的渲染原理 React将我们常见的Dom结构用js结构来描述，一般Dom都有三部分组成：标签名、属性、以及子元素，子元素也是Dom，也可以用标签名、属性以及子元素来描述，依次类推，例如如下这个例子：1234&lt;div id="content" class="m-content"&gt; &lt;div id="left" class="m-left"&gt;left&lt;/div&gt; &lt;div id="right" class="m-right"&gt;right&lt;/div&gt;&lt;/div&gt; 用js来描述的话如下所示：12345678910111213141516171819202122let element = &#123; type:"div", props:&#123; id:"content", className:"m-content", children:[&#123; type:"div", props:&#123; id:"left", className:"m-left", children:["left"] &#125; &#125;,&#123; type:"div", props:&#123; id:"right", className:"m-right", children:["right"] &#125; &#125;] &#125;&#125; 那么渲染的时候，我们只需要遍历这个对象，创建Dom元素即可。但是因为整个页面的Dom元素实在是太多了，如果都只用一个对象来描述的话，那整个对象会很复杂以及难以维护。React中的处理方式是采用分层的思想，它将页面展示的元素主要分为3种，都叫做ReactElement，ReactElement主要包括ReactTextElement、ReactDomElement、ReactCompositeElement，还有其他由这些元素组合而成的复杂元素。那么React中如何创建描述这些元素的对象，以及如何渲染他们的呢？这个就是本篇文章要写的东西。 React渲染Text文本 我们先来看一个Demo1234567891011121314&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt; &lt;title&gt;实现渲染字符串&lt;/title&gt;&lt;/head&gt;&lt;body&gt; &lt;div id="root"&gt;&lt;/div&gt; &lt;script type="text/javascript" src="./jquery-3.2.0.js"&gt;&lt;/script&gt; &lt;script type="text/javascript" src="./react.js"&gt;&lt;/script&gt; &lt;script type="text/javascript"&gt; React.render("Hello World",document.getElementById("root")); &lt;/script&gt;&lt;/body&gt;&lt;/html&gt; 执行结果如下： 我们引入最新版JQuery，然后再引入我写的react.js，最后在页面中调用React.render方法，将Hello World字符串渲染到页面id为root中。其中react.js里面的代码就是React渲染Text文本的缩写版。我们来看看它长什么样子。12345678910111213141516171819202122var React = &#123; rootID:0, render:function(element,container)&#123; var componentInstance = instantiateReactComponent(element); var html = componentInstance.mountComponent(React.rootID++); $(container).html(html); $(document).trigger("mountReady"); &#125;&#125;function ReactDOMTextComponent(text)&#123; this._currentElement = ' ' + text; this.rootID = null;&#125;function instantiateReactComponent(node)&#123; if(typeof node == "string" || typeof node == "number")&#123; return new ReactDOMTextComponent(node); &#125;&#125;ReactDOMTextComponent.prototype.mountComponent = function(rootID)&#123; this.rootID = rootID; return '&lt;span data-reactid = "' + rootID + '"&gt;' + this._currentElement + '&lt;/span&gt;';&#125; 首先定义了一个React对象，这个对象拥有两个属性：rootID以及render，我们在前面的Demo，可以看到调用了React.render方法，然后传入了两个参数，其中element就是字符串Hello World，container就是document.getElementById(“root”)，进来之后首先调用instantiateReactComponent创建element元素对应的实例对象，我们来看看这个方法做了什么，这个方法接收一个参数node，我们再回到render方法，我们调用instantiateReactComponent方法传进去的是element，所以这里的node其实就是element，instantiateReactComponent方法进来首先判断node，也就是element是不是字符串或者数字，如果是，将参数node传进构造函数ReactDOMTextComponent，并返回构造函数ReactDOMTextComponent的实例。 我们再来看构造函数ReactDOMTextComponent里的代码，无非就是写了两个实例属性：_currentElement，值为传进来的node字符串。另一个是rootID，这个属性有什么用，可以往下看，这里先不赘述。 React渲染Dom元素React渲染自定义元素]]></content>
       <categories>
         <category>前端技术</category>
       </categories>
@@ -154,8 +154,8 @@
       </categories>
       <tags>
         <tag>gulp</tag>
-        <tag>npm</tag>
         <tag>jade</tag>
+        <tag>npm</tag>
         <tag>javascript</tag>
       </tags>
   </entry>
@@ -167,10 +167,10 @@
         <category>前端技术</category>
       </categories>
       <tags>
-        <tag>ES6</tag>
-        <tag>JavaScript</tag>
         <tag>gulp</tag>
         <tag>npm</tag>
+        <tag>ES6</tag>
+        <tag>JavaScript</tag>
       </tags>
   </entry>
   <entry>
