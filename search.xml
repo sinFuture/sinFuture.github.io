@@ -41,6 +41,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[深入理解CSS盒模型]]></title>
+    <url>%2F2017%2F06%2F11%2Fcss-box%2F</url>
+    <content type="text"><![CDATA[CSS盒模型可以说是CSS中最基础的一部分。在日常工作中可以说是一定会遇到，所以对其进行深入的理解和整理有助于构建自己系统的知识框架。 CSS盒模型的基本概念 我相信大家都有收过快递，我们买的东西经常是包装成一个个盒子。 每个盒子都有宽度（width）、高度（height）、东西的宽度（content-width）和高度（content-height）、盒子的厚度（border）、以及我们为了防止东西损坏而塞了些泡沫，这时候东西和盒子之间有一段的距离（padding）。CSS盒模型中的盒子其实和生活中真实的盒子一样。其实，作为一个IT从业人员，经常总感觉技术来源于生活，更是生活的缩影。 CSS盒模型的种类如何获取一个DOM元素的实际宽高？CSS盒模型外边距重叠现象CSS盒模型中的BFC和IFC]]></content>
+      <categories>
+        <category>前端技术</category>
+      </categories>
+      <tags>
+        <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[用ES6重写React组件]]></title>
     <url>%2F2017%2F06%2F11%2Fes6-react%2F</url>
     <content type="text"><![CDATA[React组件基本上由组件的构建方式、组件内的属性状态（state和props）与生命周期方法组成。这篇文章主要写下React组件的3种构建方式，以及用ES6 classes的构建方式重写阮一峰的React入门Demo。 React 组件构建方式React.classesES6 classes无状态函数React.classes与ES6 classes构建组件的区别]]></content>
@@ -53,6 +64,17 @@
         <tag>react-dom</tag>
         <tag>babel</tag>
         <tag>jsx</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[深入理解页面布局]]></title>
+    <url>%2F2017%2F06%2F11%2Fcss-layout%2F</url>
+    <content type="text"><![CDATA[CSS盒模型可以说是CSS中最基础的一部分。在日常工作中可以说是一定会遇到，但是对于它的理解很多时候都只是停留在出效果。 CSS盒模型的基本概念CSS盒模型的种类如何获取一个DOM元素的实际宽高？CSS盒模型外边距重叠现象CSS盒模型中的BFC和IFC]]></content>
+      <categories>
+        <category>前端技术</category>
+      </categories>
+      <tags>
+        <tag>CSS</tag>
       </tags>
   </entry>
   <entry>
@@ -154,8 +176,8 @@
       </categories>
       <tags>
         <tag>gulp</tag>
-        <tag>jade</tag>
         <tag>npm</tag>
+        <tag>jade</tag>
         <tag>javascript</tag>
       </tags>
   </entry>
@@ -167,10 +189,10 @@
         <category>前端技术</category>
       </categories>
       <tags>
-        <tag>gulp</tag>
-        <tag>npm</tag>
         <tag>ES6</tag>
         <tag>JavaScript</tag>
+        <tag>gulp</tag>
+        <tag>npm</tag>
       </tags>
   </entry>
   <entry>

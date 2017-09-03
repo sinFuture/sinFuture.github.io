@@ -145,6 +145,31 @@
   </entry>
   
   <entry>
+    <title>深入理解CSS盒模型</title>
+    <link href="http://www.Mmyton.com/2017/06/11/css-box/"/>
+    <id>http://www.Mmyton.com/2017/06/11/css-box/</id>
+    <published>2017-06-11T07:07:13.000Z</published>
+    <updated>2017-09-03T12:44:31.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>　　<code>CSS盒模型</code>可以说是CSS中最基础的一部分。在日常工作中可以说是一定会遇到，所以对其进行深入的理解和整理有助于构建自己系统的知识框架。<a id="more"></a></p>
+<h4 id="CSS盒模型的基本概念"><a href="#CSS盒模型的基本概念" class="headerlink" title="CSS盒模型的基本概念"></a>CSS盒模型的基本概念</h4><p>　　我相信大家都有收过快递，我们买的东西经常是包装成一个个盒子。<br><img src="/images/css-box1.png" class="full-image"><br>　　每个盒子都有宽度（<code>width</code>）、高度（<code>height</code>）、东西的宽度（<code>content-width</code>）和高度（<code>content-height</code>）、盒子的厚度（<code>border</code>）、以及我们为了防止东西损坏而塞了些泡沫，这时候东西和盒子之间有一段的距离（<code>padding</code>）。<code>CSS盒模型</code>中的盒子其实和生活中真实的盒子一样。其实，作为一个IT从业人员，经常总感觉技术来源于生活，更是生活的缩影。<br><img src="/images/css-box2.png" class="full-image"></p>
+<h4 id="CSS盒模型的种类"><a href="#CSS盒模型的种类" class="headerlink" title="CSS盒模型的种类"></a>CSS盒模型的种类</h4><h4 id="如何获取一个DOM元素的实际宽高？"><a href="#如何获取一个DOM元素的实际宽高？" class="headerlink" title="如何获取一个DOM元素的实际宽高？"></a>如何获取一个DOM元素的实际宽高？</h4><h4 id="CSS盒模型外边距重叠现象"><a href="#CSS盒模型外边距重叠现象" class="headerlink" title="CSS盒模型外边距重叠现象"></a>CSS盒模型外边距重叠现象</h4><h4 id="CSS盒模型中的BFC和IFC"><a href="#CSS盒模型中的BFC和IFC" class="headerlink" title="CSS盒模型中的BFC和IFC"></a>CSS盒模型中的BFC和IFC</h4><p><img src="/images/react_demo.png" class="full-image"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　&lt;code&gt;CSS盒模型&lt;/code&gt;可以说是CSS中最基础的一部分。在日常工作中可以说是一定会遇到，所以对其进行深入的理解和整理有助于构建自己系统的知识框架。
+    
+    </summary>
+    
+      <category term="前端技术" scheme="http://www.Mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="CSS" scheme="http://www.Mmyton.com/tags/CSS/"/>
+    
+  </entry>
+  
+  <entry>
     <title>用ES6重写React组件</title>
     <link href="http://www.Mmyton.com/2017/06/11/es6-react/"/>
     <id>http://www.Mmyton.com/2017/06/11/es6-react/</id>
@@ -173,6 +198,30 @@
       <category term="babel" scheme="http://www.Mmyton.com/tags/babel/"/>
     
       <category term="jsx" scheme="http://www.Mmyton.com/tags/jsx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>深入理解页面布局</title>
+    <link href="http://www.Mmyton.com/2017/06/11/css-layout/"/>
+    <id>http://www.Mmyton.com/2017/06/11/css-layout/</id>
+    <published>2017-06-11T07:07:13.000Z</published>
+    <updated>2017-09-03T12:20:48.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>　　<code>CSS盒模型</code>可以说是<code>CSS</code>中最基础的一部分。在日常工作中可以说是一定会遇到，但是对于它的理解很多时候都只是停留在出效果。<a id="more"></a></p>
+<h4 id="CSS盒模型的基本概念"><a href="#CSS盒模型的基本概念" class="headerlink" title="CSS盒模型的基本概念"></a>CSS盒模型的基本概念</h4><h4 id="CSS盒模型的种类"><a href="#CSS盒模型的种类" class="headerlink" title="CSS盒模型的种类"></a>CSS盒模型的种类</h4><h4 id="如何获取一个DOM元素的实际宽高？"><a href="#如何获取一个DOM元素的实际宽高？" class="headerlink" title="如何获取一个DOM元素的实际宽高？"></a>如何获取一个DOM元素的实际宽高？</h4><h4 id="CSS盒模型外边距重叠现象"><a href="#CSS盒模型外边距重叠现象" class="headerlink" title="CSS盒模型外边距重叠现象"></a>CSS盒模型外边距重叠现象</h4><h4 id="CSS盒模型中的BFC和IFC"><a href="#CSS盒模型中的BFC和IFC" class="headerlink" title="CSS盒模型中的BFC和IFC"></a>CSS盒模型中的BFC和IFC</h4><p><img src="/images/react_demo.png" class="full-image"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　&lt;code&gt;CSS盒模型&lt;/code&gt;可以说是&lt;code&gt;CSS&lt;/code&gt;中最基础的一部分。在日常工作中可以说是一定会遇到，但是对于它的理解很多时候都只是停留在出效果。
+    
+    </summary>
+    
+      <category term="前端技术" scheme="http://www.Mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="CSS" scheme="http://www.Mmyton.com/tags/CSS/"/>
     
   </entry>
   
@@ -693,9 +742,9 @@
     
       <category term="gulp" scheme="http://www.Mmyton.com/tags/gulp/"/>
     
-      <category term="jade" scheme="http://www.Mmyton.com/tags/jade/"/>
-    
       <category term="npm" scheme="http://www.Mmyton.com/tags/npm/"/>
+    
+      <category term="jade" scheme="http://www.Mmyton.com/tags/jade/"/>
     
       <category term="javascript" scheme="http://www.Mmyton.com/tags/javascript/"/>
     
@@ -715,13 +764,13 @@
       <category term="前端技术" scheme="http://www.Mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="gulp" scheme="http://www.Mmyton.com/tags/gulp/"/>
-    
-      <category term="npm" scheme="http://www.Mmyton.com/tags/npm/"/>
-    
       <category term="ES6" scheme="http://www.Mmyton.com/tags/ES6/"/>
     
       <category term="JavaScript" scheme="http://www.Mmyton.com/tags/JavaScript/"/>
+    
+      <category term="gulp" scheme="http://www.Mmyton.com/tags/gulp/"/>
+    
+      <category term="npm" scheme="http://www.Mmyton.com/tags/npm/"/>
     
   </entry>
   
