@@ -4,9 +4,9 @@
   <subtitle>Like the front, like tossing.</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://www.Mmyton.com/"/>
+  <link href="https://sinfuture.github.io/"/>
   <updated>2017-08-05T09:20:11.000Z</updated>
-  <id>http://www.Mmyton.com/</id>
+  <id>https://sinfuture.github.io/</id>
   
   <author>
     <name>sinFuture(新的未来)</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>React源码解析之渲染原理</title>
-    <link href="http://www.Mmyton.com/2017/07/21/react-render/"/>
-    <id>http://www.Mmyton.com/2017/07/21/react-render/</id>
+    <link href="https://sinfuture.github.io/2017/07/21/react-render/"/>
+    <id>https://sinfuture.github.io/2017/07/21/react-render/</id>
     <published>2017-07-21T12:39:35.000Z</published>
     <updated>2017-08-05T09:20:11.000Z</updated>
     
@@ -42,21 +42,21 @@
     
     </summary>
     
-      <category term="前端技术" scheme="http://www.Mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+      <category term="前端技术" scheme="https://sinfuture.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="ES6" scheme="http://www.Mmyton.com/tags/ES6/"/>
+      <category term="ES6" scheme="https://sinfuture.github.io/tags/ES6/"/>
     
-      <category term="javaScript" scheme="http://www.Mmyton.com/tags/javaScript/"/>
+      <category term="javaScript" scheme="https://sinfuture.github.io/tags/javaScript/"/>
     
-      <category term="React" scheme="http://www.Mmyton.com/tags/React/"/>
+      <category term="React" scheme="https://sinfuture.github.io/tags/React/"/>
     
   </entry>
   
   <entry>
     <title>kindeditor不支持上传图片格式校验</title>
-    <link href="http://www.Mmyton.com/2017/06/16/kingeditor/"/>
-    <id>http://www.Mmyton.com/2017/06/16/kingeditor/</id>
+    <link href="https://sinfuture.github.io/2017/06/16/kingeditor/"/>
+    <id>https://sinfuture.github.io/2017/06/16/kingeditor/</id>
     <published>2017-06-16T04:23:02.000Z</published>
     <updated>2017-06-23T12:47:05.000Z</updated>
     
@@ -78,19 +78,19 @@
     
     </summary>
     
-      <category term="前端技术" scheme="http://www.Mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+      <category term="前端技术" scheme="https://sinfuture.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="javaScript" scheme="http://www.Mmyton.com/tags/javaScript/"/>
+      <category term="javaScript" scheme="https://sinfuture.github.io/tags/javaScript/"/>
     
-      <category term="kingeditor" scheme="http://www.Mmyton.com/tags/kingeditor/"/>
+      <category term="kingeditor" scheme="https://sinfuture.github.io/tags/kingeditor/"/>
     
   </entry>
   
   <entry>
     <title>我眼中的React生命周期</title>
-    <link href="http://www.Mmyton.com/2017/06/11/react-life/"/>
-    <id>http://www.Mmyton.com/2017/06/11/react-life/</id>
+    <link href="https://sinfuture.github.io/2017/06/11/react-life/"/>
+    <id>https://sinfuture.github.io/2017/06/11/react-life/</id>
     <published>2017-06-11T07:14:11.000Z</published>
     <updated>2017-06-17T14:17:41.000Z</updated>
     
@@ -129,50 +129,74 @@
     
     </summary>
     
-      <category term="react" scheme="http://www.Mmyton.com/categories/react/"/>
+      <category term="react" scheme="https://sinfuture.github.io/categories/react/"/>
     
     
-      <category term="webpack" scheme="http://www.Mmyton.com/tags/webpack/"/>
+      <category term="webpack" scheme="https://sinfuture.github.io/tags/webpack/"/>
     
-      <category term="react" scheme="http://www.Mmyton.com/tags/react/"/>
+      <category term="react" scheme="https://sinfuture.github.io/tags/react/"/>
     
-      <category term="react-dom" scheme="http://www.Mmyton.com/tags/react-dom/"/>
+      <category term="react-dom" scheme="https://sinfuture.github.io/tags/react-dom/"/>
     
-      <category term="babel" scheme="http://www.Mmyton.com/tags/babel/"/>
+      <category term="babel" scheme="https://sinfuture.github.io/tags/babel/"/>
     
-      <category term="jsx" scheme="http://www.Mmyton.com/tags/jsx/"/>
+      <category term="jsx" scheme="https://sinfuture.github.io/tags/jsx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>深入理解页面布局</title>
+    <link href="https://sinfuture.github.io/2017/06/11/css-layout/"/>
+    <id>https://sinfuture.github.io/2017/06/11/css-layout/</id>
+    <published>2017-06-11T07:07:13.000Z</published>
+    <updated>2017-09-03T14:03:34.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>　　<code>页面布局</code>是在上一篇文章<code>深入理解CSS盒模型</code>基础上写的第二篇文章。<code>CSS盒模型</code>是页面布局的基石。页面布局其实就是将一个个CSS盒子摆放在它应该在的位置展现给用户。这一块内容可以说是很多也很灵活。我会从单个盒子布局到多个盒子布局，最终走向整个页面布局这三方面来深入详细的阐述其原理。<a id="more"></a></p>
+<h4 id="CSS布局中的display"><a href="#CSS布局中的display" class="headerlink" title="CSS布局中的display"></a>CSS布局中的display</h4><h4 id="CSS布局中的position"><a href="#CSS布局中的position" class="headerlink" title="CSS布局中的position"></a>CSS布局中的position</h4><h4 id="CSS布局中的flex弹性布局"><a href="#CSS布局中的flex弹性布局" class="headerlink" title="CSS布局中的flex弹性布局"></a>CSS布局中的flex弹性布局</h4><h4 id="CSS布局中的table布局"><a href="#CSS布局中的table布局" class="headerlink" title="CSS布局中的table布局"></a>CSS布局中的table布局</h4><h4 id="CSS布局中的grid布局"><a href="#CSS布局中的grid布局" class="headerlink" title="CSS布局中的grid布局"></a>CSS布局中的grid布局</h4><h4 id="CSS布局中水平居中布局方案"><a href="#CSS布局中水平居中布局方案" class="headerlink" title="CSS布局中水平居中布局方案"></a>CSS布局中水平居中布局方案</h4><h5 id="水平居中布局的5种解决方案"><a href="#水平居中布局的5种解决方案" class="headerlink" title="水平居中布局的5种解决方案"></a>水平居中布局的5种解决方案</h5><h4 id="CSS布居中垂直居中布局方案"><a href="#CSS布居中垂直居中布局方案" class="headerlink" title="CSS布居中垂直居中布局方案"></a>CSS布居中垂直居中布局方案</h4><h5 id="垂直居中布局的3种解决方案"><a href="#垂直居中布局的3种解决方案" class="headerlink" title="垂直居中布局的3种解决方案"></a>垂直居中布局的3种解决方案</h5><h4 id="CSS布局中水平、垂直同时居中布局方案"><a href="#CSS布局中水平、垂直同时居中布局方案" class="headerlink" title="CSS布局中水平、垂直同时居中布局方案"></a>CSS布局中水平、垂直同时居中布局方案</h4><h5 id="水平垂直居中布局的3种解决方案"><a href="#水平垂直居中布局的3种解决方案" class="headerlink" title="水平垂直居中布局的3种解决方案"></a>水平垂直居中布局的3种解决方案</h5><h4 id="CSS布局中多列布局方案"><a href="#CSS布局中多列布局方案" class="headerlink" title="CSS布局中多列布局方案"></a>CSS布局中多列布局方案</h4>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　&lt;code&gt;页面布局&lt;/code&gt;是在上一篇文章&lt;code&gt;深入理解CSS盒模型&lt;/code&gt;基础上写的第二篇文章。&lt;code&gt;CSS盒模型&lt;/code&gt;是页面布局的基石。页面布局其实就是将一个个CSS盒子摆放在它应该在的位置展现给用户。这一块内容可以说是很多也很灵活。我会从单个盒子布局到多个盒子布局，最终走向整个页面布局这三方面来深入详细的阐述其原理。
+    
+    </summary>
+    
+      <category term="前端技术" scheme="https://sinfuture.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="CSS" scheme="https://sinfuture.github.io/tags/CSS/"/>
     
   </entry>
   
   <entry>
     <title>深入理解CSS盒模型</title>
-    <link href="http://www.Mmyton.com/2017/06/11/css-box/"/>
-    <id>http://www.Mmyton.com/2017/06/11/css-box/</id>
+    <link href="https://sinfuture.github.io/2017/06/11/css-box/"/>
+    <id>https://sinfuture.github.io/2017/06/11/css-box/</id>
     <published>2017-06-11T07:07:13.000Z</published>
-    <updated>2017-09-03T12:44:31.000Z</updated>
+    <updated>2017-09-03T13:33:36.000Z</updated>
     
-    <content type="html"><![CDATA[<p>　　<code>CSS盒模型</code>可以说是CSS中最基础的一部分。在日常工作中可以说是一定会遇到，所以对其进行深入的理解和整理有助于构建自己系统的知识框架。<a id="more"></a></p>
-<h4 id="CSS盒模型的基本概念"><a href="#CSS盒模型的基本概念" class="headerlink" title="CSS盒模型的基本概念"></a>CSS盒模型的基本概念</h4><p>　　我相信大家都有收过快递，我们买的东西经常是包装成一个个盒子。<br><img src="/images/css-box1.png" class="full-image"><br>　　每个盒子都有宽度（<code>width</code>）、高度（<code>height</code>）、东西的宽度（<code>content-width</code>）和高度（<code>content-height</code>）、盒子的厚度（<code>border</code>）、以及我们为了防止东西损坏而塞了些泡沫，这时候东西和盒子之间有一段的距离（<code>padding</code>）。<code>CSS盒模型</code>中的盒子其实和生活中真实的盒子一样。其实，作为一个IT从业人员，经常总感觉技术来源于生活，更是生活的缩影。<br><img src="/images/css-box2.png" class="full-image"></p>
-<h4 id="CSS盒模型的种类"><a href="#CSS盒模型的种类" class="headerlink" title="CSS盒模型的种类"></a>CSS盒模型的种类</h4><h4 id="如何获取一个DOM元素的实际宽高？"><a href="#如何获取一个DOM元素的实际宽高？" class="headerlink" title="如何获取一个DOM元素的实际宽高？"></a>如何获取一个DOM元素的实际宽高？</h4><h4 id="CSS盒模型外边距重叠现象"><a href="#CSS盒模型外边距重叠现象" class="headerlink" title="CSS盒模型外边距重叠现象"></a>CSS盒模型外边距重叠现象</h4><h4 id="CSS盒模型中的BFC和IFC"><a href="#CSS盒模型中的BFC和IFC" class="headerlink" title="CSS盒模型中的BFC和IFC"></a>CSS盒模型中的BFC和IFC</h4><p><img src="/images/react_demo.png" class="full-image"></p>
-]]></content>
+    <content type="html"><![CDATA[<p>　　<code>CSS盒模型</code>可以说是CSS中最基础的一部分。在日常工作中可以说是一定会遇到，对经常碰到的几个问题进行一定的梳理有助于自己后续的查阅。<a id="more"></a></p>
+<h4 id="CSS盒模型的基本概念"><a href="#CSS盒模型的基本概念" class="headerlink" title="CSS盒模型的基本概念"></a>CSS盒模型的基本概念</h4><p>　　我相信大家都有收过快递，我们买的东西经常是包装成一个个盒子。<br><img src="/images/css-box1.png" class="full-image"><br>　　每个盒子都有宽度（<code>width</code>）、高度（<code>height</code>）、东西的宽度（<code>content-width</code>）和高度（<code>content-height</code>）、盒子的厚度（<code>border</code>）、以及我们为了防止东西损坏而塞了些泡沫，这时候东西和盒子之间有一段的距离（<code>padding</code>）。每个盒子之间又有一定的间距（<code>margin</code>）<code>CSS盒模型</code>中的盒子其实和生活中真实的盒子一样。其实，作为一个IT从业人员，经常总感觉技术来源于生活，更是生活的缩影。<br><img src="/images/css-box2.png" class="full-image"></p>
+<h4 id="CSS盒模型的种类"><a href="#CSS盒模型的种类" class="headerlink" title="CSS盒模型的种类"></a>CSS盒模型的种类</h4><p>　　通过生活中的快递这个例子，相信大家已经能很形象的理解＜code&gt;CSS盒模型。但是浏览器在识别这种＜code&gt;CSS盒模型时存在一定的差异性，说实话，我内心是很鄙视<code>IE</code>浏览器给前端人员挖的无数的坑。但是在解决完这种兼容性问题之后，内心其实是蛮有成就感（虽然工作中碰到比较少）。＜code&gt;CSS盒模型存在＜code&gt;标准盒模型和＜code&gt;IE盒模型。它们的差别也很简单，我们先来看＜code&gt;标准盒模型，如下图所示：<br><img src="/images/css-box3.png" class="full-image"><br>　　现在我们来说下这两种盒模型的区别，它们之间最大的区别在于宽度和高度计算的不同。对于＜code&gt;标准盒模型的宽度和高度指的是内容的宽度和高度，而＜code&gt;IE盒模型的宽度和高度不仅包括内容宽度和高度还包括填充（<code>padding</code>）以及盒子厚度（<code>border</code>）。这个差异，我们在设置宽度和高度时如果要保证不同浏览器下的宽度和高度一致时，需要针对<code>IE浏览器</code>设置较大的宽度（为标准浏览器的<code>content</code>宽度加上<code>padding</code>和<code>border</code>），高度也是类似这么处理。针对这个差异以及需求，<code>CSS3</code>出了一个新的属性：<code>box-sizing</code>，它有两个取值：<code>content-box</code>和<code>border-box</code>。<br><img src="/images/css-box4.png" class="full-image"><br>　　它的使用可以参考如下的例子，例子的代码和展示效果已经很清楚了。<br><img src="/images/css-box5.png" class="full-image">　　</p>
+<h4 id="如何获取一个DOM元素的实际宽高？"><a href="#如何获取一个DOM元素的实际宽高？" class="headerlink" title="如何获取一个DOM元素的实际宽高？"></a>如何获取一个DOM元素的实际宽高？</h4><p>　　我们设置一个元素（<code>CSS盒子</code>）的宽度和高度有3种方式，其实也是页面引入样式的3种方式。这给我们在获取<code>CSS盒子</code>的实际宽度和高度造成一定的困扰。那么我们在实际中应该怎么获取元素的实际宽度和高度呢？这也是我们在运用＜code&gt;CSS盒模型时经常会遇到的问题。我们先来看<code>jQuery</code>中怎么获取元素的宽度和高度。待续。。</p>
+<h4 id="CSS盒模型外边距重叠现象"><a href="#CSS盒模型外边距重叠现象" class="headerlink" title="CSS盒模型外边距重叠现象"></a>CSS盒模型外边距重叠现象</h4><h4 id="CSS盒模型中的BFC和IFC"><a href="#CSS盒模型中的BFC和IFC" class="headerlink" title="CSS盒模型中的BFC和IFC"></a>CSS盒模型中的BFC和IFC</h4>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;　　&lt;code&gt;CSS盒模型&lt;/code&gt;可以说是CSS中最基础的一部分。在日常工作中可以说是一定会遇到，所以对其进行深入的理解和整理有助于构建自己系统的知识框架。
+      &lt;p&gt;　　&lt;code&gt;CSS盒模型&lt;/code&gt;可以说是CSS中最基础的一部分。在日常工作中可以说是一定会遇到，对经常碰到的几个问题进行一定的梳理有助于自己后续的查阅。
     
     </summary>
     
-      <category term="前端技术" scheme="http://www.Mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+      <category term="前端技术" scheme="https://sinfuture.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="CSS" scheme="http://www.Mmyton.com/tags/CSS/"/>
+      <category term="CSS" scheme="https://sinfuture.github.io/tags/CSS/"/>
     
   </entry>
   
   <entry>
     <title>用ES6重写React组件</title>
-    <link href="http://www.Mmyton.com/2017/06/11/es6-react/"/>
-    <id>http://www.Mmyton.com/2017/06/11/es6-react/</id>
+    <link href="https://sinfuture.github.io/2017/06/11/es6-react/"/>
+    <id>https://sinfuture.github.io/2017/06/11/es6-react/</id>
     <published>2017-06-11T07:07:13.000Z</published>
     <updated>2017-06-18T02:28:07.000Z</updated>
     
@@ -186,49 +210,25 @@
     
     </summary>
     
-      <category term="react" scheme="http://www.Mmyton.com/categories/react/"/>
+      <category term="react" scheme="https://sinfuture.github.io/categories/react/"/>
     
     
-      <category term="webpack" scheme="http://www.Mmyton.com/tags/webpack/"/>
+      <category term="webpack" scheme="https://sinfuture.github.io/tags/webpack/"/>
     
-      <category term="react" scheme="http://www.Mmyton.com/tags/react/"/>
+      <category term="react" scheme="https://sinfuture.github.io/tags/react/"/>
     
-      <category term="react-dom" scheme="http://www.Mmyton.com/tags/react-dom/"/>
+      <category term="react-dom" scheme="https://sinfuture.github.io/tags/react-dom/"/>
     
-      <category term="babel" scheme="http://www.Mmyton.com/tags/babel/"/>
+      <category term="babel" scheme="https://sinfuture.github.io/tags/babel/"/>
     
-      <category term="jsx" scheme="http://www.Mmyton.com/tags/jsx/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>深入理解页面布局</title>
-    <link href="http://www.Mmyton.com/2017/06/11/css-layout/"/>
-    <id>http://www.Mmyton.com/2017/06/11/css-layout/</id>
-    <published>2017-06-11T07:07:13.000Z</published>
-    <updated>2017-09-03T12:20:48.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>　　<code>CSS盒模型</code>可以说是<code>CSS</code>中最基础的一部分。在日常工作中可以说是一定会遇到，但是对于它的理解很多时候都只是停留在出效果。<a id="more"></a></p>
-<h4 id="CSS盒模型的基本概念"><a href="#CSS盒模型的基本概念" class="headerlink" title="CSS盒模型的基本概念"></a>CSS盒模型的基本概念</h4><h4 id="CSS盒模型的种类"><a href="#CSS盒模型的种类" class="headerlink" title="CSS盒模型的种类"></a>CSS盒模型的种类</h4><h4 id="如何获取一个DOM元素的实际宽高？"><a href="#如何获取一个DOM元素的实际宽高？" class="headerlink" title="如何获取一个DOM元素的实际宽高？"></a>如何获取一个DOM元素的实际宽高？</h4><h4 id="CSS盒模型外边距重叠现象"><a href="#CSS盒模型外边距重叠现象" class="headerlink" title="CSS盒模型外边距重叠现象"></a>CSS盒模型外边距重叠现象</h4><h4 id="CSS盒模型中的BFC和IFC"><a href="#CSS盒模型中的BFC和IFC" class="headerlink" title="CSS盒模型中的BFC和IFC"></a>CSS盒模型中的BFC和IFC</h4><p><img src="/images/react_demo.png" class="full-image"></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;　　&lt;code&gt;CSS盒模型&lt;/code&gt;可以说是&lt;code&gt;CSS&lt;/code&gt;中最基础的一部分。在日常工作中可以说是一定会遇到，但是对于它的理解很多时候都只是停留在出效果。
-    
-    </summary>
-    
-      <category term="前端技术" scheme="http://www.Mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="CSS" scheme="http://www.Mmyton.com/tags/CSS/"/>
+      <category term="jsx" scheme="https://sinfuture.github.io/tags/jsx/"/>
     
   </entry>
   
   <entry>
     <title>其实webpack入门很简单</title>
-    <link href="http://www.Mmyton.com/2017/06/11/webpack/"/>
-    <id>http://www.Mmyton.com/2017/06/11/webpack/</id>
+    <link href="https://sinfuture.github.io/2017/06/11/webpack/"/>
+    <id>https://sinfuture.github.io/2017/06/11/webpack/</id>
     <published>2017-06-11T06:38:17.000Z</published>
     <updated>2017-06-14T07:42:48.000Z</updated>
     
@@ -262,29 +262,29 @@
     
     </summary>
     
-      <category term="前段工程化" scheme="http://www.Mmyton.com/categories/%E5%89%8D%E6%AE%B5%E5%B7%A5%E7%A8%8B%E5%8C%96/"/>
+      <category term="前段工程化" scheme="https://sinfuture.github.io/categories/%E5%89%8D%E6%AE%B5%E5%B7%A5%E7%A8%8B%E5%8C%96/"/>
     
     
-      <category term="webpack" scheme="http://www.Mmyton.com/tags/webpack/"/>
+      <category term="webpack" scheme="https://sinfuture.github.io/tags/webpack/"/>
     
-      <category term="react" scheme="http://www.Mmyton.com/tags/react/"/>
+      <category term="react" scheme="https://sinfuture.github.io/tags/react/"/>
     
-      <category term="babel" scheme="http://www.Mmyton.com/tags/babel/"/>
+      <category term="babel" scheme="https://sinfuture.github.io/tags/babel/"/>
     
-      <category term="javaScript" scheme="http://www.Mmyton.com/tags/javaScript/"/>
+      <category term="css" scheme="https://sinfuture.github.io/tags/css/"/>
     
-      <category term="css" scheme="http://www.Mmyton.com/tags/css/"/>
+      <category term="javaScript" scheme="https://sinfuture.github.io/tags/javaScript/"/>
     
-      <category term="html" scheme="http://www.Mmyton.com/tags/html/"/>
+      <category term="html" scheme="https://sinfuture.github.io/tags/html/"/>
     
-      <category term="image" scheme="http://www.Mmyton.com/tags/image/"/>
+      <category term="image" scheme="https://sinfuture.github.io/tags/image/"/>
     
   </entry>
   
   <entry>
     <title>解剖jQuery源码系列之$.extend与$().extend方法</title>
-    <link href="http://www.Mmyton.com/2017/05/31/jQuery20170531/"/>
-    <id>http://www.Mmyton.com/2017/05/31/jQuery20170531/</id>
+    <link href="https://sinfuture.github.io/2017/05/31/jQuery20170531/"/>
+    <id>https://sinfuture.github.io/2017/05/31/jQuery20170531/</id>
     <published>2017-05-30T23:54:45.000Z</published>
     <updated>2017-07-25T15:40:45.000Z</updated>
     
@@ -302,21 +302,21 @@
     
     </summary>
     
-      <category term="前端技术" scheme="http://www.Mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+      <category term="前端技术" scheme="https://sinfuture.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="JavaScript" scheme="http://www.Mmyton.com/tags/JavaScript/"/>
+      <category term="JavaScript" scheme="https://sinfuture.github.io/tags/JavaScript/"/>
     
-      <category term="jQuery" scheme="http://www.Mmyton.com/tags/jQuery/"/>
+      <category term="jQuery" scheme="https://sinfuture.github.io/tags/jQuery/"/>
     
-      <category term="Dom" scheme="http://www.Mmyton.com/tags/Dom/"/>
+      <category term="Dom" scheme="https://sinfuture.github.io/tags/Dom/"/>
     
   </entry>
   
   <entry>
     <title>你应该知道的HTTP报文首部</title>
-    <link href="http://www.Mmyton.com/2017/05/30/http20170530/"/>
-    <id>http://www.Mmyton.com/2017/05/30/http20170530/</id>
+    <link href="https://sinfuture.github.io/2017/05/30/http20170530/"/>
+    <id>https://sinfuture.github.io/2017/05/30/http20170530/</id>
     <published>2017-05-30T07:15:33.000Z</published>
     <updated>2017-06-04T15:25:10.000Z</updated>
     
@@ -567,17 +567,17 @@
     
     </summary>
     
-      <category term="计算机网络" scheme="http://www.Mmyton.com/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+      <category term="计算机网络" scheme="https://sinfuture.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
     
     
-      <category term="HTTP" scheme="http://www.Mmyton.com/tags/HTTP/"/>
+      <category term="HTTP" scheme="https://sinfuture.github.io/tags/HTTP/"/>
     
   </entry>
   
   <entry>
     <title>你应该掌握的14种常用的HTTP状态码</title>
-    <link href="http://www.Mmyton.com/2017/05/29/httpCode/"/>
-    <id>http://www.Mmyton.com/2017/05/29/httpCode/</id>
+    <link href="https://sinfuture.github.io/2017/05/29/httpCode/"/>
+    <id>https://sinfuture.github.io/2017/05/29/httpCode/</id>
     <published>2017-05-29T02:42:59.000Z</published>
     <updated>2017-05-30T14:58:38.000Z</updated>
     
@@ -646,17 +646,17 @@
     
     </summary>
     
-      <category term="计算机网络" scheme="http://www.Mmyton.com/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+      <category term="计算机网络" scheme="https://sinfuture.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
     
     
-      <category term="HTTP" scheme="http://www.Mmyton.com/tags/HTTP/"/>
+      <category term="HTTP" scheme="https://sinfuture.github.io/tags/HTTP/"/>
     
   </entry>
   
   <entry>
     <title>解剖jQuery源码系列之jQuery工具方法</title>
-    <link href="http://www.Mmyton.com/2017/05/23/jQuery20170523/"/>
-    <id>http://www.Mmyton.com/2017/05/23/jQuery20170523/</id>
+    <link href="https://sinfuture.github.io/2017/05/23/jQuery20170523/"/>
+    <id>https://sinfuture.github.io/2017/05/23/jQuery20170523/</id>
     <published>2017-05-22T16:31:21.000Z</published>
     <updated>2017-05-22T16:32:51.000Z</updated>
     
@@ -664,21 +664,21 @@
     
     </summary>
     
-      <category term="前端技术" scheme="http://www.Mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+      <category term="前端技术" scheme="https://sinfuture.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="JavaScript" scheme="http://www.Mmyton.com/tags/JavaScript/"/>
+      <category term="JavaScript" scheme="https://sinfuture.github.io/tags/JavaScript/"/>
     
-      <category term="jQuery" scheme="http://www.Mmyton.com/tags/jQuery/"/>
+      <category term="jQuery" scheme="https://sinfuture.github.io/tags/jQuery/"/>
     
-      <category term="Dom" scheme="http://www.Mmyton.com/tags/Dom/"/>
+      <category term="Dom" scheme="https://sinfuture.github.io/tags/Dom/"/>
     
   </entry>
   
   <entry>
     <title>解剖jQuery源码系列之jQuery.prototype.init方法</title>
-    <link href="http://www.Mmyton.com/2017/05/20/jQuery20170520/"/>
-    <id>http://www.Mmyton.com/2017/05/20/jQuery20170520/</id>
+    <link href="https://sinfuture.github.io/2017/05/20/jQuery20170520/"/>
+    <id>https://sinfuture.github.io/2017/05/20/jQuery20170520/</id>
     <published>2017-05-20T11:00:24.000Z</published>
     <updated>2017-05-30T15:46:40.000Z</updated>
     
@@ -695,21 +695,21 @@
     
     </summary>
     
-      <category term="前端技术" scheme="http://www.Mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+      <category term="前端技术" scheme="https://sinfuture.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="JavaScript" scheme="http://www.Mmyton.com/tags/JavaScript/"/>
+      <category term="JavaScript" scheme="https://sinfuture.github.io/tags/JavaScript/"/>
     
-      <category term="jQuery" scheme="http://www.Mmyton.com/tags/jQuery/"/>
+      <category term="jQuery" scheme="https://sinfuture.github.io/tags/jQuery/"/>
     
-      <category term="Dom" scheme="http://www.Mmyton.com/tags/Dom/"/>
+      <category term="Dom" scheme="https://sinfuture.github.io/tags/Dom/"/>
     
   </entry>
   
   <entry>
     <title>浅谈项目中经常需要使用到的less功能</title>
-    <link href="http://www.Mmyton.com/2017/04/27/less/"/>
-    <id>http://www.Mmyton.com/2017/04/27/less/</id>
+    <link href="https://sinfuture.github.io/2017/04/27/less/"/>
+    <id>https://sinfuture.github.io/2017/04/27/less/</id>
     <published>2017-04-27T14:11:48.000Z</published>
     <updated>2017-04-27T14:22:52.000Z</updated>
     
@@ -717,19 +717,19 @@
     
     </summary>
     
-      <category term="前端技术" scheme="http://www.Mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+      <category term="前端技术" scheme="https://sinfuture.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="less" scheme="http://www.Mmyton.com/tags/less/"/>
+      <category term="less" scheme="https://sinfuture.github.io/tags/less/"/>
     
-      <category term="css" scheme="http://www.Mmyton.com/tags/css/"/>
+      <category term="css" scheme="https://sinfuture.github.io/tags/css/"/>
     
   </entry>
   
   <entry>
     <title>从统计分析自动生成系统看gulp的自动化构建</title>
-    <link href="http://www.Mmyton.com/2017/04/27/gulp/"/>
-    <id>http://www.Mmyton.com/2017/04/27/gulp/</id>
+    <link href="https://sinfuture.github.io/2017/04/27/gulp/"/>
+    <id>https://sinfuture.github.io/2017/04/27/gulp/</id>
     <published>2017-04-27T14:11:32.000Z</published>
     <updated>2017-04-27T14:21:26.000Z</updated>
     
@@ -737,23 +737,23 @@
     
     </summary>
     
-      <category term="前端技术" scheme="http://www.Mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+      <category term="前端技术" scheme="https://sinfuture.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="gulp" scheme="http://www.Mmyton.com/tags/gulp/"/>
+      <category term="gulp" scheme="https://sinfuture.github.io/tags/gulp/"/>
     
-      <category term="npm" scheme="http://www.Mmyton.com/tags/npm/"/>
+      <category term="jade" scheme="https://sinfuture.github.io/tags/jade/"/>
     
-      <category term="jade" scheme="http://www.Mmyton.com/tags/jade/"/>
+      <category term="npm" scheme="https://sinfuture.github.io/tags/npm/"/>
     
-      <category term="javascript" scheme="http://www.Mmyton.com/tags/javascript/"/>
+      <category term="javascript" scheme="https://sinfuture.github.io/tags/javascript/"/>
     
   </entry>
   
   <entry>
     <title>ES6基础项目构建</title>
-    <link href="http://www.Mmyton.com/2017/04/27/es6/"/>
-    <id>http://www.Mmyton.com/2017/04/27/es6/</id>
+    <link href="https://sinfuture.github.io/2017/04/27/es6/"/>
+    <id>https://sinfuture.github.io/2017/04/27/es6/</id>
     <published>2017-04-27T14:11:17.000Z</published>
     <updated>2017-04-27T14:16:51.000Z</updated>
     
@@ -761,23 +761,23 @@
     
     </summary>
     
-      <category term="前端技术" scheme="http://www.Mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+      <category term="前端技术" scheme="https://sinfuture.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="ES6" scheme="http://www.Mmyton.com/tags/ES6/"/>
+      <category term="gulp" scheme="https://sinfuture.github.io/tags/gulp/"/>
     
-      <category term="JavaScript" scheme="http://www.Mmyton.com/tags/JavaScript/"/>
+      <category term="npm" scheme="https://sinfuture.github.io/tags/npm/"/>
     
-      <category term="gulp" scheme="http://www.Mmyton.com/tags/gulp/"/>
+      <category term="ES6" scheme="https://sinfuture.github.io/tags/ES6/"/>
     
-      <category term="npm" scheme="http://www.Mmyton.com/tags/npm/"/>
+      <category term="JavaScript" scheme="https://sinfuture.github.io/tags/JavaScript/"/>
     
   </entry>
   
   <entry>
     <title>解剖jQuery源码系列之JQuery构造函数</title>
-    <link href="http://www.Mmyton.com/2017/04/27/jquery20170427/"/>
-    <id>http://www.Mmyton.com/2017/04/27/jquery20170427/</id>
+    <link href="https://sinfuture.github.io/2017/04/27/jquery20170427/"/>
+    <id>https://sinfuture.github.io/2017/04/27/jquery20170427/</id>
     <published>2017-04-27T07:51:02.000Z</published>
     <updated>2017-05-20T10:56:19.000Z</updated>
     
@@ -793,21 +793,21 @@
     
     </summary>
     
-      <category term="前端技术" scheme="http://www.Mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+      <category term="前端技术" scheme="https://sinfuture.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="jQuery" scheme="http://www.Mmyton.com/tags/jQuery/"/>
+      <category term="jQuery" scheme="https://sinfuture.github.io/tags/jQuery/"/>
     
-      <category term="Dom" scheme="http://www.Mmyton.com/tags/Dom/"/>
+      <category term="Dom" scheme="https://sinfuture.github.io/tags/Dom/"/>
     
-      <category term="javaScript" scheme="http://www.Mmyton.com/tags/javaScript/"/>
+      <category term="javaScript" scheme="https://sinfuture.github.io/tags/javaScript/"/>
     
   </entry>
   
   <entry>
     <title>解剖jQuery源码系列之匿名函数自执行</title>
-    <link href="http://www.Mmyton.com/2017/04/25/jquery20170425/"/>
-    <id>http://www.Mmyton.com/2017/04/25/jquery20170425/</id>
+    <link href="https://sinfuture.github.io/2017/04/25/jquery20170425/"/>
+    <id>https://sinfuture.github.io/2017/04/25/jquery20170425/</id>
     <published>2017-04-24T16:49:46.000Z</published>
     <updated>2017-05-07T03:16:57.000Z</updated>
     
@@ -825,21 +825,21 @@
     
     </summary>
     
-      <category term="前端技术" scheme="http://www.Mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+      <category term="前端技术" scheme="https://sinfuture.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="jQuery" scheme="http://www.Mmyton.com/tags/jQuery/"/>
+      <category term="jQuery" scheme="https://sinfuture.github.io/tags/jQuery/"/>
     
-      <category term="Dom" scheme="http://www.Mmyton.com/tags/Dom/"/>
+      <category term="Dom" scheme="https://sinfuture.github.io/tags/Dom/"/>
     
-      <category term="javaScript" scheme="http://www.Mmyton.com/tags/javaScript/"/>
+      <category term="javaScript" scheme="https://sinfuture.github.io/tags/javaScript/"/>
     
   </entry>
   
   <entry>
     <title>点滴的生活就是幸福</title>
-    <link href="http://www.Mmyton.com/2017/04/24/sinFuture/"/>
-    <id>http://www.Mmyton.com/2017/04/24/sinFuture/</id>
+    <link href="https://sinfuture.github.io/2017/04/24/sinFuture/"/>
+    <id>https://sinfuture.github.io/2017/04/24/sinFuture/</id>
     <published>2017-04-23T16:07:00.000Z</published>
     <updated>2017-05-06T06:00:49.000Z</updated>
     
@@ -856,10 +856,10 @@
     
     </summary>
     
-      <category term="生活" scheme="http://www.Mmyton.com/categories/%E7%94%9F%E6%B4%BB/"/>
+      <category term="生活" scheme="https://sinfuture.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
     
     
-      <category term="生活" scheme="http://www.Mmyton.com/tags/%E7%94%9F%E6%B4%BB/"/>
+      <category term="生活" scheme="https://sinfuture.github.io/tags/%E7%94%9F%E6%B4%BB/"/>
     
   </entry>
   
