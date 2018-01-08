@@ -145,6 +145,32 @@
   </entry>
   
   <entry>
+    <title>深入理解CSS盒模型</title>
+    <link href="http://www.mmyton.com/2017/06/11/css-box/"/>
+    <id>http://www.mmyton.com/2017/06/11/css-box/</id>
+    <published>2017-06-11T07:07:13.000Z</published>
+    <updated>2017-09-03T13:33:36.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>　　<code>CSS盒模型</code>可以说是CSS中最基础的一部分。在日常工作中可以说是一定会遇到，对经常碰到的几个问题进行一定的梳理有助于自己后续的查阅。<a id="more"></a></p>
+<h4 id="CSS盒模型的基本概念"><a href="#CSS盒模型的基本概念" class="headerlink" title="CSS盒模型的基本概念"></a>CSS盒模型的基本概念</h4><p>　　我相信大家都有收过快递，我们买的东西经常是包装成一个个盒子。<br><img src="/images/css-box1.png" class="full-image"><br>　　每个盒子都有宽度（<code>width</code>）、高度（<code>height</code>）、东西的宽度（<code>content-width</code>）和高度（<code>content-height</code>）、盒子的厚度（<code>border</code>）、以及我们为了防止东西损坏而塞了些泡沫，这时候东西和盒子之间有一段的距离（<code>padding</code>）。每个盒子之间又有一定的间距（<code>margin</code>）<code>CSS盒模型</code>中的盒子其实和生活中真实的盒子一样。其实，作为一个IT从业人员，经常总感觉技术来源于生活，更是生活的缩影。<br><img src="/images/css-box2.png" class="full-image"></p>
+<h4 id="CSS盒模型的种类"><a href="#CSS盒模型的种类" class="headerlink" title="CSS盒模型的种类"></a>CSS盒模型的种类</h4><p>　　通过生活中的快递这个例子，相信大家已经能很形象的理解＜code&gt;CSS盒模型。但是浏览器在识别这种＜code&gt;CSS盒模型时存在一定的差异性，说实话，我内心是很鄙视<code>IE</code>浏览器给前端人员挖的无数的坑。但是在解决完这种兼容性问题之后，内心其实是蛮有成就感（虽然工作中碰到比较少）。＜code&gt;CSS盒模型存在＜code&gt;标准盒模型和＜code&gt;IE盒模型。它们的差别也很简单，我们先来看＜code&gt;标准盒模型，如下图所示：<br><img src="/images/css-box3.png" class="full-image"><br>　　现在我们来说下这两种盒模型的区别，它们之间最大的区别在于宽度和高度计算的不同。对于＜code&gt;标准盒模型的宽度和高度指的是内容的宽度和高度，而＜code&gt;IE盒模型的宽度和高度不仅包括内容宽度和高度还包括填充（<code>padding</code>）以及盒子厚度（<code>border</code>）。这个差异，我们在设置宽度和高度时如果要保证不同浏览器下的宽度和高度一致时，需要针对<code>IE浏览器</code>设置较大的宽度（为标准浏览器的<code>content</code>宽度加上<code>padding</code>和<code>border</code>），高度也是类似这么处理。针对这个差异以及需求，<code>CSS3</code>出了一个新的属性：<code>box-sizing</code>，它有两个取值：<code>content-box</code>和<code>border-box</code>。<br><img src="/images/css-box4.png" class="full-image"><br>　　它的使用可以参考如下的例子，例子的代码和展示效果已经很清楚了。<br><img src="/images/css-box5.png" class="full-image">　　</p>
+<h4 id="如何获取一个DOM元素的实际宽高？"><a href="#如何获取一个DOM元素的实际宽高？" class="headerlink" title="如何获取一个DOM元素的实际宽高？"></a>如何获取一个DOM元素的实际宽高？</h4><p>　　我们设置一个元素（<code>CSS盒子</code>）的宽度和高度有3种方式，其实也是页面引入样式的3种方式。这给我们在获取<code>CSS盒子</code>的实际宽度和高度造成一定的困扰。那么我们在实际中应该怎么获取元素的实际宽度和高度呢？这也是我们在运用＜code&gt;CSS盒模型时经常会遇到的问题。我们先来看<code>jQuery</code>中怎么获取元素的宽度和高度。待续。。</p>
+<h4 id="CSS盒模型外边距重叠现象"><a href="#CSS盒模型外边距重叠现象" class="headerlink" title="CSS盒模型外边距重叠现象"></a>CSS盒模型外边距重叠现象</h4><h4 id="CSS盒模型中的BFC和IFC"><a href="#CSS盒模型中的BFC和IFC" class="headerlink" title="CSS盒模型中的BFC和IFC"></a>CSS盒模型中的BFC和IFC</h4>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　&lt;code&gt;CSS盒模型&lt;/code&gt;可以说是CSS中最基础的一部分。在日常工作中可以说是一定会遇到，对经常碰到的几个问题进行一定的梳理有助于自己后续的查阅。
+    
+    </summary>
+    
+      <category term="前端技术" scheme="http://www.mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="CSS" scheme="http://www.mmyton.com/tags/CSS/"/>
+    
+  </entry>
+  
+  <entry>
     <title>用ES6重写React组件</title>
     <link href="http://www.mmyton.com/2017/06/11/es6-react/"/>
     <id>http://www.mmyton.com/2017/06/11/es6-react/</id>
@@ -189,32 +215,6 @@
     <summary type="html">
     
       &lt;p&gt;　　&lt;code&gt;页面布局&lt;/code&gt;是在上一篇文章&lt;code&gt;深入理解CSS盒模型&lt;/code&gt;基础上写的第二篇文章。&lt;code&gt;CSS盒模型&lt;/code&gt;是页面布局的基石。页面布局其实就是将一个个CSS盒子摆放在它应该在的位置展现给用户。这一块内容可以说是很多也很灵活。我会从单个盒子布局到多个盒子布局，最终走向整个页面布局这三方面来深入详细的阐述其原理。
-    
-    </summary>
-    
-      <category term="前端技术" scheme="http://www.mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="CSS" scheme="http://www.mmyton.com/tags/CSS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>深入理解CSS盒模型</title>
-    <link href="http://www.mmyton.com/2017/06/11/css-box/"/>
-    <id>http://www.mmyton.com/2017/06/11/css-box/</id>
-    <published>2017-06-11T07:07:13.000Z</published>
-    <updated>2017-09-03T13:33:36.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>　　<code>CSS盒模型</code>可以说是CSS中最基础的一部分。在日常工作中可以说是一定会遇到，对经常碰到的几个问题进行一定的梳理有助于自己后续的查阅。<a id="more"></a></p>
-<h4 id="CSS盒模型的基本概念"><a href="#CSS盒模型的基本概念" class="headerlink" title="CSS盒模型的基本概念"></a>CSS盒模型的基本概念</h4><p>　　我相信大家都有收过快递，我们买的东西经常是包装成一个个盒子。<br><img src="/images/css-box1.png" class="full-image"><br>　　每个盒子都有宽度（<code>width</code>）、高度（<code>height</code>）、东西的宽度（<code>content-width</code>）和高度（<code>content-height</code>）、盒子的厚度（<code>border</code>）、以及我们为了防止东西损坏而塞了些泡沫，这时候东西和盒子之间有一段的距离（<code>padding</code>）。每个盒子之间又有一定的间距（<code>margin</code>）<code>CSS盒模型</code>中的盒子其实和生活中真实的盒子一样。其实，作为一个IT从业人员，经常总感觉技术来源于生活，更是生活的缩影。<br><img src="/images/css-box2.png" class="full-image"></p>
-<h4 id="CSS盒模型的种类"><a href="#CSS盒模型的种类" class="headerlink" title="CSS盒模型的种类"></a>CSS盒模型的种类</h4><p>　　通过生活中的快递这个例子，相信大家已经能很形象的理解＜code&gt;CSS盒模型。但是浏览器在识别这种＜code&gt;CSS盒模型时存在一定的差异性，说实话，我内心是很鄙视<code>IE</code>浏览器给前端人员挖的无数的坑。但是在解决完这种兼容性问题之后，内心其实是蛮有成就感（虽然工作中碰到比较少）。＜code&gt;CSS盒模型存在＜code&gt;标准盒模型和＜code&gt;IE盒模型。它们的差别也很简单，我们先来看＜code&gt;标准盒模型，如下图所示：<br><img src="/images/css-box3.png" class="full-image"><br>　　现在我们来说下这两种盒模型的区别，它们之间最大的区别在于宽度和高度计算的不同。对于＜code&gt;标准盒模型的宽度和高度指的是内容的宽度和高度，而＜code&gt;IE盒模型的宽度和高度不仅包括内容宽度和高度还包括填充（<code>padding</code>）以及盒子厚度（<code>border</code>）。这个差异，我们在设置宽度和高度时如果要保证不同浏览器下的宽度和高度一致时，需要针对<code>IE浏览器</code>设置较大的宽度（为标准浏览器的<code>content</code>宽度加上<code>padding</code>和<code>border</code>），高度也是类似这么处理。针对这个差异以及需求，<code>CSS3</code>出了一个新的属性：<code>box-sizing</code>，它有两个取值：<code>content-box</code>和<code>border-box</code>。<br><img src="/images/css-box4.png" class="full-image"><br>　　它的使用可以参考如下的例子，例子的代码和展示效果已经很清楚了。<br><img src="/images/css-box5.png" class="full-image">　　</p>
-<h4 id="如何获取一个DOM元素的实际宽高？"><a href="#如何获取一个DOM元素的实际宽高？" class="headerlink" title="如何获取一个DOM元素的实际宽高？"></a>如何获取一个DOM元素的实际宽高？</h4><p>　　我们设置一个元素（<code>CSS盒子</code>）的宽度和高度有3种方式，其实也是页面引入样式的3种方式。这给我们在获取<code>CSS盒子</code>的实际宽度和高度造成一定的困扰。那么我们在实际中应该怎么获取元素的实际宽度和高度呢？这也是我们在运用＜code&gt;CSS盒模型时经常会遇到的问题。我们先来看<code>jQuery</code>中怎么获取元素的宽度和高度。待续。。</p>
-<h4 id="CSS盒模型外边距重叠现象"><a href="#CSS盒模型外边距重叠现象" class="headerlink" title="CSS盒模型外边距重叠现象"></a>CSS盒模型外边距重叠现象</h4><h4 id="CSS盒模型中的BFC和IFC"><a href="#CSS盒模型中的BFC和IFC" class="headerlink" title="CSS盒模型中的BFC和IFC"></a>CSS盒模型中的BFC和IFC</h4>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;　　&lt;code&gt;CSS盒模型&lt;/code&gt;可以说是CSS中最基础的一部分。在日常工作中可以说是一定会遇到，对经常碰到的几个问题进行一定的梳理有助于自己后续的查阅。
     
     </summary>
     
