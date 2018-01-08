@@ -4,9 +4,9 @@
   <subtitle>Like the front, like tossing.</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://sinfuture.github.io/"/>
+  <link href="http://www.mmyton.com/"/>
   <updated>2017-08-05T09:20:11.000Z</updated>
-  <id>https://sinfuture.github.io/</id>
+  <id>http://www.mmyton.com/</id>
   
   <author>
     <name>sinFuture(新的未来)</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>React源码解析之渲染原理</title>
-    <link href="https://sinfuture.github.io/2017/07/21/react-render/"/>
-    <id>https://sinfuture.github.io/2017/07/21/react-render/</id>
+    <link href="http://www.mmyton.com/2017/07/21/react-render/"/>
+    <id>http://www.mmyton.com/2017/07/21/react-render/</id>
     <published>2017-07-21T12:39:35.000Z</published>
     <updated>2017-08-05T09:20:11.000Z</updated>
     
@@ -42,21 +42,21 @@
     
     </summary>
     
-      <category term="前端技术" scheme="https://sinfuture.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+      <category term="前端技术" scheme="http://www.mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="ES6" scheme="https://sinfuture.github.io/tags/ES6/"/>
+      <category term="ES6" scheme="http://www.mmyton.com/tags/ES6/"/>
     
-      <category term="javaScript" scheme="https://sinfuture.github.io/tags/javaScript/"/>
+      <category term="javaScript" scheme="http://www.mmyton.com/tags/javaScript/"/>
     
-      <category term="React" scheme="https://sinfuture.github.io/tags/React/"/>
+      <category term="React" scheme="http://www.mmyton.com/tags/React/"/>
     
   </entry>
   
   <entry>
     <title>kindeditor不支持上传图片格式校验</title>
-    <link href="https://sinfuture.github.io/2017/06/16/kingeditor/"/>
-    <id>https://sinfuture.github.io/2017/06/16/kingeditor/</id>
+    <link href="http://www.mmyton.com/2017/06/16/kingeditor/"/>
+    <id>http://www.mmyton.com/2017/06/16/kingeditor/</id>
     <published>2017-06-16T04:23:02.000Z</published>
     <updated>2017-06-23T12:47:05.000Z</updated>
     
@@ -78,19 +78,19 @@
     
     </summary>
     
-      <category term="前端技术" scheme="https://sinfuture.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+      <category term="前端技术" scheme="http://www.mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="javaScript" scheme="https://sinfuture.github.io/tags/javaScript/"/>
+      <category term="javaScript" scheme="http://www.mmyton.com/tags/javaScript/"/>
     
-      <category term="kingeditor" scheme="https://sinfuture.github.io/tags/kingeditor/"/>
+      <category term="kingeditor" scheme="http://www.mmyton.com/tags/kingeditor/"/>
     
   </entry>
   
   <entry>
     <title>我眼中的React生命周期</title>
-    <link href="https://sinfuture.github.io/2017/06/11/react-life/"/>
-    <id>https://sinfuture.github.io/2017/06/11/react-life/</id>
+    <link href="http://www.mmyton.com/2017/06/11/react-life/"/>
+    <id>http://www.mmyton.com/2017/06/11/react-life/</id>
     <published>2017-06-11T07:14:11.000Z</published>
     <updated>2017-06-17T14:17:41.000Z</updated>
     
@@ -119,7 +119,7 @@
 <li><code style="background:pink;">componentWillUpdate</code>：组件更新之前运行。在这个方法中不能通过<code>this.setState</code>来更新内部状态，后续会有文章加以说明。</li>
 <li><code style="background:pink;">render</code>：渲染更新<code>state</code>后的组件。</li>
 <li><code style="background:pink;">componentDidUpdate</code>：此方法在组件更新以及<code>render</code>方法被调用过后被调用。<h5 id="组件prop改变时"><a href="#组件prop改变时" class="headerlink" title="组件prop改变时"></a>组件prop改变时</h5>　　不说了直接上图：<br><img src="/images/react_life3.png" class="full-image"><br>　　这里涉及到的方法和组件<code>state</code>改变时差不多，除了一个新方法：</li>
-<li><code style="background:pink;">componentWillReceiveProps</code>：如果是父组件更新<code>props</code>，<code>componentWillReceiveProps</code>会先于<code>shouldComponentUpdate</code>执行，这个方法有一个参数，就是更新的<code>props</code>，在这个时候调用<code>this.setState</code>，组件不会进行第二次渲染。<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4>　　通过以上过程的梳理，我们在回过头来看本文第一张图是不是清晰很多了。关于<code>React</code>的使用可以参考我另一篇文章<a href="http://www.mmyton.com/2017/06/11/es6-react/" target="_blank" rel="external">用ES6重写React组件</a>。</li>
+<li><code style="background:pink;">componentWillReceiveProps</code>：如果是父组件更新<code>props</code>，<code>componentWillReceiveProps</code>会先于<code>shouldComponentUpdate</code>执行，这个方法有一个参数，就是更新的<code>props</code>，在这个时候调用<code>this.setState</code>，组件不会进行第二次渲染。<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4>　　通过以上过程的梳理，我们在回过头来看本文第一张图是不是清晰很多了。关于<code>React</code>的使用可以参考我另一篇文章<a href="http://www.mmyton.com/2017/06/11/es6-react/">用ES6重写React组件</a>。</li>
 </ul>
 ]]></content>
     
@@ -129,25 +129,25 @@
     
     </summary>
     
-      <category term="react" scheme="https://sinfuture.github.io/categories/react/"/>
+      <category term="react" scheme="http://www.mmyton.com/categories/react/"/>
     
     
-      <category term="webpack" scheme="https://sinfuture.github.io/tags/webpack/"/>
+      <category term="webpack" scheme="http://www.mmyton.com/tags/webpack/"/>
     
-      <category term="react" scheme="https://sinfuture.github.io/tags/react/"/>
+      <category term="react" scheme="http://www.mmyton.com/tags/react/"/>
     
-      <category term="react-dom" scheme="https://sinfuture.github.io/tags/react-dom/"/>
+      <category term="react-dom" scheme="http://www.mmyton.com/tags/react-dom/"/>
     
-      <category term="babel" scheme="https://sinfuture.github.io/tags/babel/"/>
+      <category term="babel" scheme="http://www.mmyton.com/tags/babel/"/>
     
-      <category term="jsx" scheme="https://sinfuture.github.io/tags/jsx/"/>
+      <category term="jsx" scheme="http://www.mmyton.com/tags/jsx/"/>
     
   </entry>
   
   <entry>
     <title>深入理解页面布局</title>
-    <link href="https://sinfuture.github.io/2017/06/11/css-layout/"/>
-    <id>https://sinfuture.github.io/2017/06/11/css-layout/</id>
+    <link href="http://www.mmyton.com/2017/06/11/css-layout/"/>
+    <id>http://www.mmyton.com/2017/06/11/css-layout/</id>
     <published>2017-06-11T07:07:13.000Z</published>
     <updated>2017-09-03T14:03:34.000Z</updated>
     
@@ -160,17 +160,17 @@
     
     </summary>
     
-      <category term="前端技术" scheme="https://sinfuture.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+      <category term="前端技术" scheme="http://www.mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="CSS" scheme="https://sinfuture.github.io/tags/CSS/"/>
+      <category term="CSS" scheme="http://www.mmyton.com/tags/CSS/"/>
     
   </entry>
   
   <entry>
     <title>用ES6重写React组件</title>
-    <link href="https://sinfuture.github.io/2017/06/11/es6-react/"/>
-    <id>https://sinfuture.github.io/2017/06/11/es6-react/</id>
+    <link href="http://www.mmyton.com/2017/06/11/es6-react/"/>
+    <id>http://www.mmyton.com/2017/06/11/es6-react/</id>
     <published>2017-06-11T07:07:13.000Z</published>
     <updated>2017-06-18T02:28:07.000Z</updated>
     
@@ -184,25 +184,25 @@
     
     </summary>
     
-      <category term="react" scheme="https://sinfuture.github.io/categories/react/"/>
+      <category term="react" scheme="http://www.mmyton.com/categories/react/"/>
     
     
-      <category term="webpack" scheme="https://sinfuture.github.io/tags/webpack/"/>
+      <category term="webpack" scheme="http://www.mmyton.com/tags/webpack/"/>
     
-      <category term="react" scheme="https://sinfuture.github.io/tags/react/"/>
+      <category term="react" scheme="http://www.mmyton.com/tags/react/"/>
     
-      <category term="react-dom" scheme="https://sinfuture.github.io/tags/react-dom/"/>
+      <category term="react-dom" scheme="http://www.mmyton.com/tags/react-dom/"/>
     
-      <category term="babel" scheme="https://sinfuture.github.io/tags/babel/"/>
+      <category term="babel" scheme="http://www.mmyton.com/tags/babel/"/>
     
-      <category term="jsx" scheme="https://sinfuture.github.io/tags/jsx/"/>
+      <category term="jsx" scheme="http://www.mmyton.com/tags/jsx/"/>
     
   </entry>
   
   <entry>
     <title>深入理解CSS盒模型</title>
-    <link href="https://sinfuture.github.io/2017/06/11/css-box/"/>
-    <id>https://sinfuture.github.io/2017/06/11/css-box/</id>
+    <link href="http://www.mmyton.com/2017/06/11/css-box/"/>
+    <id>http://www.mmyton.com/2017/06/11/css-box/</id>
     <published>2017-06-11T07:07:13.000Z</published>
     <updated>2017-09-03T13:33:36.000Z</updated>
     
@@ -218,17 +218,17 @@
     
     </summary>
     
-      <category term="前端技术" scheme="https://sinfuture.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+      <category term="前端技术" scheme="http://www.mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="CSS" scheme="https://sinfuture.github.io/tags/CSS/"/>
+      <category term="CSS" scheme="http://www.mmyton.com/tags/CSS/"/>
     
   </entry>
   
   <entry>
     <title>其实webpack入门很简单</title>
-    <link href="https://sinfuture.github.io/2017/06/11/webpack/"/>
-    <id>https://sinfuture.github.io/2017/06/11/webpack/</id>
+    <link href="http://www.mmyton.com/2017/06/11/webpack/"/>
+    <id>http://www.mmyton.com/2017/06/11/webpack/</id>
     <published>2017-06-11T06:38:17.000Z</published>
     <updated>2017-06-14T07:42:48.000Z</updated>
     
@@ -262,29 +262,29 @@
     
     </summary>
     
-      <category term="前段工程化" scheme="https://sinfuture.github.io/categories/%E5%89%8D%E6%AE%B5%E5%B7%A5%E7%A8%8B%E5%8C%96/"/>
+      <category term="前段工程化" scheme="http://www.mmyton.com/categories/%E5%89%8D%E6%AE%B5%E5%B7%A5%E7%A8%8B%E5%8C%96/"/>
     
     
-      <category term="webpack" scheme="https://sinfuture.github.io/tags/webpack/"/>
+      <category term="webpack" scheme="http://www.mmyton.com/tags/webpack/"/>
     
-      <category term="react" scheme="https://sinfuture.github.io/tags/react/"/>
+      <category term="react" scheme="http://www.mmyton.com/tags/react/"/>
     
-      <category term="babel" scheme="https://sinfuture.github.io/tags/babel/"/>
+      <category term="babel" scheme="http://www.mmyton.com/tags/babel/"/>
     
-      <category term="javaScript" scheme="https://sinfuture.github.io/tags/javaScript/"/>
+      <category term="javaScript" scheme="http://www.mmyton.com/tags/javaScript/"/>
     
-      <category term="css" scheme="https://sinfuture.github.io/tags/css/"/>
+      <category term="css" scheme="http://www.mmyton.com/tags/css/"/>
     
-      <category term="html" scheme="https://sinfuture.github.io/tags/html/"/>
+      <category term="html" scheme="http://www.mmyton.com/tags/html/"/>
     
-      <category term="image" scheme="https://sinfuture.github.io/tags/image/"/>
+      <category term="image" scheme="http://www.mmyton.com/tags/image/"/>
     
   </entry>
   
   <entry>
     <title>解剖jQuery源码系列之$.extend与$().extend方法</title>
-    <link href="https://sinfuture.github.io/2017/05/31/jQuery20170531/"/>
-    <id>https://sinfuture.github.io/2017/05/31/jQuery20170531/</id>
+    <link href="http://www.mmyton.com/2017/05/31/jQuery20170531/"/>
+    <id>http://www.mmyton.com/2017/05/31/jQuery20170531/</id>
     <published>2017-05-30T23:54:45.000Z</published>
     <updated>2017-07-25T15:40:45.000Z</updated>
     
@@ -302,25 +302,25 @@
     
     </summary>
     
-      <category term="前端技术" scheme="https://sinfuture.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+      <category term="前端技术" scheme="http://www.mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="JavaScript" scheme="https://sinfuture.github.io/tags/JavaScript/"/>
+      <category term="JavaScript" scheme="http://www.mmyton.com/tags/JavaScript/"/>
     
-      <category term="jQuery" scheme="https://sinfuture.github.io/tags/jQuery/"/>
+      <category term="jQuery" scheme="http://www.mmyton.com/tags/jQuery/"/>
     
-      <category term="Dom" scheme="https://sinfuture.github.io/tags/Dom/"/>
+      <category term="Dom" scheme="http://www.mmyton.com/tags/Dom/"/>
     
   </entry>
   
   <entry>
     <title>你应该知道的HTTP报文首部</title>
-    <link href="https://sinfuture.github.io/2017/05/30/http20170530/"/>
-    <id>https://sinfuture.github.io/2017/05/30/http20170530/</id>
+    <link href="http://www.mmyton.com/2017/05/30/http20170530/"/>
+    <id>http://www.mmyton.com/2017/05/30/http20170530/</id>
     <published>2017-05-30T07:15:33.000Z</published>
     <updated>2017-06-04T15:25:10.000Z</updated>
     
-    <content type="html"><![CDATA[<h4 id="HTTP报文首部"><a href="#HTTP报文首部" class="headerlink" title="HTTP报文首部"></a>HTTP报文首部</h4><p>　　接着上一篇<a href="http://www.mmyton.com/2017/05/29/httpCode" target="_blank" rel="external">你应该掌握的14种常用的HTTP状态码</a>，我们再来看看HTTP首部。工作中跟HTTP协议打交道还是很多的，尤其是在浏览器端调试的时候，我们经常需要查看发送的请求HTTP首部（查看发送的数据，无论是GET还是POST等请求方式），以及响应HTTP首部，以此来判断请求与响应的正确与否。最经常的应用场景有：1.接口联调。2.抓包调试。3.前端自测等。当然还有很多应用场景，我这边只是列了我工作中经常使用的场景。<a id="more"></a><br>　　说到HTTP协议，我们平时感知不是很多，因为我们输入一些网站的地址时，例如：www.baidu.com。并没有输入 http:// 开头，但是浏览器在访问时会自动为我们加上这个协议头。说明我们的web应用就是基于这个协议而建立起来的。可以这么说没有HTTP协议，我们现在的web应用不会这么的丰富。<br>　　HTTP报文首部是HTTP协议里很重要的一部分，它就相当于我们平时说话的语言，为客户端和服务器端之间的沟通奠定了基础。HTTP报文首部包含请求报文首部和响应报文首部。通过请求报文首部，服务器可以知道客户端想要做什么，而通过响应报文首部，客户端可以知道服务器响应了什么了。<br>　　HTTP报文结构包括：报文首部、空行、报文主体。<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//在客户端和服务器端相互沟通起着至关重要的信息都在报文首部里</div><div class="line">报文首部</div><div class="line">//空行</div><div class="line">//所需要的用户和资源信息都在这（其实很多时候并不是所有请求都有报文主体的，比如GET请求。</div><div class="line">//如果是POST请求，例如请求数据，此时这里放置就是请求参数了。）</div><div class="line">报文主体</div></pre></td></tr></table></figure></p>
+    <content type="html"><![CDATA[<h4 id="HTTP报文首部"><a href="#HTTP报文首部" class="headerlink" title="HTTP报文首部"></a>HTTP报文首部</h4><p>　　接着上一篇<a href="http://www.mmyton.com/2017/05/29/httpCode">你应该掌握的14种常用的HTTP状态码</a>，我们再来看看HTTP首部。工作中跟HTTP协议打交道还是很多的，尤其是在浏览器端调试的时候，我们经常需要查看发送的请求HTTP首部（查看发送的数据，无论是GET还是POST等请求方式），以及响应HTTP首部，以此来判断请求与响应的正确与否。最经常的应用场景有：1.接口联调。2.抓包调试。3.前端自测等。当然还有很多应用场景，我这边只是列了我工作中经常使用的场景。<a id="more"></a><br>　　说到HTTP协议，我们平时感知不是很多，因为我们输入一些网站的地址时，例如：www.baidu.com。并没有输入 http:// 开头，但是浏览器在访问时会自动为我们加上这个协议头。说明我们的web应用就是基于这个协议而建立起来的。可以这么说没有HTTP协议，我们现在的web应用不会这么的丰富。<br>　　HTTP报文首部是HTTP协议里很重要的一部分，它就相当于我们平时说话的语言，为客户端和服务器端之间的沟通奠定了基础。HTTP报文首部包含请求报文首部和响应报文首部。通过请求报文首部，服务器可以知道客户端想要做什么，而通过响应报文首部，客户端可以知道服务器响应了什么了。<br>　　HTTP报文结构包括：报文首部、空行、报文主体。<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//在客户端和服务器端相互沟通起着至关重要的信息都在报文首部里</div><div class="line">报文首部</div><div class="line">//空行</div><div class="line">//所需要的用户和资源信息都在这（其实很多时候并不是所有请求都有报文主体的，比如GET请求。</div><div class="line">//如果是POST请求，例如请求数据，此时这里放置就是请求参数了。）</div><div class="line">报文主体</div></pre></td></tr></table></figure></p>
 <h4 id="HTTP请求报文"><a href="#HTTP请求报文" class="headerlink" title="HTTP请求报文"></a>HTTP请求报文</h4><p>　　在请求中，HTTP请求报文一个大致结构可以参考如下图片：<br><img src="/images/http1.png" class="full-image"><br>　　这是一个POST请求，这种请求方法会有报文主体，如果是GET请求的话，参数会挂在URL地址上，也就没有图中的报文主体，其他格式和POST请求一样。这张图显示了一个HTTP请求报文的大致结构，关于HTTP请求报文里的很多首部字段，请往下看。我们大致可以从图片中看到一个HTTP请求报文包括：报文首部和报文主体，报文首部又包括请求行（请求方法、请求URI、HTTP版本）、HTTP首部字段（请求首部字段、通用首部字段、实体首部字段），而报文主体则是这个请求所需要携带的相关参数（格式是：字段名=字段值，分隔符是：&amp;）。</p>
 <h4 id="HTTP响应报文"><a href="#HTTP响应报文" class="headerlink" title="HTTP响应报文"></a>HTTP响应报文</h4><p>　　在响应中，HTTP响应报文一个大致结构可以参考如下图片：　<br><img src="/images/http2.png" class="full-image"><br>　　接上一个请求，服务器返回的响应报文如上图所示，我们可以看到HTTP响应报文和HTTP请求报文很像，都是由报文首部和报文主体，只是上图的响应无返回报文主体。对比以上两张图片可以看出，HTTP请求报文和HTTP响应报文的区别在于，HTTP请求报文是请求行，首部字段中是请求首部字段，而HTTP响应报文是状态行，首部字段中是响应首部字段。不仅如此，请求行和状态行的格式也是不一样的。但是从整体来看，我们可以看出来HTTP报文首部字段的格式如下：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">首部字段名：字段值</div></pre></td></tr></table></figure>　　<br>　　可以分为以下四种类型：</p>
 <ul>
@@ -563,21 +563,21 @@
     
     <summary type="html">
     
-      &lt;h4 id=&quot;HTTP报文首部&quot;&gt;&lt;a href=&quot;#HTTP报文首部&quot; class=&quot;headerlink&quot; title=&quot;HTTP报文首部&quot;&gt;&lt;/a&gt;HTTP报文首部&lt;/h4&gt;&lt;p&gt;　　接着上一篇&lt;a href=&quot;http://www.mmyton.com/2017/05/29/httpCode&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;你应该掌握的14种常用的HTTP状态码&lt;/a&gt;，我们再来看看HTTP首部。工作中跟HTTP协议打交道还是很多的，尤其是在浏览器端调试的时候，我们经常需要查看发送的请求HTTP首部（查看发送的数据，无论是GET还是POST等请求方式），以及响应HTTP首部，以此来判断请求与响应的正确与否。最经常的应用场景有：1.接口联调。2.抓包调试。3.前端自测等。当然还有很多应用场景，我这边只是列了我工作中经常使用的场景。
+      &lt;h4 id=&quot;HTTP报文首部&quot;&gt;&lt;a href=&quot;#HTTP报文首部&quot; class=&quot;headerlink&quot; title=&quot;HTTP报文首部&quot;&gt;&lt;/a&gt;HTTP报文首部&lt;/h4&gt;&lt;p&gt;　　接着上一篇&lt;a href=&quot;http://www.mmyton.com/2017/05/29/httpCode&quot;&gt;你应该掌握的14种常用的HTTP状态码&lt;/a&gt;，我们再来看看HTTP首部。工作中跟HTTP协议打交道还是很多的，尤其是在浏览器端调试的时候，我们经常需要查看发送的请求HTTP首部（查看发送的数据，无论是GET还是POST等请求方式），以及响应HTTP首部，以此来判断请求与响应的正确与否。最经常的应用场景有：1.接口联调。2.抓包调试。3.前端自测等。当然还有很多应用场景，我这边只是列了我工作中经常使用的场景。
     
     </summary>
     
-      <category term="计算机网络" scheme="https://sinfuture.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+      <category term="计算机网络" scheme="http://www.mmyton.com/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
     
     
-      <category term="HTTP" scheme="https://sinfuture.github.io/tags/HTTP/"/>
+      <category term="HTTP" scheme="http://www.mmyton.com/tags/HTTP/"/>
     
   </entry>
   
   <entry>
     <title>你应该掌握的14种常用的HTTP状态码</title>
-    <link href="https://sinfuture.github.io/2017/05/29/httpCode/"/>
-    <id>https://sinfuture.github.io/2017/05/29/httpCode/</id>
+    <link href="http://www.mmyton.com/2017/05/29/httpCode/"/>
+    <id>http://www.mmyton.com/2017/05/29/httpCode/</id>
     <published>2017-05-29T02:42:59.000Z</published>
     <updated>2017-05-30T14:58:38.000Z</updated>
     
@@ -625,7 +625,7 @@
 <h5 id="204-No-Content"><a href="#204-No-Content" class="headerlink" title="204 No Content"></a>204 No Content</h5><p>　　这个状态码，看右边的原因短语，顾名思义，表示的是服务器已经正确并成功处理了浏览器的请求，但是返回的响应报文中不包含实体的主体部分。另外，也不允许返回任何实体的主体。（有点绕）当浏览器发出请求，如果服务器返回的是这个状态码，而此时页面又有展示，那么显示的页面不发生更新，因为没有新的主体返回。<br>　　这个状态码一般的使用场景是当客户端向服务器端发送请求，而且服务器不需要向客户端发送新内容的场景下。</p>
 <h5 id="206-Partial-Content"><a href="#206-Partial-Content" class="headerlink" title="206 Partial Content　"></a>206 Partial Content　</h5><p>　　这个状态码比较好理解，浏览器向服务器进行了返回内容的范围请求，比如只需要某一篇文章的50%，请求方会在请求首部设置范围字段Range，告知服务器我要请求哪一部分的内容，服务器收到请求后会返回这个返回的数据，并在响应报文里的字段Content-Range里显示了当前返回的数据范围。</p>
 <h4 id="3XX-重定向"><a href="#3XX-重定向" class="headerlink" title="3XX 重定向"></a>3XX 重定向</h4><p>　　3XX表示服务器需要执行某些特殊的处理才能以正确的方式响应请求。</p>
-<h5 id="301-Moved-Permanently"><a href="#301-Moved-Permanently" class="headerlink" title="301 Moved Permanently"></a>301 Moved Permanently</h5><p>   理解这个最好的例子就是，你在浏览器收藏了某一个页面的书签，或者某一个资源的书签，当你下次请求时，服务器告知你需要重定向到另一个地址去获取这个页面或者资源，并告知你浏览器的书签也需要更新（当然更不更新取决于你）。浏览器更新的URI地址取于服务器返回的响应报文里的Location字段。<br>   例如我们经常会请求这么一个地址：<a href="http://www.Mmyton.com/sample" target="_blank" rel="external">http://www.Mmyton.com/sample</a>  也就是后续不加上斜杠，此时服务器就会告知浏览器重定向到 <a href="http://www.Mmyton.com/sample/" target="_blank" rel="external">http://www.Mmyton.com/sample/</a> 这个地址请求资源，这时候就会产生301状态码。</p>
+<h5 id="301-Moved-Permanently"><a href="#301-Moved-Permanently" class="headerlink" title="301 Moved Permanently"></a>301 Moved Permanently</h5><p>   理解这个最好的例子就是，你在浏览器收藏了某一个页面的书签，或者某一个资源的书签，当你下次请求时，服务器告知你需要重定向到另一个地址去获取这个页面或者资源，并告知你浏览器的书签也需要更新（当然更不更新取决于你）。浏览器更新的URI地址取于服务器返回的响应报文里的Location字段。<br>   例如我们经常会请求这么一个地址：<a href="http://www.Mmyton.com/sample">http://www.Mmyton.com/sample</a>  也就是后续不加上斜杠，此时服务器就会告知浏览器重定向到 <a href="http://www.Mmyton.com/sample/">http://www.Mmyton.com/sample/</a> 这个地址请求资源，这时候就会产生301状态码。</p>
 <h5 id="302-Found"><a href="#302-Found" class="headerlink" title="302 Found"></a>302 Found</h5><p>　　临时重定向。它和301很像，301是永久重定向，302状态码的意思是浏览器请求的资源已经被分配到新的URI了，希望浏览器这次的请求使用新的URI访问。既然是临时，也就是说它并不会要求你更新浏览器书签里这个页面或者资源的URI地址，后续是否会继续临时重定向到这个URI地址得看服务器是如何分配的。服务器返回的响应报文里的Location字段仍然是你之前书签里保存的那个地址。</p>
 <h5 id="303-See-Other"><a href="#303-See-Other" class="headerlink" title="303 See Other"></a>303 See Other</h5><p>　　书中的解释：该状态码表示由于请求对应的资源存在着另一个URI，应使用GET方法定向获取请求的资源。这个解释其实和302很像，感觉好想都是重定向，其实还是有明确的区别的，302虽然也重定向，但并没有要求浏览器特定采用什么请求方式，请求页面或者资源新的URI地址，但是303就明确要求使用GET方式，这个就是它们之间最大的区别。</p>
 <h5 id="304-Not-Modified"><a href="#304-Not-Modified" class="headerlink" title="304 Not Modified"></a>304 Not Modified</h5><p>　　这个状态码虽然划分到3XX系列里，但和重定向没有任何关系，它也是我们经常会遇到的一个状态码，它表示客户端发送附带条件的请求（指的是客户端采用GET方法的请求报文中包含If-Match、If-Modified-Since、If-None-Match、If-Range、If-Unmodified-Since中任一首部）时，服务器允许请求访问资源，但因发生请求资源未满足条件的情况后，直接返回304 Not Modified。其实就是资源没有改变，可以直接使用客户端未过期的缓存，这也是为什么我们在访问一些页面第一次访问会比较慢，但是第二次访问却很快的原因所在。</p>
@@ -646,17 +646,17 @@
     
     </summary>
     
-      <category term="计算机网络" scheme="https://sinfuture.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+      <category term="计算机网络" scheme="http://www.mmyton.com/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
     
     
-      <category term="HTTP" scheme="https://sinfuture.github.io/tags/HTTP/"/>
+      <category term="HTTP" scheme="http://www.mmyton.com/tags/HTTP/"/>
     
   </entry>
   
   <entry>
     <title>解剖jQuery源码系列之jQuery工具方法</title>
-    <link href="https://sinfuture.github.io/2017/05/23/jQuery20170523/"/>
-    <id>https://sinfuture.github.io/2017/05/23/jQuery20170523/</id>
+    <link href="http://www.mmyton.com/2017/05/23/jQuery20170523/"/>
+    <id>http://www.mmyton.com/2017/05/23/jQuery20170523/</id>
     <published>2017-05-22T16:31:21.000Z</published>
     <updated>2017-05-22T16:32:51.000Z</updated>
     
@@ -664,21 +664,21 @@
     
     </summary>
     
-      <category term="前端技术" scheme="https://sinfuture.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+      <category term="前端技术" scheme="http://www.mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="JavaScript" scheme="https://sinfuture.github.io/tags/JavaScript/"/>
+      <category term="JavaScript" scheme="http://www.mmyton.com/tags/JavaScript/"/>
     
-      <category term="jQuery" scheme="https://sinfuture.github.io/tags/jQuery/"/>
+      <category term="jQuery" scheme="http://www.mmyton.com/tags/jQuery/"/>
     
-      <category term="Dom" scheme="https://sinfuture.github.io/tags/Dom/"/>
+      <category term="Dom" scheme="http://www.mmyton.com/tags/Dom/"/>
     
   </entry>
   
   <entry>
     <title>解剖jQuery源码系列之jQuery.prototype.init方法</title>
-    <link href="https://sinfuture.github.io/2017/05/20/jQuery20170520/"/>
-    <id>https://sinfuture.github.io/2017/05/20/jQuery20170520/</id>
+    <link href="http://www.mmyton.com/2017/05/20/jQuery20170520/"/>
+    <id>http://www.mmyton.com/2017/05/20/jQuery20170520/</id>
     <published>2017-05-20T11:00:24.000Z</published>
     <updated>2017-05-30T15:46:40.000Z</updated>
     
@@ -695,21 +695,21 @@
     
     </summary>
     
-      <category term="前端技术" scheme="https://sinfuture.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+      <category term="前端技术" scheme="http://www.mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="JavaScript" scheme="https://sinfuture.github.io/tags/JavaScript/"/>
+      <category term="JavaScript" scheme="http://www.mmyton.com/tags/JavaScript/"/>
     
-      <category term="jQuery" scheme="https://sinfuture.github.io/tags/jQuery/"/>
+      <category term="jQuery" scheme="http://www.mmyton.com/tags/jQuery/"/>
     
-      <category term="Dom" scheme="https://sinfuture.github.io/tags/Dom/"/>
+      <category term="Dom" scheme="http://www.mmyton.com/tags/Dom/"/>
     
   </entry>
   
   <entry>
     <title>浅谈项目中经常需要使用到的less功能</title>
-    <link href="https://sinfuture.github.io/2017/04/27/less/"/>
-    <id>https://sinfuture.github.io/2017/04/27/less/</id>
+    <link href="http://www.mmyton.com/2017/04/27/less/"/>
+    <id>http://www.mmyton.com/2017/04/27/less/</id>
     <published>2017-04-27T14:11:48.000Z</published>
     <updated>2017-04-27T14:22:52.000Z</updated>
     
@@ -717,19 +717,19 @@
     
     </summary>
     
-      <category term="前端技术" scheme="https://sinfuture.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+      <category term="前端技术" scheme="http://www.mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="less" scheme="https://sinfuture.github.io/tags/less/"/>
+      <category term="less" scheme="http://www.mmyton.com/tags/less/"/>
     
-      <category term="css" scheme="https://sinfuture.github.io/tags/css/"/>
+      <category term="css" scheme="http://www.mmyton.com/tags/css/"/>
     
   </entry>
   
   <entry>
     <title>从统计分析自动生成系统看gulp的自动化构建</title>
-    <link href="https://sinfuture.github.io/2017/04/27/gulp/"/>
-    <id>https://sinfuture.github.io/2017/04/27/gulp/</id>
+    <link href="http://www.mmyton.com/2017/04/27/gulp/"/>
+    <id>http://www.mmyton.com/2017/04/27/gulp/</id>
     <published>2017-04-27T14:11:32.000Z</published>
     <updated>2017-04-27T14:21:26.000Z</updated>
     
@@ -737,23 +737,23 @@
     
     </summary>
     
-      <category term="前端技术" scheme="https://sinfuture.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+      <category term="前端技术" scheme="http://www.mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="gulp" scheme="https://sinfuture.github.io/tags/gulp/"/>
+      <category term="gulp" scheme="http://www.mmyton.com/tags/gulp/"/>
     
-      <category term="npm" scheme="https://sinfuture.github.io/tags/npm/"/>
+      <category term="npm" scheme="http://www.mmyton.com/tags/npm/"/>
     
-      <category term="jade" scheme="https://sinfuture.github.io/tags/jade/"/>
+      <category term="jade" scheme="http://www.mmyton.com/tags/jade/"/>
     
-      <category term="javascript" scheme="https://sinfuture.github.io/tags/javascript/"/>
+      <category term="javascript" scheme="http://www.mmyton.com/tags/javascript/"/>
     
   </entry>
   
   <entry>
     <title>ES6基础项目构建</title>
-    <link href="https://sinfuture.github.io/2017/04/27/es6/"/>
-    <id>https://sinfuture.github.io/2017/04/27/es6/</id>
+    <link href="http://www.mmyton.com/2017/04/27/es6/"/>
+    <id>http://www.mmyton.com/2017/04/27/es6/</id>
     <published>2017-04-27T14:11:17.000Z</published>
     <updated>2017-04-27T14:16:51.000Z</updated>
     
@@ -761,28 +761,28 @@
     
     </summary>
     
-      <category term="前端技术" scheme="https://sinfuture.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+      <category term="前端技术" scheme="http://www.mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="ES6" scheme="https://sinfuture.github.io/tags/ES6/"/>
+      <category term="ES6" scheme="http://www.mmyton.com/tags/ES6/"/>
     
-      <category term="JavaScript" scheme="https://sinfuture.github.io/tags/JavaScript/"/>
+      <category term="JavaScript" scheme="http://www.mmyton.com/tags/JavaScript/"/>
     
-      <category term="gulp" scheme="https://sinfuture.github.io/tags/gulp/"/>
+      <category term="gulp" scheme="http://www.mmyton.com/tags/gulp/"/>
     
-      <category term="npm" scheme="https://sinfuture.github.io/tags/npm/"/>
+      <category term="npm" scheme="http://www.mmyton.com/tags/npm/"/>
     
   </entry>
   
   <entry>
     <title>解剖jQuery源码系列之JQuery构造函数</title>
-    <link href="https://sinfuture.github.io/2017/04/27/jquery20170427/"/>
-    <id>https://sinfuture.github.io/2017/04/27/jquery20170427/</id>
+    <link href="http://www.mmyton.com/2017/04/27/jquery20170427/"/>
+    <id>http://www.mmyton.com/2017/04/27/jquery20170427/</id>
     <published>2017-04-27T07:51:02.000Z</published>
     <updated>2017-05-20T10:56:19.000Z</updated>
     
     <content type="html"><![CDATA[<p>　　jQuery从2006年由John Resig等人创建一直风靡到今天，每个在使用jQuery时，应该都深深的被其便捷性的Dom操作，数据缓存，异步操作等折服，jQuery的api设计让我们可以如此的简单自如的操作web界面，如果你没有感受到，那你应该面壁思过下。<a id="more"></a></p>
-<h4 id="jQuery整体架构"><a href="#jQuery整体架构" class="headerlink" title="jQuery整体架构"></a>jQuery整体架构</h4><p>　　说到jQuery的架构，可以点击右边图片来感受下：<img src="/images/jquery.png" width="16"><br>　　其实jQuery的整体架构还是很清晰（虽然各个模块具体源码看起来感觉也挺乱的）。通过这张图我们大概可以把jQuery分为18块内容。整个jQuery最核心的代码用匿名函数包起来，具体可参考上一篇文章：<a href="http://www.mmyton.com/2017/04/25/jquery20170425/" target="_blank" rel="external">解剖JQuery源码系列之匿名函数自执行</a><br>　　接着上一篇我们继续来说，这个主要是因为ES5中只有函数作用域和全局作用域，并无块级作用域。jQuery设计时为了不影响全局作用域，以及不同脚本文件引入后互相影响，选择了匿名函数，我们都知道匿名函数自执行（也就是Immediately-Invoked Function Expression (IIFE)），函数体定义的变量以及函数属于局部变量和局部函数，不会影响到全局作用域里定义的同名变量和函数。全局作用域也访问不到这些局部变量和函数，有点类似私有的意味。jQuery设计者也是基于此而采用这种方式。<br>　　那么问题来了，既然匿名函数里的变量和函数全局作用域访问不到，那么我们平时为什么可以直接在我们的js中引用jQuery的各种方法呢？我们来看如下的代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//jQuery2.0.3版本</span></div><div class="line"><span class="comment">//这个就是jQuery匿名函数</span></div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"> window, undefined </span>) </span>&#123;</div><div class="line">  <span class="comment">//判断是nodejs等common.js（CMD）规范的环境</span></div><div class="line">  <span class="keyword">if</span> ( <span class="keyword">typeof</span> <span class="built_in">module</span> === <span class="string">"object"</span> &amp;&amp; <span class="built_in">module</span> &amp;&amp; <span class="keyword">typeof</span> <span class="built_in">module</span>.exports === <span class="string">"object"</span> ) &#123;</div><div class="line">    <span class="comment">//通过exports导出</span></div><div class="line">    <span class="built_in">module</span>.exports = jQuery;</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">  <span class="comment">//判断是否是AMD这种模块化环境</span></div><div class="line">  <span class="keyword">if</span> ( <span class="keyword">typeof</span> define === <span class="string">"function"</span> &amp;&amp; define.amd ) &#123;</div><div class="line">    <span class="comment">//定义jquery模块</span></div><div class="line">    define( <span class="string">"jquery"</span>, [], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="keyword">return</span> jQuery; &#125; );</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">  <span class="comment">//if判断主要是确定下window和window.document是不是对象，也就是不是AMD、CMD等模块化环境，如果是对象就把JQuery挂载到全局对象window上</span></div><div class="line">  <span class="keyword">if</span> ( <span class="keyword">typeof</span> <span class="built_in">window</span> === <span class="string">"object"</span> &amp;&amp; <span class="keyword">typeof</span> <span class="built_in">window</span>.document === <span class="string">"object"</span> ) &#123;</div><div class="line">	 <span class="built_in">window</span>.jQuery = <span class="built_in">window</span>.$ = jQuery;<span class="comment">//秘密就在这一行代码。</span></div><div class="line">  &#125;</div><div class="line">&#125;)( <span class="built_in">window</span> );</div></pre></td></tr></table></figure><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//jQuery3.2.1版本</span></div><div class="line"><span class="comment">//这个就是jQuery匿名函数</span></div><div class="line">( <span class="function"><span class="keyword">function</span>(<span class="params"> global, factory </span>) </span>&#123;</div><div class="line"><span class="meta">  "use strict"</span>;</div><div class="line">  <span class="comment">//这是判断如果是nodejs环境的导出方式</span></div><div class="line">  <span class="comment">//与2.0.3版本的区别就是module.exports导出的不是jQuery构造函数，</span></div><div class="line">  <span class="comment">//而是factory这个函数，也就是我们匿名函数传参的第二个参数function( window, noGlobal) &#123;&#125;</span></div><div class="line">  <span class="keyword">if</span> ( <span class="keyword">typeof</span> <span class="built_in">module</span> === <span class="string">"object"</span> &amp;&amp; <span class="keyword">typeof</span> <span class="built_in">module</span>.exports === <span class="string">"object"</span> ) &#123;</div><div class="line">  <span class="built_in">module</span>.exports = global.document ?</div><div class="line">      factory( global, <span class="literal">true</span> ) :</div><div class="line">	  <span class="function"><span class="keyword">function</span>(<span class="params"> w </span>) </span>&#123;</div><div class="line">		 <span class="keyword">if</span> ( !w.document ) &#123;</div><div class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>( <span class="string">"jQuery requires a window with a document"</span> );</div><div class="line">		 &#125;</div><div class="line">		 <span class="keyword">return</span> factory( w );</div><div class="line">	  &#125;;</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">	  factory( global );</div><div class="line">  &#125;</div><div class="line">&#125;)( <span class="keyword">typeof</span> <span class="built_in">window</span> !== <span class="string">"undefined"</span> ? <span class="built_in">window</span> : <span class="keyword">this</span>, </div><div class="line"><span class="function"><span class="keyword">function</span>(<span class="params"> window, noGlobal </span>) </span>&#123;</div><div class="line">  <span class="comment">//判断如果是AMD模块化的环境就走if里的语句定义一个jquery模块</span></div><div class="line">  <span class="keyword">if</span> ( <span class="keyword">typeof</span> define === <span class="string">"function"</span> &amp;&amp; define.amd ) &#123;</div><div class="line">	define( <span class="string">"jquery"</span>, [], <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		<span class="keyword">return</span> jQuery;</div><div class="line">	&#125; );</div><div class="line">  &#125;</div><div class="line">  <span class="comment">//这个判断上一篇文章已有涉及，这里就不在赘述</span></div><div class="line">  <span class="keyword">if</span> ( !noGlobal ) &#123;</div><div class="line">	<span class="built_in">window</span>.jQuery = <span class="built_in">window</span>.$ = jQuery;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> jQuery;</div><div class="line">&#125;);</div></pre></td></tr></table></figure><br>　　我们之所以可以在全局作用域里自如的使用的jQuery的方法，是因为如上代码的，将jQuery这个构造函数根据不同环境采用不同的方式引用（为什么说是构造函数，我们后续再分析），例如：挂载在全局对象window上，这样我们在任何js文件里都可以引用jQuery的方法了。（看到这里估计你还是晕的，没关系，再往下看你就明白了。）</p>
+<h4 id="jQuery整体架构"><a href="#jQuery整体架构" class="headerlink" title="jQuery整体架构"></a>jQuery整体架构</h4><p>　　说到jQuery的架构，可以点击右边图片来感受下：<img src="/images/jquery.png" width="16"><br>　　其实jQuery的整体架构还是很清晰（虽然各个模块具体源码看起来感觉也挺乱的）。通过这张图我们大概可以把jQuery分为18块内容。整个jQuery最核心的代码用匿名函数包起来，具体可参考上一篇文章：<a href="http://www.mmyton.com/2017/04/25/jquery20170425/">解剖JQuery源码系列之匿名函数自执行</a><br>　　接着上一篇我们继续来说，这个主要是因为ES5中只有函数作用域和全局作用域，并无块级作用域。jQuery设计时为了不影响全局作用域，以及不同脚本文件引入后互相影响，选择了匿名函数，我们都知道匿名函数自执行（也就是Immediately-Invoked Function Expression (IIFE)），函数体定义的变量以及函数属于局部变量和局部函数，不会影响到全局作用域里定义的同名变量和函数。全局作用域也访问不到这些局部变量和函数，有点类似私有的意味。jQuery设计者也是基于此而采用这种方式。<br>　　那么问题来了，既然匿名函数里的变量和函数全局作用域访问不到，那么我们平时为什么可以直接在我们的js中引用jQuery的各种方法呢？我们来看如下的代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//jQuery2.0.3版本</span></div><div class="line"><span class="comment">//这个就是jQuery匿名函数</span></div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"> window, undefined </span>) </span>&#123;</div><div class="line">  <span class="comment">//判断是nodejs等common.js（CMD）规范的环境</span></div><div class="line">  <span class="keyword">if</span> ( <span class="keyword">typeof</span> <span class="built_in">module</span> === <span class="string">"object"</span> &amp;&amp; <span class="built_in">module</span> &amp;&amp; <span class="keyword">typeof</span> <span class="built_in">module</span>.exports === <span class="string">"object"</span> ) &#123;</div><div class="line">    <span class="comment">//通过exports导出</span></div><div class="line">    <span class="built_in">module</span>.exports = jQuery;</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">  <span class="comment">//判断是否是AMD这种模块化环境</span></div><div class="line">  <span class="keyword">if</span> ( <span class="keyword">typeof</span> define === <span class="string">"function"</span> &amp;&amp; define.amd ) &#123;</div><div class="line">    <span class="comment">//定义jquery模块</span></div><div class="line">    define( <span class="string">"jquery"</span>, [], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="keyword">return</span> jQuery; &#125; );</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">  <span class="comment">//if判断主要是确定下window和window.document是不是对象，也就是不是AMD、CMD等模块化环境，如果是对象就把JQuery挂载到全局对象window上</span></div><div class="line">  <span class="keyword">if</span> ( <span class="keyword">typeof</span> <span class="built_in">window</span> === <span class="string">"object"</span> &amp;&amp; <span class="keyword">typeof</span> <span class="built_in">window</span>.document === <span class="string">"object"</span> ) &#123;</div><div class="line">	 <span class="built_in">window</span>.jQuery = <span class="built_in">window</span>.$ = jQuery;<span class="comment">//秘密就在这一行代码。</span></div><div class="line">  &#125;</div><div class="line">&#125;)( <span class="built_in">window</span> );</div></pre></td></tr></table></figure><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//jQuery3.2.1版本</span></div><div class="line"><span class="comment">//这个就是jQuery匿名函数</span></div><div class="line">( <span class="function"><span class="keyword">function</span>(<span class="params"> global, factory </span>) </span>&#123;</div><div class="line"><span class="meta">  "use strict"</span>;</div><div class="line">  <span class="comment">//这是判断如果是nodejs环境的导出方式</span></div><div class="line">  <span class="comment">//与2.0.3版本的区别就是module.exports导出的不是jQuery构造函数，</span></div><div class="line">  <span class="comment">//而是factory这个函数，也就是我们匿名函数传参的第二个参数function( window, noGlobal) &#123;&#125;</span></div><div class="line">  <span class="keyword">if</span> ( <span class="keyword">typeof</span> <span class="built_in">module</span> === <span class="string">"object"</span> &amp;&amp; <span class="keyword">typeof</span> <span class="built_in">module</span>.exports === <span class="string">"object"</span> ) &#123;</div><div class="line">  <span class="built_in">module</span>.exports = global.document ?</div><div class="line">      factory( global, <span class="literal">true</span> ) :</div><div class="line">	  <span class="function"><span class="keyword">function</span>(<span class="params"> w </span>) </span>&#123;</div><div class="line">		 <span class="keyword">if</span> ( !w.document ) &#123;</div><div class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>( <span class="string">"jQuery requires a window with a document"</span> );</div><div class="line">		 &#125;</div><div class="line">		 <span class="keyword">return</span> factory( w );</div><div class="line">	  &#125;;</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">	  factory( global );</div><div class="line">  &#125;</div><div class="line">&#125;)( <span class="keyword">typeof</span> <span class="built_in">window</span> !== <span class="string">"undefined"</span> ? <span class="built_in">window</span> : <span class="keyword">this</span>, </div><div class="line"><span class="function"><span class="keyword">function</span>(<span class="params"> window, noGlobal </span>) </span>&#123;</div><div class="line">  <span class="comment">//判断如果是AMD模块化的环境就走if里的语句定义一个jquery模块</span></div><div class="line">  <span class="keyword">if</span> ( <span class="keyword">typeof</span> define === <span class="string">"function"</span> &amp;&amp; define.amd ) &#123;</div><div class="line">	define( <span class="string">"jquery"</span>, [], <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		<span class="keyword">return</span> jQuery;</div><div class="line">	&#125; );</div><div class="line">  &#125;</div><div class="line">  <span class="comment">//这个判断上一篇文章已有涉及，这里就不在赘述</span></div><div class="line">  <span class="keyword">if</span> ( !noGlobal ) &#123;</div><div class="line">	<span class="built_in">window</span>.jQuery = <span class="built_in">window</span>.$ = jQuery;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> jQuery;</div><div class="line">&#125;);</div></pre></td></tr></table></figure><br>　　我们之所以可以在全局作用域里自如的使用的jQuery的方法，是因为如上代码的，将jQuery这个构造函数根据不同环境采用不同的方式引用（为什么说是构造函数，我们后续再分析），例如：挂载在全局对象window上，这样我们在任何js文件里都可以引用jQuery的方法了。（看到这里估计你还是晕的，没关系，再往下看你就明白了。）</p>
 <h4 id="jQuery构造函数"><a href="#jQuery构造函数" class="headerlink" title="jQuery构造函数"></a>jQuery构造函数</h4><p>　　在分析jQuery构造函数，我们先来看下原生js中的面向对象，以下是我们一般在写面向对象的写法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//这个就是构造函数（说白点就是函数）</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">suhq</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="comment">//这里写一些实例属性和方法，非共享。</span></div><div class="line">&#125;</div><div class="line"><span class="comment">//通过在suhq的原型（suhq.prototype）上写些suhq实例共享的属性和方法</span></div><div class="line">suhq.prototype.init=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="comment">//这里主要是new一个新实例时需要初始化的相关内容。</span></div><div class="line">&#125;</div><div class="line"><span class="comment">//这个就是实例共享的方法</span></div><div class="line">suhq.prototype.say=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;	</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> s1=<span class="keyword">new</span> suhq();<span class="comment">//创建实例</span></div><div class="line">s1.init();<span class="comment">//初始化</span></div><div class="line">s1.say();<span class="comment">//调用原型上的共享方法</span></div></pre></td></tr></table></figure><br>　　其实，js中是没有如同java中类这种面向对象语法的（ES6引入了），那js中是如何实现面向对象的呢？如上代码所示，js是通过原型来模拟java中类的行为，然后new一个实例出来，这个实例不仅可以拥有构造函数的实例属性，也可以访问原型上的共享属性与方法。如果jQuery按照这样写的应该如何写？<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">jQuery</span>(<span class="params"></span>)</span>&#123;</div><div class="line">&#125;</div><div class="line">jQuery.prototype.init=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">&#125;</div><div class="line">jQuery.prototype.say=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;	</div><div class="line">&#125;</div></pre></td></tr></table></figure><br>　　接下去调用的方法和上面是一样的，但是我们用过jQuery都知道jQuery是这么调用的，例如$().say()或者jQuery().say()或者$.each()，那jQuery是如何写的呢？我们来看如下的代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">jQuery = <span class="function"><span class="keyword">function</span>(<span class="params"> selector, context </span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> jQuery.fn.init( selector, context,        rootjQuery );</div><div class="line">&#125;</div></pre></td></tr></table></figure><br>　　jQuery的写法和我们一般写面向对象不太一样，为什么这么说呢？我们来看下jQuery构造函数里返回的是什么？返回的是jQuery.fn.init()这个init构造函数的实例，看到这一句，是不是有点懵逼，按照js原生面向对象的写法，jQuery构造函数应该是在这个函数里写一些实例独有的属性与方法，为什么直接返回这么一个实例对象？而且我们平时调用jQuery的API时明明是这么调用的，例如：$(‘div’).css(“background”,”red”);，再比如:$.each(function(item){});等，按照这样的调用方法，第一种调用看起来像是调用的是原型上的方法，第二种看起来像是调用构造函数的实例方法。可源码中写的却是返回这么一个实例。而且我们调用API貌似都没new一下产生实例对象，就能调用jQuery的各种API，是不是感觉很神奇，其实这恰恰是JQuery能这么火的原因之一。这个我们叫做jQuery无new操作。接下去我们来分析，jQuery是如何做到这一点的。</p>
 <h4 id="jQuery无NEW操作符"><a href="#jQuery无NEW操作符" class="headerlink" title="jQuery无NEW操作符"></a>jQuery无NEW操作符</h4><p>　　我们在前面写的suhq这个构造函数，调用时需要new suhq()一下产生一个suhq的实例对象，而我们平时在调用时却不需要，原因是因为jQuery构造函数里写的这么一句话<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">  jQuery = <span class="function"><span class="keyword">function</span>(<span class="params"> selector, context </span>) </span>&#123;</div><div class="line">    <span class="comment">//就是这一句代码</span></div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> jQuery.fn.init( selector, context, rootjQuery );</div><div class="line">&#125;</div></pre></td></tr></table></figure><br>　　那是因为从jQuery构造函数中的代码可以看出jQuery已经帮我们做了这么一个new操作了。但是new的却是init的实例对象，而不是jQuery的实例，那么我们平时调用时是如何能访问到jQuery原型上的方法呢？为了更好的理解这个意思，我们举个例子，比如：$(“div”).css(“background”,”red”)其中”div”就是selector参数的实参，执行$(“div”)这个操作（按照jQuery构造函数写的）返回的是init构造函数的一个实例对象，那么css这个方法要么是init构造函数的实例方法或者是原型方法，但是我们如果稍微了解下jQuery如何写插件和扩展方法就知道，css这个方法其实是jQuery原型上的一个方法。其实，奥秘就在如下代码中：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//这是一段在匿名函数中的两行代码</span></div><div class="line">jQuery.fn = jQuery.prototype = &#123;&#125;;</div><div class="line">jQuery.fn.init.prototype = jQuery.fn;</div></pre></td></tr></table></figure><br>　　　第一句是jQuery.fn指向了jQuery.prototype，话句话说fn就是prototype，第二句是jQuery.fn.init的原型指向了jQuery.fn也就是指向了jQuery.prototype，简单点就是init构造函数被重写成了jQuery的原型，所以init的实例对象才能访问到jQuery对象的属性与方法（因为构造函数new一个对象时就会在实例对象上创建一个属性(<strong>proto</strong>)指向原型，我们在访问实例对象的属性或者方法时，如果实例对象本身没有，就会朝着(<strong>proto</strong>)指向的原型上找）。</p>
 ]]></content>
@@ -793,21 +793,21 @@
     
     </summary>
     
-      <category term="前端技术" scheme="https://sinfuture.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+      <category term="前端技术" scheme="http://www.mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="jQuery" scheme="https://sinfuture.github.io/tags/jQuery/"/>
+      <category term="jQuery" scheme="http://www.mmyton.com/tags/jQuery/"/>
     
-      <category term="Dom" scheme="https://sinfuture.github.io/tags/Dom/"/>
+      <category term="Dom" scheme="http://www.mmyton.com/tags/Dom/"/>
     
-      <category term="javaScript" scheme="https://sinfuture.github.io/tags/javaScript/"/>
+      <category term="javaScript" scheme="http://www.mmyton.com/tags/javaScript/"/>
     
   </entry>
   
   <entry>
     <title>解剖jQuery源码系列之匿名函数自执行</title>
-    <link href="https://sinfuture.github.io/2017/04/25/jquery20170425/"/>
-    <id>https://sinfuture.github.io/2017/04/25/jquery20170425/</id>
+    <link href="http://www.mmyton.com/2017/04/25/jquery20170425/"/>
+    <id>http://www.mmyton.com/2017/04/25/jquery20170425/</id>
     <published>2017-04-24T16:49:46.000Z</published>
     <updated>2017-05-07T03:16:57.000Z</updated>
     
@@ -825,21 +825,21 @@
     
     </summary>
     
-      <category term="前端技术" scheme="https://sinfuture.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+      <category term="前端技术" scheme="http://www.mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="jQuery" scheme="https://sinfuture.github.io/tags/jQuery/"/>
+      <category term="jQuery" scheme="http://www.mmyton.com/tags/jQuery/"/>
     
-      <category term="Dom" scheme="https://sinfuture.github.io/tags/Dom/"/>
+      <category term="Dom" scheme="http://www.mmyton.com/tags/Dom/"/>
     
-      <category term="javaScript" scheme="https://sinfuture.github.io/tags/javaScript/"/>
+      <category term="javaScript" scheme="http://www.mmyton.com/tags/javaScript/"/>
     
   </entry>
   
   <entry>
     <title>点滴的生活就是幸福</title>
-    <link href="https://sinfuture.github.io/2017/04/24/sinFuture/"/>
-    <id>https://sinfuture.github.io/2017/04/24/sinFuture/</id>
+    <link href="http://www.mmyton.com/2017/04/24/sinFuture/"/>
+    <id>http://www.mmyton.com/2017/04/24/sinFuture/</id>
     <published>2017-04-23T16:07:00.000Z</published>
     <updated>2017-05-06T06:00:49.000Z</updated>
     
@@ -856,10 +856,10 @@
     
     </summary>
     
-      <category term="生活" scheme="https://sinfuture.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
+      <category term="生活" scheme="http://www.mmyton.com/categories/%E7%94%9F%E6%B4%BB/"/>
     
     
-      <category term="生活" scheme="https://sinfuture.github.io/tags/%E7%94%9F%E6%B4%BB/"/>
+      <category term="生活" scheme="http://www.mmyton.com/tags/%E7%94%9F%E6%B4%BB/"/>
     
   </entry>
   

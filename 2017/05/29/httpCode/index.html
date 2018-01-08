@@ -98,7 +98,7 @@
 <meta name="keywords" content="HTTP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="你应该掌握的14种常用的HTTP状态码">
-<meta property="og:url" content="https://sinfuture.github.io/2017/05/29/httpCode/index.html">
+<meta property="og:url" content="http://www.mmyton.com/2017/05/29/httpCode/index.html">
 <meta property="og:site_name" content="sinFuture">
 <meta property="og:description" content="最近在看《图解HTTP》这本书，书很薄，大概250页左右，阅读起来比较轻松，虽然有些理论平时项目中并没遇到，但是总体感觉还是很不错的一本书。">
 <meta property="og:updated_time" content="2017-05-30T14:58:38.000Z">
@@ -132,7 +132,7 @@
 
 
 
-  <link rel="canonical" href="https://sinfuture.github.io/2017/05/29/httpCode/"/>
+  <link rel="canonical" href="http://www.mmyton.com/2017/05/29/httpCode/"/>
 
 
 
@@ -331,7 +331,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://sinfuture.github.io/2017/05/29/httpCode/">
+    <link itemprop="mainEntityOfPage" href="http://www.mmyton.com/2017/05/29/httpCode/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="sinFuture(新的未来)">
@@ -520,7 +520,7 @@
 <h5 id="204-No-Content"><a href="#204-No-Content" class="headerlink" title="204 No Content"></a>204 No Content</h5><p>　　这个状态码，看右边的原因短语，顾名思义，表示的是服务器已经正确并成功处理了浏览器的请求，但是返回的响应报文中不包含实体的主体部分。另外，也不允许返回任何实体的主体。（有点绕）当浏览器发出请求，如果服务器返回的是这个状态码，而此时页面又有展示，那么显示的页面不发生更新，因为没有新的主体返回。<br>　　这个状态码一般的使用场景是当客户端向服务器端发送请求，而且服务器不需要向客户端发送新内容的场景下。</p>
 <h5 id="206-Partial-Content"><a href="#206-Partial-Content" class="headerlink" title="206 Partial Content　"></a>206 Partial Content　</h5><p>　　这个状态码比较好理解，浏览器向服务器进行了返回内容的范围请求，比如只需要某一篇文章的50%，请求方会在请求首部设置范围字段Range，告知服务器我要请求哪一部分的内容，服务器收到请求后会返回这个返回的数据，并在响应报文里的字段Content-Range里显示了当前返回的数据范围。</p>
 <h4 id="3XX-重定向"><a href="#3XX-重定向" class="headerlink" title="3XX 重定向"></a>3XX 重定向</h4><p>　　3XX表示服务器需要执行某些特殊的处理才能以正确的方式响应请求。</p>
-<h5 id="301-Moved-Permanently"><a href="#301-Moved-Permanently" class="headerlink" title="301 Moved Permanently"></a>301 Moved Permanently</h5><p>   理解这个最好的例子就是，你在浏览器收藏了某一个页面的书签，或者某一个资源的书签，当你下次请求时，服务器告知你需要重定向到另一个地址去获取这个页面或者资源，并告知你浏览器的书签也需要更新（当然更不更新取决于你）。浏览器更新的URI地址取于服务器返回的响应报文里的Location字段。<br>   例如我们经常会请求这么一个地址：<a href="http://www.Mmyton.com/sample" target="_blank" rel="external">http://www.Mmyton.com/sample</a>  也就是后续不加上斜杠，此时服务器就会告知浏览器重定向到 <a href="http://www.Mmyton.com/sample/" target="_blank" rel="external">http://www.Mmyton.com/sample/</a> 这个地址请求资源，这时候就会产生301状态码。</p>
+<h5 id="301-Moved-Permanently"><a href="#301-Moved-Permanently" class="headerlink" title="301 Moved Permanently"></a>301 Moved Permanently</h5><p>   理解这个最好的例子就是，你在浏览器收藏了某一个页面的书签，或者某一个资源的书签，当你下次请求时，服务器告知你需要重定向到另一个地址去获取这个页面或者资源，并告知你浏览器的书签也需要更新（当然更不更新取决于你）。浏览器更新的URI地址取于服务器返回的响应报文里的Location字段。<br>   例如我们经常会请求这么一个地址：<a href="http://www.Mmyton.com/sample">http://www.Mmyton.com/sample</a>  也就是后续不加上斜杠，此时服务器就会告知浏览器重定向到 <a href="http://www.Mmyton.com/sample/">http://www.Mmyton.com/sample/</a> 这个地址请求资源，这时候就会产生301状态码。</p>
 <h5 id="302-Found"><a href="#302-Found" class="headerlink" title="302 Found"></a>302 Found</h5><p>　　临时重定向。它和301很像，301是永久重定向，302状态码的意思是浏览器请求的资源已经被分配到新的URI了，希望浏览器这次的请求使用新的URI访问。既然是临时，也就是说它并不会要求你更新浏览器书签里这个页面或者资源的URI地址，后续是否会继续临时重定向到这个URI地址得看服务器是如何分配的。服务器返回的响应报文里的Location字段仍然是你之前书签里保存的那个地址。</p>
 <h5 id="303-See-Other"><a href="#303-See-Other" class="headerlink" title="303 See Other"></a>303 See Other</h5><p>　　书中的解释：该状态码表示由于请求对应的资源存在着另一个URI，应使用GET方法定向获取请求的资源。这个解释其实和302很像，感觉好想都是重定向，其实还是有明确的区别的，302虽然也重定向，但并没有要求浏览器特定采用什么请求方式，请求页面或者资源新的URI地址，但是303就明确要求使用GET方式，这个就是它们之间最大的区别。</p>
 <h5 id="304-Not-Modified"><a href="#304-Not-Modified" class="headerlink" title="304 Not Modified"></a>304 Not Modified</h5><p>　　这个状态码虽然划分到3XX系列里，但和重定向没有任何关系，它也是我们经常会遇到的一个状态码，它表示客户端发送附带条件的请求（指的是客户端采用GET方法的请求报文中包含If-Match、If-Modified-Since、If-None-Match、If-Range、If-Unmodified-Since中任一首部）时，服务器允许请求访问资源，但因发生请求资源未满足条件的情况后，直接返回304 Not Modified。其实就是资源没有改变，可以直接使用客户端未过期的缓存，这也是为什么我们在访问一些页面第一次访问会比较慢，但是第二次访问却很快的原因所在。</p>
@@ -577,7 +577,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://sinfuture.github.io/2017/05/29/httpCode/" title="你应该掌握的14种常用的HTTP状态码">https://sinfuture.github.io/2017/05/29/httpCode/</a>
+      <a href="http://www.mmyton.com/2017/05/29/httpCode/" title="你应该掌握的14种常用的HTTP状态码">http://www.mmyton.com/2017/05/29/httpCode/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
