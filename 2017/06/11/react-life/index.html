@@ -506,7 +506,7 @@
 <li><code style="background:pink;">componentWillUpdate</code>：组件更新之前运行。在这个方法中不能通过<code>this.setState</code>来更新内部状态，后续会有文章加以说明。</li>
 <li><code style="background:pink;">render</code>：渲染更新<code>state</code>后的组件。</li>
 <li><code style="background:pink;">componentDidUpdate</code>：此方法在组件更新以及<code>render</code>方法被调用过后被调用。<h5 id="组件prop改变时"><a href="#组件prop改变时" class="headerlink" title="组件prop改变时"></a>组件prop改变时</h5>　　不说了直接上图：<br><img src="/images/react_life3.png" class="full-image"><br>　　这里涉及到的方法和组件<code>state</code>改变时差不多，除了一个新方法：</li>
-<li><code style="background:pink;">componentWillReceiveProps</code>：如果是父组件更新<code>props</code>，<code>componentWillReceiveProps</code>会先于<code>shouldComponentUpdate</code>执行，这个方法有一个参数，就是更新的<code>props</code>，在这个时候调用<code>this.setState</code>，组件不会进行第二次渲染。<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4>　　通过以上过程的梳理，我们在回过头来看本文第一张图是不是清晰很多了。关于<code>React</code>的使用可以参考我另一篇文章<a href="http://www.mmyton.com/2017/06/11/es6-react/">用ES6重写React组件</a>。</li>
+<li><code style="background:pink;">componentWillReceiveProps</code>：如果是父组件更新<code>props</code>，<code>componentWillReceiveProps</code>会先于<code>shouldComponentUpdate</code>执行，这个方法有一个参数，就是更新的<code>props</code>，在这个时候调用<code>this.setState</code>，组件不会进行第二次渲染。<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4>　　通过以上过程的梳理，我们在回过头来看本文第一张图是不是清晰很多了。关于<code>React</code>的使用可以参考我另一篇文章<a href="http://www.mmyton.com/2017/06/11/es6-react/" target="_blank" rel="external">用ES6重写React组件</a>。</li>
 </ul>
 
       
@@ -771,7 +771,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
