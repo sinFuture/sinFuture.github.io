@@ -97,7 +97,7 @@
 <meta name="description" content="自信自认出色">
 <meta property="og:type" content="website">
 <meta property="og:title" content="sinFuture">
-<meta property="og:url" content="http://www.mmyton.com/tags/javascript/index.html">
+<meta property="og:url" content="http://www.mmyton.com/tags/javaScript/index.html">
 <meta property="og:site_name" content="sinFuture">
 <meta property="og:description" content="自信自认出色">
 <meta name="twitter:card" content="summary">
@@ -130,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://www.mmyton.com/tags/javascript/"/>
+  <link rel="canonical" href="http://www.mmyton.com/tags/javaScript/"/>
 
 
 
 
 
-  <title>标签: javascript | sinFuture</title>
+  <title>标签: javaScript | sinFuture</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -312,7 +312,7 @@
   <div id="posts" class="posts-collapse">
     <div class="collection-title">
       <h2 >
-        javascript
+        javaScript
         <small>标签</small>
       </h2>
     </div>
@@ -325,9 +325,9 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2017/04/27/gulp/" itemprop="url">
+            <a class="post-title-link" href="/2017/07/21/react-render/" itemprop="url">
               
-                <span itemprop="name">从统计分析自动生成系统看gulp的自动化构建</span>
+                <span itemprop="name">React源码解析之渲染原理</span>
               
             </a>
         
@@ -335,9 +335,65 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2017-04-27T22:11:32+08:00"
-              content="2017-04-27" >
-          04-27
+              datetime="2017-07-21T20:39:35+08:00"
+              content="2017-07-21" >
+          07-21
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2017/06/16/kingeditor/" itemprop="url">
+              
+                <span itemprop="name">kindeditor不支持上传图片格式校验</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2017-06-16T12:23:02+08:00"
+              content="2017-06-16" >
+          06-16
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2017/06/11/webpack/" itemprop="url">
+              
+                <span itemprop="name">其实webpack入门很简单</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2017-06-11T14:38:17+08:00"
+              content="2017-06-11" >
+          06-11
         </time>
       </div>
 
@@ -349,6 +405,10 @@
   </div>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/tags/javaScript/page/2/">2</a><a class="extend next" rel="next" href="/tags/javaScript/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -391,7 +451,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -402,7 +462,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -413,7 +473,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -980,68 +1040,6 @@
             var acl = new AV.ACL();
             acl.setPublicReadAccess(true);
             acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
-
-  
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-
-
-  
-
-  
-
-  
-  <script type="text/javascript" src="/js/src/exturl.js?v=5.1.1"></script>
-
-
-</body>
-</html>
-tPublicWriteAccess(true);
             newcounter.setACL(acl);
             /* End Set ACL */
             newcounter.set("title", title);
