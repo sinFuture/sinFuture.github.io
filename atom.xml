@@ -573,28 +573,6 @@
   </entry>
   
   <entry>
-    <title>解剖jQuery源码系列之jQuery工具方法</title>
-    <link href="http://www.mmyton.com/2017/05/23/jQuery20170523/"/>
-    <id>http://www.mmyton.com/2017/05/23/jQuery20170523/</id>
-    <published>2017-05-22T16:31:21.000Z</published>
-    <updated>2017-05-22T16:32:51.000Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-      <category term="前端技术" scheme="http://www.mmyton.com/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="jQuery" scheme="http://www.mmyton.com/tags/jQuery/"/>
-    
-      <category term="JavaScript" scheme="http://www.mmyton.com/tags/JavaScript/"/>
-    
-      <category term="Dom" scheme="http://www.mmyton.com/tags/Dom/"/>
-    
-  </entry>
-  
-  <entry>
     <title>解剖jQuery源码系列之jQuery.prototype.init方法</title>
     <link href="http://www.mmyton.com/2017/05/20/jQuery20170520/"/>
     <id>http://www.mmyton.com/2017/05/20/jQuery20170520/</id>

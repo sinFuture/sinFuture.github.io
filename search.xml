@@ -544,30 +544,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[解剖jQuery源码系列之jQuery工具方法]]></title>
-      <url>/2017/05/23/jQuery20170523/</url>
-      <content type="html"></content>
-      
-        <categories>
-            
-            <category> 前端技术 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> jQuery </tag>
-            
-            <tag> JavaScript </tag>
-            
-            <tag> Dom </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[解剖jQuery源码系列之jQuery.prototype.init方法]]></title>
       <url>/2017/05/20/jQuery20170520/</url>
       <content type="html"><![CDATA[<p>　　今天日子是5月20号，比较特殊，原本打算出去浪一下，奈何对象有事。就静下心来把jQuery源码中的init方法总结下。篇幅会略长些。<a id="more"></a></p>
